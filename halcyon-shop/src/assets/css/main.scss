@@ -1,3 +1,16 @@
+@font-face {
+    font-family: Koodak;
+    src: url('../font/KoodakBold.woff');
+}
+
 body{
-    background-color: aquamarine;
+    margin: 0;
+    font-family: koodak;
+    direction: rtl;
+    // color: #415fe7;
+}
+
+.title{
+    font-family: koodak;
+    
 }

@@ -8,7 +8,7 @@ import CartPage from "../pages/CartPage";
 import { Route, Routes } from "react-router-dom";
 
 export default function HomePage() {
-  console.log("hi");
+  
   return (
     <div>
       <Header />
@@ -17,7 +17,7 @@ export default function HomePage() {
         <Route path="/login" element={<Login />} />
         <Route path="/cart" element={<CartPage />} />
       </Routes>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

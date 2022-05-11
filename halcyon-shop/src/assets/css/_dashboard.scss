@@ -1,10 +1,18 @@
 .boxing{
     
-    
     a{
         border: solid;
+        border-left: none;
         color: black;
+
+        &:last-child{
+            border-left: solid;
+        }
+
+        
     }
+
+    
 }
 
 .managePage{

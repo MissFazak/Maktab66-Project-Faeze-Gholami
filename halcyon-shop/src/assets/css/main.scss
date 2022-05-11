@@ -10,9 +10,6 @@ body{
     margin: 0;
     font-family: koodak;
     direction: rtl;
-    a{
-        color: black;
-    }
 }
 
 .title{
@@ -28,3 +25,7 @@ a{
 img{
     width: 30px;
 }
+
+.grayBut {
+    background-color: #454e53;
+  }

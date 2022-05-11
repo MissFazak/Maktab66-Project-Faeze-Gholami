@@ -32,11 +32,13 @@ const Login = () => {
       
       }
       onSubmit={(values) => {
-        if (values.username === user.username && values.password === user.password) {
-          navigate("../dashboard");
-        } else {
-          alert("bye");
-        }
+        axios.post('http://localhost:3002/auth/login',values).then(res=>{
+          console.log(res.status)
+          if(res.status===200){
+            localStorage.setItem('token',res.data.token)
+            navigate("../dashboard");
+          }
+        })
       }}
       >
         {({

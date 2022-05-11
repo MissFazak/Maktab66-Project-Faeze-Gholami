@@ -8,7 +8,7 @@ const Colors = {
 const theme = createTheme({
   typography: {
     fontFamily: [
-      '"koodak"',
+      "koodak",
     ].join(','),
   },
   palette: {

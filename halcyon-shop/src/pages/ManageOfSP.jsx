@@ -19,7 +19,7 @@ export default function CustomizedTables() {
       <div className="managePageTable">
         <table>
           <tr>
-            <th>تصویر</th>
+            <th>کالا</th>
             <th>قیمت</th>
             <th>موجودی</th>
           </tr>

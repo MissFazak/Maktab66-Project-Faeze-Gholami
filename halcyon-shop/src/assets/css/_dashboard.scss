@@ -1,9 +1,51 @@
 .boxing{
     
-    display: flex;
-    justify-content:end;
+    
     a{
         border: solid;
         color: black;
+    }
+}
+
+.managePage{
+    width: 70%;
+    margin: auto;
+}
+
+.managePageTable{
+    border: solid;
+    border-left: none;
+    margin-top: 10px;
+    table{
+        width: 100%;
+        border-spacing: 0;
+    }
+
+    th{
+        background-color: gray;
+        border: none;
+        border-left: solid black;
+
+    }
+
+    td{
+        border-left: solid black;
+    }
+}
+
+tr:nth-child(odd){
+    background-color: rgb(219, 212, 212);
+}
+
+.topTable{
+    display: flex;
+    justify-content: space-between;
+
+    button{
+        background-color: green;
+        border: none;
+        font-family: koodak;
+        height: 40px;
+        margin-top:20px ;
     }
 }

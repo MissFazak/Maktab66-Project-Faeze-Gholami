@@ -17,7 +17,6 @@ export default function DashboardHead() {
       .get("http://localhost:3002/products")
       .then((res) => setData(res.data));
   }, []);
-  console.log(data);
 
   return (
     <ThemeProvider theme={theme}>
@@ -27,7 +26,7 @@ export default function DashboardHead() {
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} xs={3}>
               پنل مدیریت
             </Typography>
-            <Grid container className="boxing" sx={{ flexGrow: 1 }} xs={5} >
+            <Grid item container className="boxing" sx={{ flexGrow: 1 }} xs={4}>
               <Link to={{pathname:'manage-page'}}>کالاها</Link>
               <Link to={{pathname:'manage-of-sp'}}>موجودی‌ و قیمت‌ها</Link>
               <Link to={{pathname:'order-page'}}>سفارش‌ها</Link>

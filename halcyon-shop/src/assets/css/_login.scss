@@ -1,0 +1,43 @@
+.loginForm {
+  border: solid #415fe7 2px;
+  color: #415fe7;
+  width: 40%;
+  margin: auto;
+  padding: 3% 0;
+  margin-top: 10px;
+  text-align: center;
+  button {
+    display: block;
+    width: 81%;
+    margin: auto;
+    border: none;
+    padding: 5px;
+    font-family: "koodak";
+  }
+  input {
+    direction: ltr;
+    width: 80%;
+    padding: 5px 0;
+    margin: 5px 0;
+  }
+
+  .iconHolder {
+    position: relative;
+  }
+
+  .icons {
+    font-size: 20px;
+    color: gray;
+    position: relative;
+    bottom: 30px;
+    left: 115px;
+    cursor: pointer;
+  }
+
+  .spans{
+      color: red;
+      display: block;
+      position: relative;
+      bottom:30px;
+  }
+}

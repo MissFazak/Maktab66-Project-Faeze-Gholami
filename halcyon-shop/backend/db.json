@@ -1083,6 +1083,12 @@
       "status": "Delivered"
     }
   ],
+  "whoami": {
+    "name": "Amir hossein Mahdioun",
+    "username": "admin",
+    "password": "admin",
+    "role": "admin"
+  },
   "protection": {
     "products.get": false,
     "products": "admin",

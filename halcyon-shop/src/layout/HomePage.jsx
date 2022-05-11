@@ -13,9 +13,9 @@ export default function HomePage() {
     <div>
       <Header />
       <Routes>
-        <Route path="/product" element={<Product />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/cart" element={<CartPage />} />
+        <Route path="/product" element={<Product/>} />
+        <Route path="login" element={<Login/>} />
+        <Route path="/cart" element={<CartPage/>} />
       </Routes>
       {/* <Footer /> */}
     </div>

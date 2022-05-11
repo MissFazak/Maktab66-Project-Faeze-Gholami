@@ -1,19 +1,19 @@
 import * as React from "react";
-import { styled, alpha } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import InputBase from "@mui/material/InputBase";
-import MenuIcon from "@mui/icons-material/Menu";
 import Logo from "../assets/img/logo.png";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./theme";
-import { Link } from "@mui/material";
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
+import { Link,useNavigate } from "react-router-dom";
 
-export default function SearchAppBar() {
+export default function Header() {
+  const navigateToHome = useNavigate()
+  const homePageNav = ()=>{
+    navigateToHome('/')
+ }
   return (
     <ThemeProvider theme={theme}>
       <Box sx={{ flexGrow: 1 }}>
@@ -25,9 +25,11 @@ export default function SearchAppBar() {
                 width: "10%",
                 maxHeight: { xs: 233, md: 167 },
                 maxWidth: { xs: 350, md: 250 },
+                cursor: "pointer"
               }}
               alt="The house from the offer."
               src={Logo}
+              onClick={homePageNav}
             />
             <Typography
               align="right"
@@ -39,26 +41,11 @@ export default function SearchAppBar() {
             >
               فروشگاه موبایل هالسیون
             </Typography>
-
-            <Link
-              underline="none"
-              align="left"
-              noWrap
-              component="div"
-              sx={{ display: { xs: "none", sm: "block" ,padding:'10px' } }}
-              color="primary"
-            >
+            <Link to={{pathname:`login`}}>
               مدیریت
             </Link>
-            <Link
-              underline="none"
-              align="left"
-              noWrap
-              component="div"
-              sx={{ display: { xs: "none", sm: "block" ,padding:'10px'} }}
-              color="primary"
-            >
-             سبد خرید
+            <Link to={{pathname:`cart-page`}}>
+            سبد خرید
              <ShoppingBasketIcon fontSize="medium" sx={{marginBottom:'-6px', paddingX:'3px'}}/>
             </Link>
           </Toolbar>

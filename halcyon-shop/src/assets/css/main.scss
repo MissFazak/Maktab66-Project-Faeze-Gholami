@@ -1,3 +1,6 @@
+@use 'login';
+@use 'dashboard';
+
 @font-face {
     font-family: Koodak;
     src: url('../font/KoodakBold.woff');
@@ -7,10 +10,17 @@ body{
     margin: 0;
     font-family: koodak;
     direction: rtl;
-    // color: #415fe7;
+    a{
+        color: black;
+    }
 }
 
 .title{
     font-family: koodak;
-    
+}
+
+a{
+    text-decoration: none;
+    padding: 0 5px;
+    color: #415fe7;
 }

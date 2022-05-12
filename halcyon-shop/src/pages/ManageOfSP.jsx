@@ -6,8 +6,9 @@ import { Button } from "@mui/material";
 export default function CustomizedTables() {
   const [data, setData] = useState({});
   useEffect(() => {
+    const token = localStorage.getItem('token')
     axios
-      .get("http://localhost:3002/products")
+      .get("http://localhost:3002/products",{headers:{token:token}})
       .then((res) => setData(res.data));
   }, []);
   return (

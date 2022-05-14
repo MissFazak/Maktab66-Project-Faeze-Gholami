@@ -16,7 +16,6 @@ export default function CustomizedTables() {
     axios.get("http://localhost:3002/category").then((res) => setCat(res.data));
   }, []);
 
-  console.log(cat.id);
   return (
     <div className="managePage">
       <div className="topTable">

@@ -2,7 +2,7 @@ import { createTheme } from "@mui/material/styles";
 import koodak from '../assets/font/KoodakBold.woff'
 
 const Colors = {
-  green: "#415fe7",
+  red: "#F10086",
 };
 
 const theme = createTheme({
@@ -13,7 +13,7 @@ const theme = createTheme({
   },
   palette: {
     primary: {
-      main: Colors.green,
+      main: Colors.red,
     },
   },
 });

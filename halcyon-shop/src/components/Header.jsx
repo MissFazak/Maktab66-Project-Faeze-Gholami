@@ -24,7 +24,7 @@ export default function Header() {
               maxHeight: { xs: 233, md: 167 },
               maxWidth: { xs: 350, md: 250 },
               cursor: "pointer",
-              flexFlow:1
+              flexFlow: 1,
             }}
             alt="The house from the offer."
             src={Logo}
@@ -40,29 +40,39 @@ export default function Header() {
           >
             فروشگاه موبایل هالسیون
           </Typography>
-          <Box sx={{flexGrow:1}} color="primary" >
-            <Tooltip title="محصولات">
+          <Box
+            sx={{ flexGrow: 1, flexDirection: "row", display: "flex" }}
+            color="primary"
+          >
+            <Typography variant="h5">
               <Link to={{}}>محصولات </Link>
-            </Tooltip>
-            <Tooltip title="سوالات متداول">
+            </Typography>
+            <Typography variant="h5">
               <Link to={{}}>سوالات متداول </Link>
-            </Tooltip>
-            <Tooltip title="ارتباط با ما">
-                <Link to={{}}>ارتباط با ما </Link>      
-            </Tooltip>
-            <Tooltip title="درباره ما">
+            </Typography>
+            <Typography variant="h5">
+              <Link to={{}}>ارتباط با ما </Link>
+            </Typography>
+            <Typography variant="h5">
               <Link to={{}}>درباره ما </Link>
-            </Tooltip>
+            </Typography>
           </Box>
-          <Box sx={{flexGrow:1}} color="primary">
-            <Link to={{ pathname: `login` }}>مدیریت </Link>
-            <Link to={{ pathname: `cart-page` }}>
-              سبد خرید 
-              <ShoppingBasketIcon
-                fontSize="medium"
-                sx={{ marginBottom: "-6px", paddingX: "3px" }}
-              />
-            </Link>
+          <Box
+            sx={{ flexGrow: 1, display: "flex", flexDirection: "row" }}
+            color="primary"
+          >
+            <Typography variant="h5">
+              <Link to={{ pathname: `login` }}>مدیریت </Link>
+            </Typography>
+            <Typography variant="h5">
+              <Link to={{ pathname: `cart-page` }}>
+                سبد خرید
+                <ShoppingBasketIcon
+                  fontSize="medium"
+                  sx={{ marginBottom: "-6px", paddingX: "3px" }}
+                />
+              </Link>
+            </Typography>
           </Box>
         </Toolbar>
       </AppBar>

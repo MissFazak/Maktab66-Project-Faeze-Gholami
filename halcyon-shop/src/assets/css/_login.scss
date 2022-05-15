@@ -1,24 +1,47 @@
 .loginForm {
-  border: solid #415fe7 2px;
-  color: #415fe7;
+  display: flex;
+  flex-direction: column;
+  border: solid #3c8dad 2px;
+  border-radius: 10px;
+  color: #3c8dad;
   width: 40%;
   margin: auto;
   padding: 3% 0;
-  margin-top: 10px;
+  margin-top: 50px;
   text-align: center;
+  background: rgb(60, 141, 173);
+  background: linear-gradient(
+    90deg,
+    rgba(60, 141, 173, 0.306) 0%,
+    rgba(245, 169, 98, 0.5) 52%,
+    rgba(60, 141, 173, 0.5) 100%
+  );
   button {
     display: block;
-    width: 81%;
+    width: 30%;
     margin: auto;
     border: none;
     padding: 5px;
     font-family: "koodak";
+    background: rgb(60, 141, 173);
+    background: linear-gradient(
+      90deg,
+      rgba(60, 141, 173, 1) 0%,
+      rgba(245, 169, 98, 1) 52%,
+      rgba(60, 141, 173, 1) 100%
+    );
+    border-radius: 10px;
+   
+    font-size: 20px;
   }
   input {
     direction: ltr;
-    width: 80%;
-    padding: 5px 0;
+    width: 60%;
+    padding: 15px;
+    border-radius: 10px;
     margin: 5px 0;
+    border: none;
+    background-color: rgb(255, 255, 255);
   }
 
   .iconHolder {
@@ -29,15 +52,15 @@
     font-size: 20px;
     color: gray;
     position: relative;
-    bottom: 30px;
-    left: 115px;
+    bottom: 38px;
+    left: 28%;
     cursor: pointer;
   }
 
-  .spans{
-      color: red;
-      display: block;
-      position: relative;
-      bottom:30px;
+  .spans {
+    color: red;
+    display: block;
+    position: relative;
+    bottom: 30px;
   }
 }

@@ -20,7 +20,7 @@ export default function Header() {
           <Box
             component="img"
             sx={{
-              width: "10%",
+              width: "6%",
               maxHeight: { xs: 233, md: 167 },
               maxWidth: { xs: 350, md: 250 },
               cursor: "pointer",
@@ -36,34 +36,15 @@ export default function Header() {
             noWrap
             component="div"
             sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
-            color="primary"
           >
             فروشگاه موبایل هالسیون
           </Typography>
-          <Box
-            sx={{ flexGrow: 1, flexDirection: "row", display: {lg:'flex',sm:"none" , xs:"none"} }}
-          >
-            <Typography variant="h5" sx={{paddingX:"10px"}}>
-              <Link to={{}}>محصولات </Link>
-            </Typography>
-            <Typography variant="h5" sx={{paddingX:"10px"}}>
-              <Link to={{}}>سوالات متداول </Link>
-            </Typography>
-            <Typography variant="h5" sx={{paddingX:"10px"}}>
-              <Link to={{}}>ارتباط با ما </Link>
-            </Typography>
-            <Typography variant="h5" sx={{paddingX:"10px"}}>
-              <Link to={{}}>درباره ما </Link>
-            </Typography>
-          </Box>
-          <Box
-            sx={{ flexGrow: 1, display: "flex", flexDirection: "row" }}
-            color="primary"
-          >
-            <Typography variant="h5">
+
+          <Box sx={{ display: "flex", flexDirection: "row"}}>
+            <Typography variant="h6">
               <Link to={{ pathname: `login` }}>مدیریت </Link>
             </Typography>
-            <Typography variant="h5">
+            <Typography variant="h6">
               <Link to={{ pathname: `cart-page` }}>
                 سبد خرید
                 <ShoppingBasketIcon
@@ -71,6 +52,34 @@ export default function Header() {
                   sx={{ marginBottom: "-6px", paddingX: "3px" }}
                 />
               </Link>
+            </Typography>
+          </Box>
+        </Toolbar>
+        <Toolbar>
+          <Box
+            sx={{
+              flexGrow: 1,
+              flexDirection: "row",
+              display: { lg: "flex", sm: "none", xs: "none" },
+            }}
+          >
+            <Typography variant="h5" sx={{ paddingX: "10px" }}>
+              <Link to={{}}>محصولات | </Link>
+            </Typography>
+            <Typography variant="h6" sx={{ paddingX: "10px" }}>
+              <Link to={{}}>پرفروشترین‌ها </Link>
+            </Typography>
+            <Typography variant="h6" sx={{ paddingX: "10px" }}>
+              <Link to={{}}>حراجستان </Link>
+            </Typography>
+            <Typography variant="h6" sx={{ paddingX: "10px" }}>
+              <Link to={{}}>سوالات متداول </Link>
+            </Typography>
+            <Typography variant="h6" sx={{ paddingX: "10px" }}>
+              <Link to={{}}>درباره ما </Link>
+            </Typography>
+            <Typography variant="h6" sx={{ paddingX: "10px" }}>
+              <Link to={{}}>ارتباط با ما </Link>
             </Typography>
           </Box>
         </Toolbar>

@@ -1,38 +1,32 @@
-@use 'login';
-@use 'dashboard';
+@use "login";
+@use "dashboard";
 
 @font-face {
-    font-family: Koodak;
-    src: url('../font/KoodakBold.woff');
+  font-family: Koodak;
+  src: url("../font/KoodakBold.woff");
 }
 
-body{
-    margin: 0;
-    font-family: koodak;
-    direction: rtl;
-    
+body {
+  margin: 0;
+  font-family: koodak;
+  direction: rtl;
 }
 
-.title{
-    font-family: koodak;
+.title {
+  font-family: koodak;
 }
 
-a{
-    text-decoration: none;
-    padding: 0 5px;
-    color: #e91e63;
+a {
+  text-decoration: none;
+  padding: 0 5px;
+  color: black;
 }
 
-img{
-    width: 30px;
+img {
+  width: 30px;
 }
 
 .grayBut {
-    background-color: #454e53;
-  }
+  background-color: #454e53;
+}
 
-  .toolbar{
-      padding-left: 0 !important;
-      padding-right: 0 !important;
-
-  }

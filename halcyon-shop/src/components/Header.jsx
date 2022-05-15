@@ -16,7 +16,7 @@ export default function Header() {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" color="transparent">
-        <Toolbar>
+        <Toolbar className="toolbar">
           <Box
             component="img"
             sx={{
@@ -41,19 +41,18 @@ export default function Header() {
             فروشگاه موبایل هالسیون
           </Typography>
           <Box
-            sx={{ flexGrow: 1, flexDirection: "row", display: "flex" }}
-            color="primary"
+            sx={{ flexGrow: 1, flexDirection: "row", display: {lg:'flex',sm:"none" , xs:"none"} }}
           >
-            <Typography variant="h5">
+            <Typography variant="h5" sx={{paddingX:"10px"}}>
               <Link to={{}}>محصولات </Link>
             </Typography>
-            <Typography variant="h5">
+            <Typography variant="h5" sx={{paddingX:"10px"}}>
               <Link to={{}}>سوالات متداول </Link>
             </Typography>
-            <Typography variant="h5">
+            <Typography variant="h5" sx={{paddingX:"10px"}}>
               <Link to={{}}>ارتباط با ما </Link>
             </Typography>
-            <Typography variant="h5">
+            <Typography variant="h5" sx={{paddingX:"10px"}}>
               <Link to={{}}>درباره ما </Link>
             </Typography>
           </Box>

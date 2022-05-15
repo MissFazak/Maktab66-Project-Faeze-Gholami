@@ -9,15 +9,12 @@ const theme = createTheme({
   },
   palette: {
     primary: {
-      light: '#e91e63',
-      main: '#e91e63',
-      dark: '#f06292',
+      main: '#3C8DAD',
+      dark: '#F5A962',
       contrastText: '#fff',
     },
     secondary: {
-      light: '#ab47bc',
-      main: '#ab47bc',
-      dark: '#ba68c8',
+      main: '#125D98',
       contrastText: '#fff',
     },
     error: {

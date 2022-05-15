@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setUser } from "../redux/userSlice";
 import { Formik } from "formik";
-import { useFormik } from 'formik';
+import { useFormik } from "formik";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { useState } from "react";
@@ -17,7 +17,7 @@ const Login = () => {
   // useEffect(() => {
   //   axios.get("http://localhost:3002/whoami").then((res) => setUser(res.data));
   // }, []);
-          
+
   //         // axios.post("http://localhost:3002/auth/login", values).then((res) => {
   //         //   console.log(res.status);
   //         //   if (res.status === 200) {
@@ -29,48 +29,49 @@ const Login = () => {
 
   const formik = useFormik({
     initialValues: {
-      username: '',
-      password: '',
+      username: "",
+      password: "",
     },
-    onSubmit: values => {
-      dispatch(setUser(values))
+    onSubmit: (values) => {
+      dispatch(setUser(values));
     },
   });
   return (
-   <div className="loginForm">
+    <div className="loginForm">
       <form onSubmit={formik.handleSubmit}>
-        <label htmlFor="firstName">Username:</label>
         <input
           id="username"
           name="username"
           type="text"
+          placeholder="Username"
           onChange={formik.handleChange}
           value={formik.values.username}
         />
-        <label htmlFor="password">Password:</label>
+
         <input
           id="password"
           name="password"
           type={icon ? "text" : "password"}
+          placeholder="Password"
           onChange={formik.handleChange}
           value={formik.values.password}
         />
         <div className="iconHolder">
-                {icon ? (
-                  <VisibilityOffIcon
-                    className="icons"
-                    onClick={() => setIcon(false)}
-                  />
-                ) : (
-                  <VisibilityIcon
-                    className="icons"
-                    onClick={() => setIcon(true)}
-                  />
-                )}
-              </div>
-        <button type="submit">ورود</button>
+          {icon ? (
+            <VisibilityOffIcon
+              className="icons"
+              onClick={() => setIcon(false)}
+            />
+          ) : (
+            <VisibilityIcon className="icons" onClick={() => setIcon(true)} />
+          )}
+        </div>
+
+        <button type="submit" color="red">
+          ورود
+        </button>
       </form>
-   </div>
+    </div>
   );
 };
 

@@ -67,7 +67,7 @@ const Login = () => {
           )}
         </div>
 
-        <button type="submit" color="red">
+        <button type="submit">
           ورود
         </button>
       </form>

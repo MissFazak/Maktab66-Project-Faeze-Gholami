@@ -7,15 +7,15 @@ export default function CustomizedTables() {
   const [data, setData] = useState({});
   const [cat, setCat] = useState({});
   useEffect(() => {
+    const token = localStorage.getItem('token')
     axios
-      .get("http://localhost:3002/products")
+      .get("http://localhost:3002/products",{headers:{token:token}})
       .then((res) => setData(res.data));
   }, []);
   useEffect(() => {
     axios.get("http://localhost:3002/category").then((res) => setCat(res.data));
   }, []);
 
-  console.log(cat.id);
   return (
     <div className="managePage">
       <div className="topTable">

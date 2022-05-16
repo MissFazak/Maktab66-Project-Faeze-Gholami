@@ -1,21 +1,21 @@
 import * as React from "react";
-import { useState, useEffect } from "react";
-import axios from "axios";
+import {useEffect } from "react";
+import {useDispatch,useSelector} from "react-redux"
+import { fetchItems,itemsSelector } from "../redux/productSlice";
 import { Button } from "@mui/material";
 
 export default function CustomizedTables() {
-  const [data, setData] = useState({});
-  useEffect(() => {
-    const token = localStorage.getItem('token')
-    axios
-      .get("http://localhost:3002/products",{headers:{token:token}})
-      .then((res) => setData(res.data));
-  }, []);
+  const dispatch = useDispatch()
+  const {items} = useSelector(itemsSelector)
+  useEffect(()=>{
+    dispatch(fetchItems())
+  },[dispatch])
+  
   return (
     <div className="managePage">
       <div className="topTable">
         <h3>مدیریت موجودی و قیمت‌ها</h3>
-        <button>ذخیره</button>
+        <Button variant="contained" color="primary">ذخیره</Button>
       </div>
       <div className="managePageTable">
         <table>
@@ -25,7 +25,7 @@ export default function CustomizedTables() {
             <th>موجودی</th>
           </tr>
           
-          {Object.values(data).map((row) => (
+          {Object.values(items).map((row) => (
                 <tr className="bodyTr" key={row.id}>
                   <td>
                     {row.name}

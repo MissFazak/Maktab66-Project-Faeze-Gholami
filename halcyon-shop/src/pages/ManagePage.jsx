@@ -1,21 +1,15 @@
 import * as React from "react";
-import { useState, useEffect } from "react";
-import axios from "axios";
+import {useEffect } from "react";
+import {useDispatch,useSelector} from "react-redux"
+import { fetchItems,itemsSelector } from "../redux/productSlice";
 import { Button } from "@mui/material";
 
 export default function CustomizedTables() {
-  const [data, setData] = useState({});
-  const [cat, setCat] = useState({});
-  useEffect(() => {
-    const token = localStorage.getItem('token')
-    axios
-      .get("http://localhost:3002/products",{headers:{token:token}})
-      .then((res) => setData(res.data));
-  }, []);
-  useEffect(() => {
-    axios.get("http://localhost:3002/category").then((res) => setCat(res.data));
-  }, []);
-
+  const dispatch = useDispatch()
+  const {items} = useSelector(itemsSelector)
+  useEffect(()=>{
+    dispatch(fetchItems())
+  },[dispatch])
   return (
     <div className="managePage">
       <div className="topTable">
@@ -31,10 +25,10 @@ export default function CustomizedTables() {
             <th></th>
           </tr>
           
-          {Object.values(data).map((row) => (
+          {Object.values(items).map((row) => (
                 <tr className="bodyTr" key={row.id}>
                   <td>
-                    {<img src={row.thumbnail} />}
+                    <img src={`http://localhost:3002/files/${row.thumbnail}`} />
                   </td>
                   <td align="right">{row.name}</td>
                   <td align="right">{row.category}</td>

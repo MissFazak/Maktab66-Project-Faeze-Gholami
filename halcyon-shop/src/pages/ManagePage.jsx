@@ -12,6 +12,7 @@ export default function CustomizedTables() {
   },[dispatch])
   return (
     <div className="managePage">
+      
       <div className="topTable">
         <h3>مدیریت کالاها</h3>
         <button>افزودن کالا</button>
@@ -33,8 +34,8 @@ export default function CustomizedTables() {
                   <td align="right">{row.name}</td>
                   <td align="right">{row.category}</td>
                   <td align="right" sx={{display:"inline"}}>
-                    <Button sx={{margin:'10px'}}>ویرایش</Button>
-                    <Button>حذف</Button>
+                    <Button variant="contained" color="primary" sx={{margin:'10px'}}>ویرایش</Button>
+                    <Button variant="contained" color="primary">حذف</Button>
                   </td>
                 </tr>
               ))}

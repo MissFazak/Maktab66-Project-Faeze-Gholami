@@ -1,7 +1,7 @@
 import * as React from "react";
 import {useEffect } from "react";
 import {useDispatch,useSelector} from "react-redux"
-import { fetchItems,orderSelector } from "../redux/orderSlice";
+import { fetchOrder,orderSelector } from "../redux/orderSlice";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -12,11 +12,12 @@ export default function CustomizedTables() {
   const dispatch = useDispatch()
   const {orders} = useSelector(orderSelector)
   useEffect(()=>{
-    dispatch(fetchItems())
+    dispatch(fetchOrder())
   },[dispatch])
 
+  
   return (
-    
+   
       <div className="managePage">
         <div className="topTable">
           <h3>مدیریت سفارش‌ها</h3>
@@ -68,6 +69,6 @@ export default function CustomizedTables() {
           </table>
         </div>
       </div>
-   
+ 
   );
 }

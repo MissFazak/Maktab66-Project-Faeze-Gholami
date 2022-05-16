@@ -23,9 +23,9 @@ const api = axios.create({
     withCredentials:false,
 })
 
-export function fetchItems(){
+export function fetchOrder(){
     return async (disptch)=>{
-        api.get("/orders").then((res)=>disptch(setOrders(res.data)))
+        api.get("orders").then((res)=>disptch(setOrders(res.data)))
         
     }
 }

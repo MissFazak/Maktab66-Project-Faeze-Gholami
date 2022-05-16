@@ -22,3 +22,9 @@ export default productSlice.reducer
 const api = axios.create({
     baseURL:"http://localhost:3002/"
 })
+
+export function fetchItem(){
+    return async (disptch)=>{
+        api.get("/products").then((res)=>disptch(setItem(res.data)))
+    }
+}

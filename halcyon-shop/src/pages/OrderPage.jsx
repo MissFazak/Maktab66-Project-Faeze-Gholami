@@ -21,7 +21,7 @@ export default function CustomizedTables() {
       <div className="managePage">
         <div className="topTable">
           <h3>مدیریت سفارش‌ها</h3>
-          <FormControl>
+          <FormControl className="radioGroup">
             <RadioGroup
               row
               aria-labelledby="demo-row-radio-buttons-group-label"

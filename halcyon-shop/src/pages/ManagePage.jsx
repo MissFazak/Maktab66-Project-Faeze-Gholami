@@ -14,7 +14,7 @@ export default function CustomizedTables() {
     <div className="managePage">
       
       <div className="topTable">
-        <h3>مدیریت کالاها</h3>
+        <h2>مدیریت کالاها</h2>
         <Button variant="contained" color="primary">افزودن کالا</Button>
       </div>
       <div className="managePageTable">

@@ -1,56 +1,68 @@
-.boxing{
+.boxing {
     
-    a{
-        border: solid;
-        border-left: none;
-        color: black;
-
-        &:last-child{
-            border-left: solid;
-        }
-
-        
-    }
-
-    
-}
-
-.managePage{
-    width: 70%;
-    margin: auto;
-}
-
-.managePageTable{
+  a {
+      font-size: 1.2em;
     border: solid;
     border-left: none;
-    margin-top: 10px;
-    table{
-        width: 100%;
-        border-spacing: 0;
-    }
+    color: black;
 
-    th{
-        background-color: gray;
-        border: none;
-        border-left: solid black;
-
+    &:last-child {
+      border-left: solid;
     }
-
-    td{
-        border-left: solid black;
-    }
+  }
 }
 
-tr:nth-child(odd){
-    background-color: rgb(219, 212, 212);
+.managePage {
+  width: 60%;
+  margin: auto;
+  font-size: 1.5em;
 }
 
-.topTable{
-    display: flex;
-    justify-content: space-between;
+.managePageTable {
+  border: solid;
+  border-left: none;
+  margin-top: 10px;
+  table {
+    width: 100%;
+    border-spacing: 0;
+  }
 
-    button{
-        height: 40px;
-        margin-top:20px ;
-    }
+  img {
+    width: 50px;
+    padding: 5px;
+  }
+
+  th {
+    background-color: #3C8DAD;
+    border: none;
+    border-left: solid black;
+  }
+
+  td {
+    border-left: solid black;
+  }
+}
+
+tr:nth-child(odd) {
+  background-color: #3c8dad33;
+}
+
+.topTable {
+  display: flex;
+  justify-content: space-between;
+
+  button {
+    height: 40px;
+    font-size: 1em;
+    margin-top: 45px;
+  }
+
+  .radioGroup{
+    margin-top: 15px;
+      
+      span{
+
+          font-size: .8em;
+      }
+  }
 }

@@ -1,28 +1,27 @@
 import * as React from "react";
-import { useState, useEffect } from "react";
-import axios from "axios";
+import {useEffect } from "react";
+import {useDispatch,useSelector} from "react-redux"
+import { fetchOrder,orderSelector } from "../redux/orderSlice";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
-import theme from "../components/theme";
-import { ThemeProvider } from "@mui/material/styles";
 
 export default function CustomizedTables() {
-  const [data, setData] = useState({});
   let moment = require("moment-jalaali");
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    axios
-      .get("http://localhost:3002/orders", { headers: { token: token } })
-      .then((res) => setData(res.data));
-  }, []);
+  const dispatch = useDispatch()
+  const {orders} = useSelector(orderSelector)
+  useEffect(()=>{
+    dispatch(fetchOrder())
+  },[dispatch])
+
+  
   return (
-    <ThemeProvider theme={theme}>
+   
       <div className="managePage">
         <div className="topTable">
           <h3>مدیریت سفارش‌ها</h3>
-          <FormControl>
+          <FormControl className="radioGroup">
             <RadioGroup
               row
               aria-labelledby="demo-row-radio-buttons-group-label"
@@ -51,7 +50,7 @@ export default function CustomizedTables() {
               <th></th>
             </tr>
 
-            {Object.values(data).map((row) => (
+            {Object.values(orders).map((row) => (
               <tr className="bodyTr" key={row.id}>
                 <td>
                   {row.customerDetail.firstName +
@@ -70,6 +69,6 @@ export default function CustomizedTables() {
           </table>
         </div>
       </div>
-    </ThemeProvider>
+ 
   );
 }

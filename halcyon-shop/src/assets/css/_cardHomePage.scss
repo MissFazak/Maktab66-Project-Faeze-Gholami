@@ -1,0 +1,21 @@
+.homePageCard{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 80%;
+    margin: auto;
+    align-items: center;
+
+    img{
+        width: 100px;
+        height: 100px;
+        object-position: center;
+        margin: auto;
+    }
+}
+
+.cardStyle{
+    width: 30%;
+    margin: 10px;
+}

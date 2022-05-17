@@ -7,6 +7,7 @@ import CartPage from "../pages/CartPage";
 
 import { Route, Routes } from "react-router-dom";
 import CarouselCom from "../components/Carousel";
+import HomePageCard from "../components/HomePageCard";
 
 export default function HomePage() {
   
@@ -19,6 +20,7 @@ export default function HomePage() {
         <Route path="/cart" element={<CartPage/>} />
       </Routes>
       <CarouselCom/>
+      <HomePageCard/>
       {/* <Footer /> */}
     </div>
   );

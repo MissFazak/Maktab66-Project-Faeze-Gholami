@@ -32,7 +32,7 @@ export default function Header() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" color="transparent">
+      <AppBar position="static" color="transparent" sx={{boxShadow:'none'}}>
         <Toolbar className="toolbar">
           <Box
             component="img"

@@ -12,7 +12,7 @@ export default function CarouselCom() {
     <>
       <div>
         <Carousel animation='slide' indicators={false} navButtonsAlwaysVisible={true}>
-          <Item><img src={samsung}/></Item>
+          <Item ><img src={samsung}/></Item>
           <Item><img src={apple}/></Item>
           <Item><img src={xiaomi}/></Item>
           <Item><img src={huawei}/></Item>

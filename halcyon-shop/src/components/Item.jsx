@@ -14,6 +14,6 @@ export default styled.div`
   img {
     object-fit: cover;
     width: 100%;
-    height: 80%;
+    height: 100%;
   }
 `;

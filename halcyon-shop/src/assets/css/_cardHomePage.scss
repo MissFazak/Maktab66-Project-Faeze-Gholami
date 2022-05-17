@@ -1,9 +1,13 @@
+.homePageCardWrapper{
+    width: 80%;
+    margin: auto;
+}
+
 .homePageCard{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     flex-wrap: wrap;
-    width: 80%;
     margin: auto;
     align-items: center;
 

@@ -21,32 +21,34 @@ export default function HomePageCard() {
     dispatch(fetchCategory());
   }, [dispatch]);
   return (
-    <div className="homePageCard">
+    <div>
       {Object.values(category).map((cat) => (
-        <div>
+        <div className="homePageCardWrapper">
           <h1>{cat.name}</h1>
-          {Object.values(items).find((item) => {
-            if (cat.id == item.category) {
-              <Card className="cardStyle">
-                <CardHeader
-                  title={item.name}
-                  subheader={moment(item.createdAt).format("jYYYY/jM/jD")}
-                  color="primary"
-                />
-                <CardMedia
-                  component="img"
-                  height="194"
-                  image={`http://localhost:3002/files/${item.thumbnail}`}
-                  alt={item.name}
-                />
-                <CardContent>
-                  <Typography variant="body2" color="secondary">
-                    {item.name}
-                  </Typography>
-                </CardContent>
-              </Card>;
-            }
-          })}
+          <div  className="homePageCard">
+              {Object.values(items).map((item) => {
+                if (cat.id == item.category) {
+                 return <Card className="cardStyle">
+                    <CardHeader
+                      title={item.name}
+                      subheader={moment(item.createdAt).format("jYYYY/jM/jD")}
+                      color="primary"
+                    />
+                    <CardMedia
+                      component="img"
+                      height="194"
+                      image={`http://localhost:3002/files/${item.thumbnail}`}
+                      alt={item.name}
+                    />
+                    <CardContent>
+                      <Typography variant="body2" color="secondary">
+                        {item.name}
+                      </Typography>
+                    </CardContent>
+                  </Card>;
+                }
+              })}
+          </div>
         </div>
       ))}
     </div>

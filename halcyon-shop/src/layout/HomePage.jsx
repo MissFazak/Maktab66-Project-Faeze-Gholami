@@ -6,6 +6,7 @@ import Login from "../pages/Login";
 import CartPage from "../pages/CartPage";
 
 import { Route, Routes } from "react-router-dom";
+import CarouselCom from "../components/Carousel";
 
 export default function HomePage() {
   
@@ -17,6 +18,7 @@ export default function HomePage() {
         <Route path="login" element={<Login/>} />
         <Route path="/cart" element={<CartPage/>} />
       </Routes>
+      <CarouselCom/>
       {/* <Footer /> */}
     </div>
   );

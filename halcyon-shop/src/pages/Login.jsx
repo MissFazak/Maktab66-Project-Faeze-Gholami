@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setUser } from "../redux/userSlice";
-import { Formik } from "formik";
 import { useFormik } from "formik";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
@@ -23,19 +22,17 @@ const Login = () => {
     },
     onSubmit: (values) => {
       dispatch(setUser(values));
-    },
-  });
-  useEffect(() => {
-    axios.get("http://localhost:3002/whoami").then((res) => setUser(res.data));
-  }, []);
-
-          axios.post("http://localhost:3002/auth/login", formik.values).then((res) => {
+      axios.get("http://localhost:3002/whoami").then((res) => setUser(res.data));
+      axios.post("http://localhost:3002/auth/login", formik.values).then((res) => {
             console.log(res.status);
             if (res.status === 200) {
               localStorage.setItem("token", res.data.token);
               navigate("../dashboard");
             }
           });
+    },
+  });
+ 
   return (
     <div className="loginForm">
       <form onSubmit={formik.handleSubmit}>

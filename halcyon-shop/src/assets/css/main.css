@@ -13,6 +13,11 @@ body {
   direction: rtl;
 }
 
+.container {
+  position: relative;
+  min-height: 100vh;
+}
+
 .title {
   font-family: koodak;
 }

@@ -10,22 +10,26 @@ import ManagePage from "./pages/ManagePage"
 import ManageOfSP from "./pages/ManageOfSP"
 import OrderPage from "./pages/OrderPage"
 import MainPage from "./components/MainPage";
+import ListOfBrands from "./pages/ListOfBrands";
 
 function App() {
   return (
     <Provider store={store}>
-      <Routes>
-        <Route path="/" element={<HomePage />}>
-          <Route path="/" element={<MainPage />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/cart-page" element={<CartPage />} />
-        </Route>
-        <Route path="/dashboard" element={<Dashboard />}>
-          <Route path="manage-page" element={<ManagePage/>}/>
-          <Route path="manage-of-sp" element={<ManageOfSP/>}/>
-          <Route path="order-page" element={<OrderPage/>}/>
-        </Route>
-      </Routes>
+      <div className="container">
+        <Routes>
+          <Route path="/" element={<HomePage />}>
+            <Route path="/" element={<MainPage />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/cart-page" element={<CartPage />} />
+            <Route path="/list-brands" element={<ListOfBrands/>}/>
+          </Route>
+          <Route path="/dashboard" element={<Dashboard />}>
+            <Route path="manage-page" element={<ManagePage/>}/>
+            <Route path="manage-of-sp" element={<ManageOfSP/>}/>
+            <Route path="order-page" element={<OrderPage/>}/>
+          </Route>
+        </Routes>
+      </div>
     </Provider>
   );
 }

@@ -8,6 +8,7 @@ import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
+import { Link } from "react-router-dom";
 
 export default function HomePageCard() {
   let moment = require("moment-jalaali");
@@ -24,7 +25,9 @@ export default function HomePageCard() {
     <div>
       {Object.values(category).map((cat) => (
         <div className="homePageCardWrapper">
-          <h1>{cat.name}</h1>
+          <Link to={{pathname:'list-brands'}}>
+            <h1>{cat.name}</h1>
+          </Link>
           <div  className="homePageCard">
               {Object.values(items).map((item) => {
                 if (cat.id == item.category) {

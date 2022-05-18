@@ -30,27 +30,27 @@ export default function DashboardHead() {
               پنل مدیریت
             </Typography>
             <Grid item container className="boxing" sx={{ flexGrow: 1 }} xs={4}>
-              <NavLink to={{pathname:'manage-page'}}>
+              <NavLink to={{pathname:'manage-page'}} style={({isActive})=>({backgroundColor:isActive?"#5ab7fd":'transparent'})}>
               <QrCodeIcon
               fontSize="medium"
               color="primary"
               sx={{ marginBottom: "-8px", paddingX: "3px" }}
               />
                 کالاها</NavLink>
-              <Link to={{pathname:'manage-of-sp'}}>
+              <NavLink to={{pathname:'manage-of-sp'}} style={({isActive})=>({backgroundColor:isActive?"#5ab7fd":'transparent'})}>
               <PriceChangeIcon
               fontSize="medium"
               color="primary"
               sx={{ marginBottom: "-8px", paddingX: "3px" }}
               />
-                موجودی‌ و قیمت‌ها</Link>
-              <Link to={{pathname:'order-page'}}>
+                موجودی‌ و قیمت‌ها</NavLink>
+              <NavLink to={{pathname:'order-page'}} style={({isActive})=>({backgroundColor:isActive?"#5ab7fd":'transparent'})}>
               <IntegrationInstructionsIcon
               fontSize="medium"
               color="primary"
               sx={{ marginBottom: "-8px", paddingX: "3px" }}
               />
-                سفارش‌ها</Link>
+                سفارش‌ها</NavLink>
             </Grid>
             <Link to={{pathname:'..//'}} xs={1}><Typography variant="h5">بازگشت به سایت
             <KeyboardReturnIcon

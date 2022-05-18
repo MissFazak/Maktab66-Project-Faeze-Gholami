@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import { setUser } from "../redux/userSlice";
 import { useFormik } from "formik";
@@ -12,7 +12,6 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [icon, setIcon] = useState(false);
-  const [userState, setUserState] = useState({});
   
   
   const formik = useFormik({

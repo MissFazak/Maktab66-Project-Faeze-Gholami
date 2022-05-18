@@ -1,9 +1,7 @@
 @use "login";
 @use "dashboard";
 @use "cardHomePage";
-@use  "footer";
-
-
+@use "footer";
 @font-face {
   font-family: Koodak;
   src: url("../font/KoodakBold.woff");
@@ -25,8 +23,7 @@ a {
   color: black;
 }
 
-
 .grayBut {
   background-color: #454e53;
 }
-
+/*# sourceMappingURL=main.css.map */

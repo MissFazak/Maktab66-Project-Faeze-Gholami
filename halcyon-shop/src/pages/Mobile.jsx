@@ -3,13 +3,10 @@ import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchItems, itemsSelector } from "../redux/productSlice";
-import { fetchCategory, categorySelector } from "../redux/categorySlice";
 import { useLocation } from "react-router-dom";
 import Craousel from 'react-material-ui-carousel'
 import Item from "../components/Item";
+import { Button } from "@mui/material";
 
 export default function MediaControlCard() {
 
@@ -38,6 +35,7 @@ export default function MediaControlCard() {
           <Typography component="div" variant="h5">
             موجودی:{map.count}
           </Typography>
+          <Button variant="contained" sx={{marginY:'20px'}}>افزودن به سبد خرید</Button>
           <Typography
             variant="subtitle1"
             color="text.secondary"

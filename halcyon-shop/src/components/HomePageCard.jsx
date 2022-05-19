@@ -9,6 +9,7 @@ import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { Link } from "react-router-dom";
+import { Button } from "@mui/material";
 
 export default function HomePageCard() {
   let moment = require("moment-jalaali");
@@ -45,12 +46,10 @@ export default function HomePageCard() {
                         image={`http://localhost:3002/files/${item.thumbnail}`}
                         alt={item.name}
                       />
-                      <CardContent>
-                        <Typography variant="body2" color="secondary">
-                          {item.name}
-                        </Typography>
-                      </CardContent>
+                     
+                      
                   </Link>
+                        <Button>افزودن به سبد خرید</Button>
                     </Card>
                 );
               }

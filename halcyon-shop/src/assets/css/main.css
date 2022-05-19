@@ -2,6 +2,7 @@
 @use "dashboard";
 @use "cardHomePage";
 @use "footer";
+@use "sideBar";
 @font-face {
   font-family: Koodak;
   src: url("../font/KoodakBold.woff");

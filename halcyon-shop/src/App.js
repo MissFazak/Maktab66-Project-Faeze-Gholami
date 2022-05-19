@@ -13,6 +13,7 @@ import SingleBrands from "./pages/SingleBrands";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchItems, itemsSelector } from "./redux/productSlice";
+import Mobile from "./pages/Mobile";
 
 function App() {
   const dispatch = useDispatch();
@@ -25,6 +26,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />}>
           <Route path="/" element={<MainPage />} />
+          <Route path="/product" element={<Mobile/>}/>
           <Route path="/login" element={<Login />} />
           <Route path="/cart-page" element={<CartPage />} />
           <Route path="/list-brands" element={<ListOfBrands />}>

@@ -1,5 +1,20 @@
 .sidebar{
-    border: solid red;
+    // border: solid red;
     width: 20%;
     height: 100%;
+    text-align: right;
+    direction: rtl;
+    padding-bottom: 100px;
+
 }
+
+.brandsPage{
+    display: flex;
+    flex-direction: row;
+}
+
+.singleBrands{
+    width: 80%;
+    position: relative;
+}
+

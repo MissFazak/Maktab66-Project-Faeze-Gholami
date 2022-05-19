@@ -11,7 +11,6 @@ import Collapse from "@mui/material/Collapse";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import { Box } from "@mui/material";
-import SingleBrands from "./SingleBrands";
 
 export default function ListOfBrands() {
   const [open, setOpen] = React.useState(true);
@@ -53,9 +52,10 @@ export default function ListOfBrands() {
               component="nav"
               aria-labelledby="nested-list-subheader"
             >
-              <ListItemButton onClick={handleClick}>
-                <ListItemText primary={item.name} />
-                {open ? <ExpandLess /> : <ExpandMore />}
+              <ListItemButton>
+                <Link to={{ pathname: "brands" }} state={item}>
+                  <ListItemText primary={item.name} />
+                </Link>
               </ListItemButton>
               <Collapse in={open} timeout="auto" unmountOnExit>
                 {Object.values(items).map((el) => {
@@ -63,9 +63,7 @@ export default function ListOfBrands() {
                     return (
                       <List component="div" disablePadding>
                         <ListItemButton sx={{ pl: 4 }}>
-                          <Link to={{ pathname: "brands" }}>
-                            <ListItemText primary={el.name} />
-                          </Link>
+                          <ListItemText primary={el.name} />
                         </ListItemButton>
                       </List>
                     );

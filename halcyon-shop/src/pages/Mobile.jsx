@@ -1,5 +1,4 @@
 import * as React from "react";
-import { useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -10,6 +9,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchItems, itemsSelector } from "../redux/productSlice";
 import { fetchCategory, categorySelector } from "../redux/categorySlice";
 import { useLocation } from "react-router-dom";
+import Craousel from 'react-material-ui-carousel'
+import Item from "../components/Item";
 
 export default function MediaControlCard() {
   let moment = require("moment-jalaali");
@@ -29,16 +30,15 @@ export default function MediaControlCard() {
   console.log(gallery);
 
   return (
-    <Card sx={{ display: "flex" }}>
-      {gallery.map((item) => (
-        <CardMedia
-          component="img"
-          sx={{ width: 151 }}
-          image={`http://localhost:3002/files/${item}`}
-          alt="Live from space album cover"
-        />
-      ))}
-      <Box sx={{ display: "flex", flexDirection: "column" }}>
+    <Card sx={{ display: "flex",margin:'auto'}}>
+      <Box>
+          <Craousel autoPlay={false} navButtonsAlwaysVisible={true} indicators={false}>
+          {gallery.map((item) => (
+            <Item><img src={`http://localhost:3002/files/${item}`}/></Item>
+          ))}
+          </Craousel>
+      </Box>
+      <Box sx={{ display: "flex", flexDirection: "column" ,width:'50%'}}>
         <CardContent sx={{ flex: "1 0 auto" }}>
           <Typography component="div" variant="h4">
             {map.name}

@@ -17,10 +17,10 @@ export default function HomePageCard() {
   const { category } = useSelector(categorySelector);
   useEffect(() => {
     dispatch(fetchItems());
-  }, [dispatch]);
+  }, []);
   useEffect(() => {
     dispatch(fetchCategory());
-  }, [dispatch]);
+  }, []);
   return (
     <div>
       {Object.values(category).map((cat) => (

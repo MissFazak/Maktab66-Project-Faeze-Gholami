@@ -17,7 +17,7 @@ export default function SingleBrands() {
   const { items } = useSelector(itemsSelector);
   useEffect(() => {
     dispatch(fetchItems());
-  }, [dispatch]);
+  }, []);
 
   let state = useLocation();
   const [map, setMap] = useState(state.state);

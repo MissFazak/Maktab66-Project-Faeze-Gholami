@@ -2,7 +2,6 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,16 +12,6 @@ import Craousel from 'react-material-ui-carousel'
 import Item from "../components/Item";
 
 export default function MediaControlCard() {
-  let moment = require("moment-jalaali");
-  const dispatch = useDispatch();
-  const { items } = useSelector(itemsSelector);
-  const { category } = useSelector(categorySelector);
-  useEffect(() => {
-    dispatch(fetchItems());
-  }, [dispatch]);
-  useEffect(() => {
-    dispatch(fetchCategory());
-  }, [dispatch]);
 
   let state = useLocation();
   const [map, setMap] = React.useState(state.state);

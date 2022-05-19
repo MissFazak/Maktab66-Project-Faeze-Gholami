@@ -16,10 +16,10 @@ export default function ListOfBrands() {
   const { category } = useSelector(categorySelector);
   useEffect(() => {
     dispatch(fetchItems());
-  }, [dispatch]);
+  }, []);
   useEffect(() => {
     dispatch(fetchCategory());
-  }, [dispatch]);
+  }, []);
   return (
     <div className="brandsPage">
       <div className="sidebar">

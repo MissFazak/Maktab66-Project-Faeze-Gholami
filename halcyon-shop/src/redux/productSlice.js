@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from 'axios'
+import { useMemo } from "react";
 
 const productSlice = createSlice({
     name:"items",
@@ -17,7 +18,8 @@ const productSlice = createSlice({
 export const {setItems} = productSlice.actions
 export const itemsSelector =(state) =>state.items
 export default productSlice.reducer
-
+// const limit = useMemo(() => 3, []);
+// const [activePage, setActivePage] = useState(1);
 const api = axios.create({
     baseURL:"http://localhost:3002/",
     withCredentials:false,
@@ -25,7 +27,7 @@ const api = axios.create({
 
 export function fetchItems(){
     return async (disptch)=>{
-        api.get("/products").then((res)=>disptch(setItems(res.data)))
+        api.get(`/products`).then((res)=>disptch(setItems(res.data)))
         
     }
 }

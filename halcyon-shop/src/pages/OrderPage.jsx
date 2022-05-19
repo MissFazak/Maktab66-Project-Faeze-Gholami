@@ -13,7 +13,7 @@ export default function CustomizedTables() {
   const {orders} = useSelector(orderSelector)
   useEffect(()=>{
     dispatch(fetchOrder())
-  },[dispatch])
+  },[])
 
   
   return (

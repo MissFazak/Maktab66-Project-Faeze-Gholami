@@ -9,7 +9,7 @@ export default function CustomizedTables() {
   const {items} = useSelector(itemsSelector)
   useEffect(()=>{
     dispatch(fetchItems())
-  },[dispatch])
+  },[])
   
   return (
     <div className="managePage">

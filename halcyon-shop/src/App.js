@@ -26,7 +26,13 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />}>
           <Route path="/" element={<MainPage />} />
-          <Route path="/product" element={<Mobile/>}/>
+          {items.map((item, index) => (
+              <Route
+                path="/mobile"
+                element={<Mobile />}
+                key={index}
+              />
+            ))}
           <Route path="/login" element={<Login />} />
           <Route path="/cart-page" element={<CartPage />} />
           <Route path="/list-brands" element={<ListOfBrands />}>

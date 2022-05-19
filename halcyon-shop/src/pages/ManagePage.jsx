@@ -2,14 +2,14 @@ import * as React from "react";
 import {useEffect } from "react";
 import {useDispatch,useSelector} from "react-redux"
 import { fetchItems,itemsSelector } from "../redux/productSlice";
-import { Button } from "@mui/material";
+import { Button, Pagination } from "@mui/material";
 
 export default function CustomizedTables() {
   const dispatch = useDispatch()
   const {items} = useSelector(itemsSelector)
   useEffect(()=>{
     dispatch(fetchItems())
-  },[dispatch])
+  },[])
   return (
     <div className="managePage">
       
@@ -41,6 +41,13 @@ export default function CustomizedTables() {
               ))}
           
         </table>
+        <Pagination
+        variant="outlined"
+        defaultPage={1}
+        // page={activePage}
+        // count={Math.ceil(data?.headers["x-total-count"] / limit)}
+        // onChange={(_, page) => setActivePage(page)}
+      />
       </div>
     </div>
   );

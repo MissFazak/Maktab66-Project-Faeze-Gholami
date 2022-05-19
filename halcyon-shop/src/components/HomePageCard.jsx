@@ -44,7 +44,7 @@ export default function HomePageCard() {
                       alt={item.name}
                     />
                     <CardContent>
-                      <Typography variant="body2" color="secondary">
+                      <Typography sx={{fontFamily:"sans-serif"}} variant="body2" color="secondary">
                         {item.name}
                       </Typography>
                     </CardContent>

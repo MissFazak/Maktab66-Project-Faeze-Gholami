@@ -25,32 +25,36 @@ export default function HomePageCard() {
     <div>
       {Object.values(category).map((cat) => (
         <div className="homePageCardWrapper">
-          <Link to={{pathname:'list-brands'}}>
+          <Link to={{ pathname: "list-brands" }}>
             <h1>{cat.name}</h1>
           </Link>
-          <div  className="homePageCard">
-              {Object.values(items).map((item) => {
-                if (cat.id == item.category) {
-                 return <Card className="cardStyle">
-                    <CardHeader
-                      title={item.name}
-                      subheader={moment(item.createdAt).format("jYYYY/jM/jD")}
-                      color="primary"
-                    />
-                    <CardMedia
-                      component="img"
-                      height="194"
-                      image={`http://localhost:3002/files/${item.thumbnail}`}
-                      alt={item.name}
-                    />
-                    <CardContent>
-                      <Typography sx={{fontFamily:"sans-serif"}} variant="body2" color="secondary">
-                        {item.name}
-                      </Typography>
-                    </CardContent>
-                  </Card>;
-                }
-              })}
+          <div className="homePageCard">
+            {Object.values(items).map((item) => {
+              if (cat.id == item.category) {
+                return (
+                  <Card className="cardStyle">
+                      <Link to={{ pathname: "mobile" }} state={item}>
+                      <CardHeader
+                        title={item.name}
+                        subheader={moment(item.createdAt).format("jYYYY/jM/jD")}
+                        color="primary"
+                      />
+                      <CardMedia
+                        component="img"
+                        height="194"
+                        image={`http://localhost:3002/files/${item.thumbnail}`}
+                        alt={item.name}
+                      />
+                      <CardContent>
+                        <Typography variant="body2" color="secondary">
+                          {item.name}
+                        </Typography>
+                      </CardContent>
+                  </Link>
+                    </Card>
+                );
+              }
+            })}
           </div>
         </div>
       ))}

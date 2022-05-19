@@ -3,21 +3,14 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchItems, itemsSelector } from "../redux/productSlice";
 import { fetchCategory, categorySelector } from "../redux/categorySlice";
-import { Link, Outlet, Route, Router } from "react-router-dom";
+import { Link, Outlet} from "react-router-dom";
 import List from "@mui/material/List";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import Collapse from "@mui/material/Collapse";
-import ExpandLess from "@mui/icons-material/ExpandLess";
-import ExpandMore from "@mui/icons-material/ExpandMore";
 import { Box } from "@mui/material";
 
 export default function ListOfBrands() {
-  const [open, setOpen] = React.useState(true);
-
-  const handleClick = () => {
-    setOpen(!open);
-  };
   const dispatch = useDispatch();
   const { items } = useSelector(itemsSelector);
   const { category } = useSelector(categorySelector);
@@ -57,7 +50,7 @@ export default function ListOfBrands() {
                   <ListItemText primary={item.name} />
                 </Link>
               </ListItemButton>
-              <Collapse in={open} timeout="auto" unmountOnExit>
+              <Collapse unmountOnExit>
                 {Object.values(items).map((el) => {
                   if (item.id == el.category) {
                     return (

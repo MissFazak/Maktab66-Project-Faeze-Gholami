@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import { fetchItems, itemsSelector } from "../redux/productSlice";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
@@ -53,6 +53,7 @@ export default function SingleBrands() {
             )}
         
       </div>
+      <Outlet/>
     </div>
   );
 }

@@ -8,7 +8,7 @@ const orderSlice = createSlice({
     },
     reducers:{
         setOrders:(state,{payload})=>{
-            return {orders:[...state.orders,...payload]}
+            return {orders:[...payload]}
         }
         
     }

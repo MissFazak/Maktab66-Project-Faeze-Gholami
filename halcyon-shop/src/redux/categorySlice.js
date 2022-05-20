@@ -8,7 +8,7 @@ const categorySlice = createSlice({
     },
     reducers:{
         setCategory:(state,{payload})=>{
-            return {category:[...state.category,...payload]}
+            return {category:[...payload]}
         }
         
     }

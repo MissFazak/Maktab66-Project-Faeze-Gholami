@@ -34,7 +34,7 @@ export default function HomePageCard() {
               if (cat.id == item.category) {
                 return (
                   <Card className="cardStyle">
-                      <Link to={{ pathname: "mobile" }} state={item}>
+                    <Link to={{ pathname: "mobile" }} state={item}>
                       <CardHeader
                         title={item.name}
                         subheader={moment(item.createdAt).format("jYYYY/jM/jD")}
@@ -46,11 +46,9 @@ export default function HomePageCard() {
                         image={`http://localhost:3002/files/${item.thumbnail}`}
                         alt={item.name}
                       />
-                     
-                      
-                  </Link>
-                        <Button>افزودن به سبد خرید</Button>
-                    </Card>
+                    </Link>
+                    <Button>افزودن به سبد خرید</Button>
+                  </Card>
                 );
               }
             })}

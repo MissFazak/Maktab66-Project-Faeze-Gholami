@@ -6,6 +6,8 @@ import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
+import {DataGrid} from '@mui/x-data-grid'
+
 
 export default function CustomizedTables() {
   let moment = require("moment-jalaali");
@@ -14,6 +16,37 @@ export default function CustomizedTables() {
   useEffect(()=>{
     dispatch(fetchOrder())
   },[])
+
+  const columns = [
+    { field: "id", headerName: "ID", width: 10 
+  },
+    {
+      field: "name",
+      headerName: "نام کاربر",
+      width: 150,
+    },
+    {
+      field: "price",
+      headerName: "مجموع مبلغ",
+      width: 110,
+    },
+    {
+      field: "time",
+      headerName: "زمان ثبت سفارش",
+      width: 200,
+      sortable: false,
+    },
+  ];
+  const rows = orders.map((item) => {
+    return {
+      id: item.id,
+      name: item.customerDetail.firstName +
+      " " +
+      item.customerDetail.lastName,
+      price: item.purchaseTotal,
+      time:moment(item.orderDate).format("jYYYY/jM/jD")
+    };
+  });
 
   
   return (
@@ -41,7 +74,9 @@ export default function CustomizedTables() {
             </RadioGroup>
           </FormControl>
         </div>
-        <div className="managePageTable">
+        <DataGrid rows={rows} columns={columns} autoHeight pageSize={5}/>
+
+        {/* <div className="managePageTable">
           <table>
             <tr>
               <th>نام کاربر</th>
@@ -67,7 +102,7 @@ export default function CustomizedTables() {
               </tr>
             ))}
           </table>
-        </div>
+        </div> */}
       </div>
  
   );

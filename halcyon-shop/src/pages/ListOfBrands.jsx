@@ -9,17 +9,20 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import Collapse from "@mui/material/Collapse";
 import { Box } from "@mui/material";
+import { v4 as uuidv4 } from 'uuid';
 
 export default function ListOfBrands() {
   const dispatch = useDispatch();
   const { items } = useSelector(itemsSelector);
   const { category } = useSelector(categorySelector);
+
   useEffect(() => {
     dispatch(fetchItems());
   }, []);
   useEffect(() => {
     dispatch(fetchCategory());
   }, []);
+
   return (
     <div className="brandsPage">
       <div className="sidebar">
@@ -34,7 +37,7 @@ export default function ListOfBrands() {
             "& ul": { padding: 0 },
           }}
         >
-          {Object.values(category).map((item) => (
+          {category.map((item) => (
             <List
               sx={{
                 direction: "ltr",
@@ -44,17 +47,18 @@ export default function ListOfBrands() {
               }}
               component="nav"
               aria-labelledby="nested-list-subheader"
+              key={uuidv4()}
             >
               <ListItemButton>
                 <Link to={{ pathname: "brands" }} state={item}>
                   <ListItemText primary={item.name} />
                 </Link>
               </ListItemButton>
-              <Collapse unmountOnExit>
-                {Object.values(items).map((el) => {
+              <Collapse>
+                {items.map((el) => {
                   if (item.id == el.category) {
                     return (
-                      <List component="div" disablePadding>
+                      <List component="div" disablePadding key={uuidv4()}>
                         <ListItemButton sx={{ pl: 4 }}>
                           <ListItemText primary={el.name} />
                         </ListItemButton>
@@ -67,7 +71,7 @@ export default function ListOfBrands() {
           ))}
         </Box>
       </div>
-      <Outlet />
+      <Outlet/>
     </div>
   );
 }

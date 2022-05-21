@@ -3,6 +3,7 @@ import {useEffect } from "react";
 import {useDispatch,useSelector} from "react-redux"
 import { fetchItems,itemsSelector } from "../redux/productSlice";
 import { Button } from "@mui/material";
+import {DataGrid} from '@mui/x-data-grid'
 
 export default function CustomizedTables() {
   const dispatch = useDispatch()
@@ -10,6 +11,39 @@ export default function CustomizedTables() {
   useEffect(()=>{
     dispatch(fetchItems())
   },[])
+
+  const columns = [
+    { field: "id", headerName: "ID", width: 10 
+  },
+    {
+      field: "name",
+      headerName: "نام کالا",
+      width: 150,
+    },
+    {
+      field: "price",
+      headerName: "دسته‌بندی",
+      width: 110,
+      editable: true,
+    },
+    {
+      field: "count",
+      headerName: "تعداد",
+      width: 200,
+      sortable: false,
+      editable: true
+    },
+  ];
+  const rows = items.map((item) => {
+    return {
+      id: item.id,
+      name: item.name,
+      price: item.price,
+      count: item.count,
+
+  
+    };
+  });
   
   return (
     <div className="managePage">
@@ -17,26 +51,8 @@ export default function CustomizedTables() {
         <h3>مدیریت موجودی و قیمت‌ها</h3>
         <Button variant="contained" color="primary">ذخیره</Button>
       </div>
-      <div className="managePageTable">
-        <table>
-          <tr>
-            <th>کالا</th>
-            <th>قیمت</th>
-            <th>موجودی</th>
-          </tr>
-          
-          {Object.values(items).map((row) => (
-                <tr className="bodyTr" key={row.id}>
-                  <td>
-                    {row.name}
-                  </td>
-                  <td align="right">{row.price}</td>
-                  <td align="right">{row.count}</td>
-                </tr>
-              ))}
-          
-        </table>
-      </div>
+      <DataGrid rows={rows} columns={columns} autoHeight pageSize={5}/>
+      
     </div>
   );
 }

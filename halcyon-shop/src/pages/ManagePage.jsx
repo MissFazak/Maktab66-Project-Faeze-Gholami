@@ -5,6 +5,7 @@ import { fetchItems, itemsSelector } from "../redux/productSlice";
 import { fetchCategory, categorySelector } from "../redux/categorySlice";
 import { DataGrid } from "@mui/x-data-grid";
 import { Button } from "@mui/material";
+import ItemModal from '../components/ItemModal'
 
 export default function CustomizedTables() {
   const dispatch = useDispatch();
@@ -76,9 +77,10 @@ export default function CustomizedTables() {
     <div className="managePage">
       <div className="topTable">
         <h3>مدیریت موجودی و قیمت‌ها</h3>
-        <Button variant="contained" color="primary">ذخیره</Button>
+        <ItemModal/>
       </div>
       <DataGrid rows={rows} columns={columns} autoHeight pageSize={5}/>
+      
     </div>
   );
 }

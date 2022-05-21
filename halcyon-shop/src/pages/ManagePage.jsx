@@ -76,7 +76,7 @@ export default function CustomizedTables() {
     <div className="managePage">
       <div className="topTable">
         <h3>مدیریت موجودی و قیمت‌ها</h3>
-        <Button variant="contained" color="primary">ذخیره</Button>
+        <Button variant="contained" color="primary">افزودن</Button>
       </div>
       <DataGrid rows={rows} columns={columns} autoHeight pageSize={5}/>
     </div>

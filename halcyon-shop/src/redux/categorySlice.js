@@ -19,6 +19,6 @@ export default categorySlice.reducer;
 
 export function fetchCategory() {
   return async (disptch) => {
-    api.get("/category").then((res) => disptch(setCategory(res.data)));
+    await api.get("/category").then((res) => disptch(setCategory(res.data)));
   };
 }

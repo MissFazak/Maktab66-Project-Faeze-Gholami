@@ -1,54 +1,49 @@
 import * as React from "react";
-import {useEffect } from "react";
-import {useDispatch,useSelector} from "react-redux"
-import { fetchItems,itemsSelector } from "../redux/productSlice";
-import { Button, Pagination } from "@mui/material";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchItems, itemsSelector } from "../redux/productSlice";
+import { DataGrid } from "@mui/x-data-grid";
 
 export default function CustomizedTables() {
-  const dispatch = useDispatch()
-  const {items} = useSelector(itemsSelector)
-  useEffect(()=>{
-    dispatch(fetchItems())
-  },[])
+  const dispatch = useDispatch();
+  const { items } = useSelector(itemsSelector);
+  
+  useEffect(() => {
+    dispatch(fetchItems());
+  }, []);
+
+  const columns = [
+    { field: "id", headerName: "ID", width: 200 },
+    {
+      field: "thumbnail",
+      headerName: "تصویر",
+      width: 150,
+    },
+    {
+      field: "name",
+      headerName: "نام کالا",
+      width: 150,
+    },
+    {
+      field: "category",
+      headerName: "دسته‌بندی",
+      width: 110,
+    },
+    {
+      field: "but",
+      headerName: "",
+      width: 160,
+    },
+  ];
+  const rows = items.map((item) => {
+    return { id: item.id,thumbnail:item.thumbnail ,name: item.name, category: item.category ,but:<h1>hi</h1>};
+  });
+  
+  console.log(rows);
+
   return (
-    <div className="managePage">
-      
-      <div className="topTable">
-        <h2>مدیریت کالاها</h2>
-        <Button variant="contained" color="primary">افزودن کالا</Button>
-      </div>
-      <div className="managePageTable">
-        <table>
-          <tr>
-            <th>تصویر</th>
-            <th>نام کالا</th>
-            <th>دسته بندی</th>
-            <th></th>
-          </tr>
-          
-          {Object.values(items).map((row) => (
-                <tr className="bodyTr" key={row.id}>
-                  <td>
-                    <img src={`http://localhost:3002/files/${row.thumbnail}`} />
-                  </td>
-                  <td align="right">{row.name}</td>
-                  <td align="right">{row.category}</td>
-                  <td align="right" sx={{display:"inline"}}>
-                    <Button variant="contained" color="primary" sx={{margin:'10px'}}>ویرایش</Button>
-                    <Button variant="contained" color="primary">حذف</Button>
-                  </td>
-                </tr>
-              ))}
-          
-        </table>
-        <Pagination
-        variant="outlined"
-        defaultPage={1}
-        // page={activePage}
-        // count={Math.ceil(data?.headers["x-total-count"] / limit)}
-        // onChange={(_, page) => setActivePage(page)}
-      />
-      </div>
+    <div style={{ width: "100%" }}>
+      <DataGrid rows={rows} columns={columns} autoHeight pageSize={5}/>
     </div>
   );
 }

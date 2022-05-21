@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import axios from 'axios'
+import { api } from "./api";
+
 
 const orderSlice = createSlice({
     name:"orders",
@@ -18,11 +19,6 @@ export const {setOrders} = orderSlice.actions
 export const orderSelector =(state) =>state.orders
 export default orderSlice.reducer
 const token = localStorage.getItem('token')
-const api = axios.create({
-    baseURL:"http://localhost:3002/",
-    withCredentials:false,
-})
-
 export function fetchOrder(){
     return async (disptch)=>{
         api.get("orders",{headers:{token:token}}).then((res)=>disptch(setOrders(res.data)))

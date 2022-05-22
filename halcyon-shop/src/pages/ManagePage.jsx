@@ -1,13 +1,26 @@
 import * as React from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchItems, itemsSelector } from "../redux/productSlice";
+import { fetchItems, itemsSelector,updateItems,deleteItem } from "../redux/productSlice";
 import { fetchCategory, categorySelector } from "../redux/categorySlice";
 import { DataGrid } from "@mui/x-data-grid";
 import { Button } from "@mui/material";
 import ItemModal from '../components/ItemModal'
+import service from "../redux/http";
 
-export default function CustomizedTables() {
+export default function CustomizedTables(props) {
+  const initialState = {
+    id: null,
+    name:"",
+    category:"",
+    price: "",
+    count:"",
+    description:"",
+    images:[],
+    thumbnail:"",
+  }
+  const [currentState,setCurrentState] = useState(initialState)
+  const [message,setMessage] = useState('')
   const dispatch = useDispatch();
   const { items } = useSelector(itemsSelector);
   const { category } = useSelector(categorySelector);
@@ -53,8 +66,9 @@ export default function CustomizedTables() {
       renderCell: (params) => {
         const handleEdit = (e) => {
           e.stopPropagation();
-          // return alert('hi');
-          params.remove()
+          const data = {
+            id: ''
+          }
         };
         const handleDelete = (e) => {
           e.stopPropagation();

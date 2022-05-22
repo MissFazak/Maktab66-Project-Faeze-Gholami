@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import tutorialService from "./http";
+import service from "./http";
 
 const productSlice = createSlice({
   name: "items",
@@ -33,20 +33,20 @@ export default productSlice.reducer;
 
 export function fetchItems() {
   return async (disptch) => {
-    tutorialService.getProducts().then((res) => disptch(setItems(res.data)));
+    service.getProducts().then((res) => disptch(setItems(res.data)));
   };
 }
 
 export function updateItems() {
   return async ({ id, data }) => {
-    const res = await tutorialService.updateProduct(id, data);
+    const res = await service.updateProduct(id, data);
     return res.data;
   };
 }
 
 export function deleteItem() {
   return async ({ id }) => {
-    await tutorialService.removeProduct(id);
+    await service.removeProduct(id);
     return { id };
   };
 }

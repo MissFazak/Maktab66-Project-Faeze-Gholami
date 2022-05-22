@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import tutorialService from "./http";
+import service from "./http";
 
 
 const orderSlice = createSlice({
@@ -20,7 +20,7 @@ export const orderSelector =(state) =>state.orders
 export default orderSlice.reducer
 export function fetchOrder(){
     return async (disptch)=>{
-        tutorialService.getOrders().then((res)=>disptch(setOrders(res.data)))
+        service.getOrders().then((res)=>disptch(setOrders(res.data)))
         
     }
 }

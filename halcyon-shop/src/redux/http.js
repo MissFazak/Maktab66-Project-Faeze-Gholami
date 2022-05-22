@@ -33,7 +33,7 @@ const removeProduct = id =>{
     return api.delete(`/products${id}`)
 }
 
-const tutorialService = {
+const service = {
     getProducts,
     getCategory,
     getUsers,
@@ -45,4 +45,4 @@ const tutorialService = {
     removeProduct
 }
 
-export default tutorialService
+export default service

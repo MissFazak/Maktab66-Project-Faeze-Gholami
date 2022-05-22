@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { api } from "./api";
+import tutorialService from "./http";
 
 const productSlice = createSlice({
   name: "items",
@@ -10,15 +10,20 @@ const productSlice = createSlice({
     setItems: (state, { payload }) => {
       return { items: [...payload] };
     },
+    addItems: (state, action) => {
+      state.value.push(action.payload);
+    },
+    removeItem: () => {},
+    editItem: () => {},
   },
 });
 
-export const { setItems } = productSlice.actions;
+export const { setItems,addItems } = productSlice.actions;
 export const itemsSelector = (state) => state.items;
 export default productSlice.reducer;
 
 export function fetchItems() {
   return async (disptch) => {
-    api.get(`/products`).then((res) => disptch(setItems(res.data)));
+    tutorialService.getProducts().then((res) => disptch(setItems(res.data)));
   };
 }

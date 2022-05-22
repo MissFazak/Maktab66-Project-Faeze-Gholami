@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { api } from "./api";
+import tutorialService from "./http";
 
 const categorySlice = createSlice({
   name: "category",
@@ -19,6 +19,6 @@ export default categorySlice.reducer;
 
 export function fetchCategory() {
   return async (disptch) => {
-    await api.get("/category").then((res) => disptch(setCategory(res.data)));
+    tutorialService.getCategory().then((res) => disptch(setCategory(res.data)));
   };
 }

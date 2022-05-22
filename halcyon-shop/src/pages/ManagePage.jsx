@@ -28,7 +28,6 @@ export default function CustomizedTables() {
       headerName: "تصویر",
       width: 50,
      renderCell: (params)=>{
-       console.log(params.row.thumbnail);
         return (
           <div>
             <img style={{width:'30px'}} src={params.row.thumbnail} alt='' />
@@ -51,15 +50,21 @@ export default function CustomizedTables() {
       headerName: "",
       width: 200,
       sortable: false,
-      renderCell: () => {
-        const onClick = (e) => {
+      renderCell: (params) => {
+        const handleEdit = (e) => {
           e.stopPropagation();
-          return alert('hi');
+          // return alert('hi');
+          params.remove()
         };
+        const handleDelete = (e) => {
+          e.stopPropagation();
+          console.log(params.row.id);
+          
+        }
         return (
           <>
-            <Button onClick={onClick}>ویرایش</Button>
-            <Button onClick={onClick}>حذف</Button>
+            <Button onClick={handleEdit}>ویرایش</Button>
+            <Button onClick={handleDelete}>حذف</Button>
           </>
         );
       },
@@ -80,7 +85,6 @@ export default function CustomizedTables() {
         <ItemModal/>
       </div>
       <DataGrid rows={rows} columns={columns} autoHeight pageSize={5}/>
-      
     </div>
   );
 }

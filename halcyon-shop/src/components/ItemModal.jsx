@@ -3,9 +3,18 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import { FormControl, InputLabel, Select, TextField } from "@mui/material";
+import {
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+} from "@mui/material";
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCategory, categorySelector } from "../redux/categorySlice";
+import { useFormik } from "formik";
 
 const style = {
   position: "absolute",
@@ -17,14 +26,31 @@ const style = {
   border: "2px solid #000",
   boxShadow: 24,
   p: 4,
-  height:'300px',
-  overflow:'auto'
+  height: "300px",
+  overflow: "auto",
 };
 
 export default function BasicModal() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const { category } = useSelector(categorySelector);
+
+  const formik = useFormik({
+    initialValues: {
+      id: null,
+      name: "",
+      category: "",
+      price: "",
+      count: "",
+      description: "",
+      images: [],
+      thumbnail: "",
+    },
+    onSubmit: (values) => {
+      alert(JSON.stringify(values, null, 2));
+    },
+  });
 
   return (
     <div>
@@ -38,26 +64,61 @@ export default function BasicModal() {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Typography>تصویر کالا</Typography>
-          <input type="file" style={{width:'100%'}}/>
-          <Typography id="modal-modal-title">
-            نام کالا:
-          </Typography>
-          <TextField id="outlined-basic" label="نام کالا" variant="outlined" sx={{width:'100%'}} />
-          <FormControl sx={{width:'100%'}}>
-            <Typography>دسته بندی</Typography>
-            <Select></Select>
-          </FormControl>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            توضیحات:
-          </Typography>
-          <Editor
-            // editorState={editorState}
-            toolbarClassName="toolbarClassName"
-            wrapperClassName="wrapperClassName"
-            editorClassName="editorClassName"
-            // onEditorStateChange={this.onEditorStateChange}
-          />
+          <form
+            onSubmit={formik.handleSubmit}
+            style={{ display: "flex", flexDirection: "column" }}
+          >
+            <label htmlFor="img">تصویر کالا</label>
+            <input
+              id="image"
+              name="image"
+              type="file"
+              onChange={formik.handleChange}
+              value={formik.values.img}
+            />
+            <label htmlFor="name">نام کالا</label>
+            <input
+              id="name"
+              name="name"
+              type="text"
+              onChange={formik.handleChange}
+              value={formik.values.name}
+            />
+            <label htmlFor="category">دسته بندی</label>
+            <select
+              value={formik.values.category}
+              name="category"
+              onChange={formik.handleChange}
+            >
+              {category.map((name) => (
+                <option value={name.id}>{name.name}</option>
+              ))}
+            </select>
+            <label htmlFor="price">قیمت</label>
+            <input
+              id="price"
+              name="price"
+              type="text"
+              onChange={formik.handleChange}
+              value={formik.values.price}
+            />
+            <label htmlFor="count">تعداد</label>
+            <input
+              id="count"
+              name="count"
+              type="text"
+              onChange={formik.handleChange}
+              value={formik.values.count}
+            />
+            <Editor
+              // editorState={editorState}
+              toolbarClassName="toolbarClassName"
+              wrapperClassName="wrapperClassName"
+              editorClassName="editorClassName"
+              onEditorStateChange={formik.values.description}
+            />
+            <button type="submit">ثبت کالا</button>
+          </form>
         </Box>
       </Modal>
     </div>

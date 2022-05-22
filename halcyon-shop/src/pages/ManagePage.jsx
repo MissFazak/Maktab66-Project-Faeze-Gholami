@@ -24,6 +24,42 @@ export default function CustomizedTables(props) {
   const dispatch = useDispatch();
   const { items } = useSelector(itemsSelector);
   const { category } = useSelector(categorySelector);
+  const getService = id =>{
+    service.get(id).then(res => setCurrentState(res.data))
+  }
+  // useEffect(()=>{
+  //   getService(props.match.id)
+  // },[props.match.id])
+
+  const handleInputChange = event =>{
+    const {name,value} = event.target
+    setCurrentState({...currentState,[name]:value})
+  }
+
+  const updateStatus = status =>{
+    const data = {
+      id: currentState.id,
+      name:currentState.name,
+      category:currentState.category,
+      price:currentState.price,
+      description:currentState.description,
+      images:currentState.images,
+      thumbnail:currentState.thumbnail,
+    }
+    dispatch(updateItems({id:currentState.id,data})).unwrap().then(res=>{
+      console.log(res);
+      setCurrentState({...currentState})
+      setMessage('the status was update')
+    })
+  }
+  const updateContent = () =>{
+    dispatch(updateItems({id:currentState.id,data:currentState})).unwrap().
+    then(res =>{
+      console.log(res);
+      setMessage('the status was update')
+    })
+  }
+
 
 
   useEffect(() => {
@@ -66,9 +102,7 @@ export default function CustomizedTables(props) {
       renderCell: (params) => {
         const handleEdit = (e) => {
           e.stopPropagation();
-          const data = {
-            id: ''
-          }
+          updateStatus()
         };
         const handleDelete = (e) => {
           e.stopPropagation();

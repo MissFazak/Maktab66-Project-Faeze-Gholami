@@ -1,31 +1,62 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import Modal from '@mui/material/Modal';
-import { FormControl, InputLabel, Select, TextField } from '@mui/material';
-import SelectInput from '@mui/material/Select/SelectInput';
+import * as React from "react";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import Modal from "@mui/material/Modal";
+import {
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+} from "@mui/material";
+import { Editor } from "react-draft-wysiwyg";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCategory, categorySelector } from "../redux/categorySlice";
+import { useFormik } from "formik";
 
 const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
   width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
+  bgcolor: "background.paper",
+  border: "2px solid #000",
   boxShadow: 24,
   p: 4,
+  height: "300px",
+  overflow: "auto",
 };
 
 export default function BasicModal() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const { category } = useSelector(categorySelector);
+
+  const formik = useFormik({
+    initialValues: {
+      id: null,
+      name: "",
+      category: "",
+      price: "",
+      count: "",
+      description: "",
+      images: [],
+      thumbnail: "",
+    },
+    onSubmit: (values) => {
+      alert(JSON.stringify(values, null, 2));
+    },
+  });
 
   return (
     <div>
-      <Button onClick={handleOpen} variant="contained" color="primary">افزودن</Button>
+      <Button onClick={handleOpen} variant="contained" color="primary">
+        افزودن
+      </Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -33,23 +64,61 @@ export default function BasicModal() {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-            <Typography>تصویر کالا</Typography>
-            <input type='file'/>
-          <Typography id="modal-modal-title" variant="h6" component="h6">
-            نام کالا:
-          </Typography>
-          <TextField id="outlined-basic" label="Outlined" variant="outlined" />
-            <FormControl>
-                <Typography>دسته بندی</Typography>
-                <InputLabel>انتخاب کنید</InputLabel>
-                <Select>
-                    
-                </Select>
-            </FormControl>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            توضیحات: 
-          </Typography>
-          
+          <form
+            onSubmit={formik.handleSubmit}
+            style={{ display: "flex", flexDirection: "column" }}
+          >
+            <label htmlFor="img">تصویر کالا</label>
+            <input
+              id="image"
+              name="image"
+              type="file"
+              onChange={formik.handleChange}
+              value={formik.values.img}
+            />
+            <label htmlFor="name">نام کالا</label>
+            <input
+              id="name"
+              name="name"
+              type="text"
+              onChange={formik.handleChange}
+              value={formik.values.name}
+            />
+            <label htmlFor="category">دسته بندی</label>
+            <select
+              value={formik.values.category}
+              name="category"
+              onChange={formik.handleChange}
+            >
+              {category.map((name) => (
+                <option value={name.id}>{name.name}</option>
+              ))}
+            </select>
+            <label htmlFor="price">قیمت</label>
+            <input
+              id="price"
+              name="price"
+              type="text"
+              onChange={formik.handleChange}
+              value={formik.values.price}
+            />
+            <label htmlFor="count">تعداد</label>
+            <input
+              id="count"
+              name="count"
+              type="text"
+              onChange={formik.handleChange}
+              value={formik.values.count}
+            />
+            <Editor
+              // editorState={editorState}
+              toolbarClassName="toolbarClassName"
+              wrapperClassName="wrapperClassName"
+              editorClassName="editorClassName"
+              onEditorStateChange={formik.values.description}
+            />
+            <button type="submit">ثبت کالا</button>
+          </form>
         </Box>
       </Modal>
     </div>

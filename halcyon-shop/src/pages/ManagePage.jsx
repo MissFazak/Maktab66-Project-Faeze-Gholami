@@ -1,16 +1,65 @@
 import * as React from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchItems, itemsSelector } from "../redux/productSlice";
+import { fetchItems, itemsSelector,updateItems,deleteItem } from "../redux/productSlice";
 import { fetchCategory, categorySelector } from "../redux/categorySlice";
 import { DataGrid } from "@mui/x-data-grid";
 import { Button } from "@mui/material";
 import ItemModal from '../components/ItemModal'
+import service from "../redux/http";
 
-export default function CustomizedTables() {
+export default function CustomizedTables(props) {
+  const initialState = {
+    id: null,
+    name:"",
+    category:"",
+    price: "",
+    count:"",
+    description:"",
+    images:[],
+    thumbnail:"",
+  }
+  const [currentState,setCurrentState] = useState(initialState)
+  const [message,setMessage] = useState('')
   const dispatch = useDispatch();
   const { items } = useSelector(itemsSelector);
   const { category } = useSelector(categorySelector);
+  const getService = id =>{
+    service.get(id).then(res => setCurrentState(res.data))
+  }
+  // useEffect(()=>{
+  //   getService(props.match.id)
+  // },[props.match.id])
+
+  const handleInputChange = event =>{
+    const {name,value} = event.target
+    setCurrentState({...currentState,[name]:value})
+  }
+
+  const updateStatus = status =>{
+    const data = {
+      id: currentState.id,
+      name:currentState.name,
+      category:currentState.category,
+      price:currentState.price,
+      description:currentState.description,
+      images:currentState.images,
+      thumbnail:currentState.thumbnail,
+    }
+    dispatch(updateItems({id:currentState.id,data})).unwrap().then(res=>{
+      console.log(res);
+      setCurrentState({...currentState})
+      setMessage('the status was update')
+    })
+  }
+  const updateContent = () =>{
+    dispatch(updateItems({id:currentState.id,data:currentState})).unwrap().
+    then(res =>{
+      console.log(res);
+      setMessage('the status was update')
+    })
+  }
+
 
 
   useEffect(() => {
@@ -28,7 +77,6 @@ export default function CustomizedTables() {
       headerName: "تصویر",
       width: 50,
      renderCell: (params)=>{
-       console.log(params.row.thumbnail);
         return (
           <div>
             <img style={{width:'30px'}} src={params.row.thumbnail} alt='' />
@@ -51,15 +99,20 @@ export default function CustomizedTables() {
       headerName: "",
       width: 200,
       sortable: false,
-      renderCell: () => {
-        const onClick = (e) => {
+      renderCell: (params) => {
+        const handleEdit = (e) => {
           e.stopPropagation();
-          return alert('hi');
+          updateStatus()
         };
+        const handleDelete = (e) => {
+          e.stopPropagation();
+          console.log(params.row.id);
+          
+        }
         return (
           <>
-            <Button onClick={onClick}>ویرایش</Button>
-            <Button onClick={onClick}>حذف</Button>
+            <Button onClick={handleEdit}>ویرایش</Button>
+            <Button onClick={handleDelete}>حذف</Button>
           </>
         );
       },
@@ -80,7 +133,6 @@ export default function CustomizedTables() {
         <ItemModal/>
       </div>
       <DataGrid rows={rows} columns={columns} autoHeight pageSize={5}/>
-      
     </div>
   );
 }

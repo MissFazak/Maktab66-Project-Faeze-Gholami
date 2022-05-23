@@ -10,14 +10,14 @@ import { useFormik } from "formik";
 import { v4 as uuidv4 } from "uuid";
 import { useEffect, useState } from "react";
 import { api } from "../redux/api";
-import { RMIUploader } from "react-multiple-image-uploader";
+import service from "../redux/http";
 
 const style = {
   position: "absolute",
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 800,
+  width: 400,
   bgcolor: "background.paper",
   border: "2px solid #000",
   boxShadow: 24,
@@ -52,6 +52,7 @@ export default function BasicModal() {
     },
     onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2));
+      service.creatProduct(values)
     },
   });
  
@@ -101,7 +102,7 @@ export default function BasicModal() {
             <button type="button" onClick={uploadHandler}>آپلود</button>
               <div className="thumbnail">
                 {gallery.map((photo) =>
-                    <img src={`http://localhost:3002/files/${photo}`} />
+                    <img src={`http://localhost:3002/files/${photo}`} key={uuidv4()} />
                 )}
               </div>
           

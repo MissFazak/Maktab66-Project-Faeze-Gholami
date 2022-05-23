@@ -10,13 +10,14 @@ import { useFormik } from "formik";
 import { v4 as uuidv4 } from "uuid";
 import { useEffect, useState } from "react";
 import { api } from "../redux/api";
+import { RMIUploader } from "react-multiple-image-uploader";
 
 const style = {
   position: "absolute",
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 400,
+  width: 800,
   bgcolor: "background.paper",
   border: "2px solid #000",
   boxShadow: 24,
@@ -29,15 +30,15 @@ export default function BasicModal() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const [gallery,setGallery] = useState([])
+  const [gallery, setGallery] = useState([]);
   const dispatch = useDispatch();
   const { category } = useSelector(categorySelector);
   useEffect(() => {
     dispatch(fetchCategory());
   }, []);
-  
+
   console.log(gallery);
-  
+
   const formik = useFormik({
     initialValues: {
       id: uuidv4(),
@@ -53,6 +54,24 @@ export default function BasicModal() {
       alert(JSON.stringify(values, null, 2));
     },
   });
+ 
+  const selectFileHandler = (e) =>{
+      formik.setFieldValue("image", e.currentTarget.files[0]);
+      
+    
+  }
+
+  const uploadHandler = () =>{
+    const formData = new FormData();
+    Object.entries(formik.values).map((item) => {
+      formData.append(item[0], item[1]);
+    });
+    api
+      .post("/upload", formData, {})
+      .then((res) =>
+        setGallery((gallery) => [...gallery, res.data.filename])
+      );
+  }
 
   return (
     <div>
@@ -70,23 +89,22 @@ export default function BasicModal() {
             onSubmit={formik.handleSubmit}
             style={{ display: "flex", flexDirection: "column" }}
           >
+            
             <label htmlFor="img">تصویر کالا</label>
             <input
               id="image"
               name="image"
               type="file"
               accept="image/*"
-              onChange={async (e) => {
-                formik.setFieldValue("image", e.currentTarget.files[0]);
-                const formData = new FormData();
-                 Object.entries(formik.values).map((item) => {
-                  formData.append(item[0], item[1]);
-                })
-                 api
-                  .post('/upload',formData, {})
-                  .then((res) => setGallery(gallery =>[...gallery,res.data.filename]));
-              }}
+              onChange={selectFileHandler}
             />
+            <button type="button" onClick={uploadHandler}>آپلود</button>
+              <div className="thumbnail">
+                {gallery.map((photo) =>
+                    <img src={`http://localhost:3002/files/${photo}`} />
+                )}
+              </div>
+          
             <label htmlFor="name">نام کالا</label>
             <input
               id="name"

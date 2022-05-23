@@ -1,7 +1,6 @@
 .boxing {
-    
   a {
-      font-size: 1.2em;
+    font-size: 1.2em;
     border: solid;
     border-left: none;
     color: black;
@@ -33,7 +32,7 @@
   }
 
   th {
-    background-color: #3C8DAD;
+    background-color: #3c8dad;
     border: none;
     border-left: solid black;
   }
@@ -57,12 +56,19 @@ tr:nth-child(odd) {
     margin-top: 45px;
   }
 
-  .radioGroup{
+  .radioGroup {
     margin-top: 15px;
-      
-      span{
 
-          font-size: .8em;
-      }
+    span {
+      font-size: 0.8em;
+    }
   }
+}
+
+.thumbnail {
+  img {
+    width: 80px;
+    padding: 5px;
+  }
+  display: inline;
 }

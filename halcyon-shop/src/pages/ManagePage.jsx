@@ -46,6 +46,7 @@ export default function CustomizedTables() {
       field: "name",
       headerName: "نام کالا",
       width: 150,
+      editable: true,
     },
     {
       field: "category",
@@ -59,16 +60,16 @@ export default function CustomizedTables() {
       sortable: false,
       renderCell: (params) => {
         const handleEdit = (e) => {
-          e.stopPropagation();
+          service.updateProduct(e,params.row)
+          console.log(params.row);
         };
         const handleDelete = (e) => {
           service.removeProduct(e);
           console.log(e);
-          console.log(params.row.id);
         };
         return (
           <>
-            <Button onClick={() => handleEdit(params.row)}>
+            <Button onClick={() => handleEdit(params.row.id)}>
               <EditIcon /> ویرایش
             </Button>
             <Button onClick={() => handleDelete(params.row.id)}>
@@ -104,7 +105,6 @@ export default function CustomizedTables() {
         pageSize={5}
         rowHeight={70}
         disableSelectionOnClick
-        
       />
     </div>
   );

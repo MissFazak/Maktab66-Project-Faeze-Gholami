@@ -1,20 +1,15 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import {
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-  TextField,
-} from "@mui/material";
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCategory, categorySelector } from "../redux/categorySlice";
 import { useFormik } from "formik";
+import { v4 as uuidv4 } from "uuid";
+import { useEffect, useState } from "react";
+import { api } from "../redux/api";
 
 const style = {
   position: "absolute",
@@ -34,18 +29,25 @@ export default function BasicModal() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const [gallery,setGallery] = useState([])
+  const dispatch = useDispatch();
   const { category } = useSelector(categorySelector);
-
+  useEffect(() => {
+    dispatch(fetchCategory());
+  }, []);
+  
+  console.log(gallery);
+  
   const formik = useFormik({
     initialValues: {
-      id: null,
+      id: uuidv4(),
       name: "",
       category: "",
       price: "",
       count: "",
       description: "",
-      images: [],
-      thumbnail: "",
+      image: gallery,
+      thumbnail: gallery[0],
     },
     onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2));
@@ -73,8 +75,17 @@ export default function BasicModal() {
               id="image"
               name="image"
               type="file"
-              onChange={formik.handleChange}
-              value={formik.values.img}
+              accept="image/*"
+              onChange={async (e) => {
+                formik.setFieldValue("image", e.currentTarget.files[0]);
+                const formData = new FormData();
+                 Object.entries(formik.values).map((item) => {
+                  formData.append(item[0], item[1]);
+                })
+                 api
+                  .post('/upload',formData, {})
+                  .then((res) => setGallery(gallery =>[...gallery,res.data.filename]));
+              }}
             />
             <label htmlFor="name">نام کالا</label>
             <input
@@ -91,7 +102,9 @@ export default function BasicModal() {
               onChange={formik.handleChange}
             >
               {category.map((name) => (
-                <option value={name.id}>{name.name}</option>
+                <option value={name.id} key={name.id}>
+                  {name.name}
+                </option>
               ))}
             </select>
             <label htmlFor="price">قیمت</label>

@@ -54,11 +54,11 @@ export default function CustomizedTables(props) {
       renderCell: (params) => {
         const handleEdit = (e) => {
           e.stopPropagation();
-          updateStatus()
+         
         };
         const handleDelete = (e) => {
           e.stopPropagation();
-          console.log(params.row.id);
+          
           
         }
         return (

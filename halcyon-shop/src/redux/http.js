@@ -30,7 +30,7 @@ const updateProduct = (id,data) =>{
 }
 
 const removeProduct = id =>{
-    return api.delete(`/products${id}`)
+    return api.delete(`/products/${id}`)
 }
 
 const service = {

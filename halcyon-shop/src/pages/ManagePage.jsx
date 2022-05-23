@@ -7,6 +7,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import { Button } from "@mui/material";
 import ItemModal from '../components/ItemModal'
 import service from "../redux/http";
+import { Box } from "@mui/system";
 
 export default function CustomizedTables(props) {
   
@@ -49,7 +50,7 @@ export default function CustomizedTables(props) {
     {
       field: "action",
       headerName: "",
-      width: 200,
+      width: 150,
       sortable: false,
       renderCell: (params) => {
         const handleEdit = (e) => {
@@ -68,7 +69,7 @@ export default function CustomizedTables(props) {
           </>
         );
       },
-    },
+    }
   ];
   const rows = items.map((item) => {
     return {
@@ -84,7 +85,7 @@ export default function CustomizedTables(props) {
         <h3>مدیریت موجودی و قیمت‌ها</h3>
         <ItemModal/>
       </div>
-      <DataGrid rows={rows} columns={columns} autoHeight pageSize={5}/>
+      <DataGrid rows={rows} columns={columns} autoHeight pageSize={5} rowHeight={70}/>
     </div>
   );
 }

@@ -31,6 +31,7 @@ export default function BasicModal(props) {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [gallery, setGallery] = useState([]);
+  
   const [des, setDes] = useState();
   const dispatch = useDispatch();
   const { category } = useSelector(categorySelector);
@@ -47,13 +48,13 @@ export default function BasicModal(props) {
       count: "",
       description: "",
     },
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+    onSubmit: () => {
+      alert('اطلاعات شما با موفقیت ثبت گردید');
       service.creatProduct(data);
       setGallery([]);
     },
   });
-  console.log(formik.values.image);
+  
   const data = {
     id: formik.values.id,
     name: formik.values.name,
@@ -65,6 +66,7 @@ export default function BasicModal(props) {
     thumbnail: gallery[0],
     createdAt: new Date().getTime(),
   };
+
 
   const selectFileHandler = (e) => {
     formik.setFieldValue("image", e.currentTarget.files[0]);
@@ -83,7 +85,7 @@ export default function BasicModal(props) {
   const onContentStateChange = (context) => {
     setDes(context.blocks[0].text);
   };
-console.log(des);
+
   return (
     <div>
       <Button onClick={handleOpen} variant="contained" color="primary">

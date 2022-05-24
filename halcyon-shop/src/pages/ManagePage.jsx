@@ -10,7 +10,6 @@ import { DataGrid } from "@mui/x-data-grid";
 import { Button } from "@mui/material";
 import ItemModal from "../components/ItemModal";
 import service from "../redux/http";
-import { v4 as uuidv4 } from "uuid";
 
 
 export default function CustomizedTables() {

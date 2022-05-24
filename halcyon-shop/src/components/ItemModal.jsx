@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchCategory, categorySelector } from "../redux/categorySlice";
 import { useFormik } from "formik";
 import { v4 as uuidv4 } from "uuid";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { api } from "../redux/api";
 import service from "../redux/http";
 
@@ -26,18 +26,17 @@ const style = {
   overflow: "auto",
 };
 
-export default function BasicModal() {
+export default function BasicModal(props) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [gallery, setGallery] = useState([]);
+  const [des, setDes] = useState();
   const dispatch = useDispatch();
   const { category } = useSelector(categorySelector);
   useEffect(() => {
     dispatch(fetchCategory());
-  }, []);
-
-  console.log(gallery);
+  }, [dispatch]);
 
   const formik = useFormik({
     initialValues: {
@@ -47,37 +46,48 @@ export default function BasicModal() {
       price: "",
       count: "",
       description: "",
-      image: gallery,
-      thumbnail: gallery[0],
     },
     onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2));
-      service.creatProduct(values)
+      service.creatProduct(data);
+      setGallery([]);
     },
   });
- 
-  const selectFileHandler = (e) =>{
-      formik.setFieldValue("image", e.currentTarget.files[0]);
-      
-    
-  }
+  console.log(formik.values.image);
+  const data = {
+    id: formik.values.id,
+    name: formik.values.name,
+    category: formik.values.category,
+    price: formik.values.price,
+    count: formik.values.count,
+    description: des,
+    image: gallery,
+    thumbnail: gallery[0],
+    createdAt: new Date().getTime(),
+  };
 
-  const uploadHandler = () =>{
+  const selectFileHandler = (e) => {
+    formik.setFieldValue("image", e.currentTarget.files[0]);
+  };
+
+  const uploadHandler = () => {
     const formData = new FormData();
     Object.entries(formik.values).map((item) => {
       formData.append(item[0], item[1]);
     });
     api
       .post("/upload", formData, {})
-      .then((res) =>
-        setGallery((gallery) => [...gallery, res.data.filename])
-      );
-  }
+      .then((res) => setGallery((gallery) => [...gallery, res.data.filename]));
+  };
 
+  const onContentStateChange = (context) => {
+    setDes(context.blocks[0].text);
+  };
+console.log(des);
   return (
     <div>
       <Button onClick={handleOpen} variant="contained" color="primary">
-        افزودن
+        {props.name}
       </Button>
       <Modal
         open={open}
@@ -85,12 +95,11 @@ export default function BasicModal() {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
+        <Box sx={style} className="formBody">
           <form
             onSubmit={formik.handleSubmit}
             style={{ display: "flex", flexDirection: "column" }}
           >
-            
             <label htmlFor="img">تصویر کالا</label>
             <input
               id="image"
@@ -99,13 +108,18 @@ export default function BasicModal() {
               accept="image/*"
               onChange={selectFileHandler}
             />
-            <button type="button" onClick={uploadHandler}>آپلود</button>
-              <div className="thumbnail">
-                {gallery.map((photo) =>
-                    <img src={`http://localhost:3002/files/${photo}`} key={uuidv4()} />
-                )}
-              </div>
-          
+            <button type="button" onClick={uploadHandler}>
+              آپلود
+            </button>
+            <div className="thumbnail">
+              {gallery.map((photo) => (
+                <img
+                  src={`http://localhost:3002/files/${photo}`}
+                  key={uuidv4()}
+                />
+              ))}
+            </div>
+
             <label htmlFor="name">نام کالا</label>
             <input
               id="name"
@@ -147,9 +161,10 @@ export default function BasicModal() {
               toolbarClassName="toolbarClassName"
               wrapperClassName="wrapperClassName"
               editorClassName="editorClassName"
-              onEditorStateChange={formik.values.description}
+              // onEditorStateChange={onEditorStateChange}
+              onContentStateChange={onContentStateChange}
             />
-            <button type="submit">ثبت کالا</button>
+            <button type="submit">ذخیره</button>
           </form>
         </Box>
       </Modal>

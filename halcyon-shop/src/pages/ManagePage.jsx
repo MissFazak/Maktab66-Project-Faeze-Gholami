@@ -1,20 +1,17 @@
 import * as React from "react";
-import { useEffect, useState } from "react";
+import { useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchItems,
   itemsSelector,
-  updateItems,
-  deleteItem,
 } from "../redux/productSlice";
 import { fetchCategory, categorySelector } from "../redux/categorySlice";
 import { DataGrid } from "@mui/x-data-grid";
 import { Button } from "@mui/material";
 import ItemModal from "../components/ItemModal";
 import service from "../redux/http";
-import { Box } from "@mui/system";
-import EditIcon from "@mui/icons-material/Edit";
-import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import { v4 as uuidv4 } from "uuid";
+
 
 export default function CustomizedTables() {
   const dispatch = useDispatch();
@@ -56,24 +53,22 @@ export default function CustomizedTables() {
     {
       field: "action",
       headerName: "",
-      width: 150,
+      width: 170,
       sortable: false,
       renderCell: (params) => {
         const handleEdit = (e) => {
-          service.updateProduct(e,params.row)
-          console.log(params.row);
+          
         };
         const handleDelete = (e) => {
           service.removeProduct(e);
-          console.log(e);
         };
         return (
           <>
-            <Button onClick={() => handleEdit(params.row.id)}>
-              <EditIcon /> ویرایش
-            </Button>
-            <Button onClick={() => handleDelete(params.row.id)}>
-              <DeleteForeverIcon /> حذف
+            <div style={{paddingInline:'10px'}} onClick={() => handleEdit(params.row.id)}>
+             <ItemModal name='ویرایش'/>
+            </div>
+            <Button variant="contained" color="primary" onClick={() => handleDelete(params.row.id)}>
+           حذف
             </Button>
           </>
         );
@@ -96,7 +91,7 @@ export default function CustomizedTables() {
     <div className="managePage">
       <div className="topTable">
         <h3>مدیریت موجودی و قیمت‌ها</h3>
-        <ItemModal />
+        <ItemModal name='افزودن'/>
       </div>
       <DataGrid
         rows={rows}

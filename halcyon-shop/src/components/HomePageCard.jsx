@@ -3,16 +3,10 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchItems, itemsSelector } from "../redux/productSlice";
 import { fetchCategory, categorySelector } from "../redux/categorySlice";
-import Card from "@mui/material/Card";
-import CardHeader from "@mui/material/CardHeader";
-import CardMedia from "@mui/material/CardMedia";
-import CardContent from "@mui/material/CardContent";
-import Typography from "@mui/material/Typography";
 import { Link } from "react-router-dom";
-import { Button } from "@mui/material";
+import CardComponent from "./CardComponent";
 
 export default function HomePageCard() {
-  let moment = require("moment-jalaali");
   const dispatch = useDispatch();
   const { items } = useSelector(itemsSelector);
   const { category } = useSelector(categorySelector);
@@ -33,22 +27,7 @@ export default function HomePageCard() {
             {Object.values(items).map((item) => {
               if (cat.id == item.category) {
                 return (
-                  <Card className="cardStyle">
-                    <Link to={{ pathname: "mobile" }} state={item}>
-                      <CardHeader
-                        title={item.name}
-                        subheader={moment(item.createdAt).format("jYYYY/jM/jD")}
-                        color="primary"
-                      />
-                      <CardMedia
-                        component="img"
-                        height="194"
-                        image={`http://localhost:3002/files/${item.thumbnail}`}
-                        alt={item.name}
-                      />
-                    </Link>
-                    <Button>افزودن به سبد خرید</Button>
-                  </Card>
+                  <CardComponent item={item}></CardComponent>
                 );
               }
             })}

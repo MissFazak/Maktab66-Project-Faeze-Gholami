@@ -1,20 +1,21 @@
 import * as React from "react";
-import {useEffect } from "react";
-import {useDispatch,useSelector} from "react-redux"
-import { fetchItems,itemsSelector } from "../redux/productSlice";
+import { useEffect,useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchItems, itemsSelector } from "../redux/productSlice";
 import { Button } from "@mui/material";
-import {DataGrid} from '@mui/x-data-grid'
+import { DataGrid } from "@mui/x-data-grid";
+import service from "../redux/http";
 
 export default function CustomizedTables() {
-  const dispatch = useDispatch()
-  const {items} = useSelector(itemsSelector)
-  useEffect(()=>{
-    dispatch(fetchItems())
-  },[])
+  const dispatch = useDispatch();
+  const { items } = useSelector(itemsSelector);
+  useEffect(() => {
+    dispatch(fetchItems());
+  }, []);
+
 
   const columns = [
-    { field: "id", headerName: "ID", width: 10 
-  },
+    { field: "id", headerName: "ID", width: 10 },
     {
       field: "name",
       headerName: "نام کالا",
@@ -31,7 +32,7 @@ export default function CustomizedTables() {
       headerName: "تعداد",
       width: 200,
       sortable: false,
-      editable: true
+      editable: true,
     },
   ];
   const rows = items.map((item) => {
@@ -40,19 +41,30 @@ export default function CustomizedTables() {
       name: item.name,
       price: item.price,
       count: item.count,
-
-  
     };
   });
-  
+
+  const handleSave = () => {
+    
+    alert("hi");
+  };
+
+
   return (
     <div className="managePage">
       <div className="topTable">
         <h3>مدیریت موجودی و قیمت‌ها</h3>
-        <Button variant="contained" color="primary">ذخیره</Button>
+        <Button variant="contained" color="primary" onClick={handleSave}>
+          ذخیره
+        </Button>
       </div>
-      <DataGrid rows={rows} columns={columns} autoHeight pageSize={5}/>
-      
+      <DataGrid
+        rows={rows}
+        columns={columns}
+        autoHeight
+        pageSize={5}    
+        onEditRowsModelChange
+      />
     </div>
   );
 }

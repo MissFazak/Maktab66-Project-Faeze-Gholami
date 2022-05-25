@@ -75,34 +75,6 @@ export default function CustomizedTables() {
           </FormControl>
         </div>
         <DataGrid rows={rows} columns={columns} autoHeight pageSize={5}/>
-
-        {/* <div className="managePageTable">
-          <table>
-            <tr>
-              <th>نام کاربر</th>
-              <th>مجموع مبلغ</th>
-              <th>زمان ثبت سفارش</th>
-              <th></th>
-            </tr>
-
-            {Object.values(orders).map((row) => (
-              <tr className="bodyTr" key={row.id}>
-                <td>
-                  {row.customerDetail.firstName +
-                    " " +
-                    row.customerDetail.lastName}
-                </td>
-                <td align="right">{row.purchaseTotal}</td>
-                <td align="right">
-                  {moment(row.orderDate).format("jYYYY/jM/jD")}
-                </td>
-                <td align="right">
-                  <a>بررسی سفارش</a>
-                </td>
-              </tr>
-            ))}
-          </table>
-        </div> */}
       </div>
  
   );

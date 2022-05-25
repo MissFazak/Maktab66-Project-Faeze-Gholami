@@ -26,11 +26,11 @@ const creatOrder = data =>{
 }
 
 const updateProduct = (id,data) =>{
-    return api.put(`/products${id}`,data)
+    return api.put(`/products/${id}`,data)
 }
 
 const removeProduct = id =>{
-    return api.delete(`/products${id}`)
+    return api.delete(`/products/${id}`)
 }
 
 const service = {

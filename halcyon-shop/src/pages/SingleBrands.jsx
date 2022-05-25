@@ -17,15 +17,19 @@ export default function SingleBrands() {
 
   return (
     <div className="homePageCardWrapper" style={{ paddingTop: "50px" }}>
-      <div className="homePageCard">
+      
         {items.map((item) => {
           if (item.category == map.id) {
             return (
-              <CardComponent item={item}></CardComponent>
+             
+                <div style={{width:'30%',display:'inline-block'}}>
+                  <CardComponent item={item}></CardComponent>
+                </div>
+              
             );
           }
         })}
-      </div>
+     
     </div>
   );
 }

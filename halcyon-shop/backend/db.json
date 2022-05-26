@@ -1314,20 +1314,6 @@
       "thumbnail": "9f00629c292064341096b71332cb0ffe",
       "id": 88,
       "createdAt": 1652153129997
-    },
-    {
-      "id": "b666bdba-0744-4a6a-987a-a4100a66174e",
-      "name": "گوشی جدید",
-      "category": "5",
-      "price": "200",
-      "count": "10",
-      "description": "این متن جهت تست است",
-      "image": [
-        "d7cd6ca3170e2e10fa63565d3fceaf31",
-        "61e5e218d11d374abbfee10b73383c3a"
-      ],
-      "thumbnail": "d7cd6ca3170e2e10fa63565d3fceaf31",
-      "createdAt": 1653549504074
     }
   ],
   "category": [

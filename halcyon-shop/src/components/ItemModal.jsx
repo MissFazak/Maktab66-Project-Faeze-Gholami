@@ -11,6 +11,7 @@ import { v4 as uuidv4 } from "uuid";
 import { useEffect, useState, useMemo } from "react";
 import { api } from "../redux/api";
 import service from "../redux/http";
+import { fetchItems, itemsSelector } from "../redux/productSlice";
 
 const style = {
   position: "absolute",
@@ -26,18 +27,19 @@ const style = {
   overflow: "auto",
 };
 
-export default function BasicModal(props) {
+export default function BasicModal(name) {
   const [open, setOpen] = React.useState(false);
+  const { items } = useSelector(itemsSelector);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [gallery, setGallery] = useState([]);
-  
   const [des, setDes] = useState();
   const dispatch = useDispatch();
   const { category } = useSelector(categorySelector);
+
   useEffect(() => {
     dispatch(fetchCategory());
-  }, [dispatch]);
+  }, []);
 
   const formik = useFormik({
     initialValues: {
@@ -49,12 +51,14 @@ export default function BasicModal(props) {
       description: "",
     },
     onSubmit: () => {
-      alert('اطلاعات شما با موفقیت ثبت گردید');
+      alert("اطلاعات شما با موفقیت ثبت گردید");
       service.creatProduct(data);
       setGallery([]);
+      handleClose();
+      formik.values.id = uuidv4();
     },
   });
-  
+
   const data = {
     id: formik.values.id,
     name: formik.values.name,
@@ -67,11 +71,11 @@ export default function BasicModal(props) {
     createdAt: new Date().getTime(),
   };
 
-
+  //get images as file
   const selectFileHandler = (e) => {
     formik.setFieldValue("image", e.currentTarget.files[0]);
   };
-
+  //save photos in gallery
   const uploadHandler = () => {
     const formData = new FormData();
     Object.entries(formik.values).map((item) => {
@@ -81,7 +85,7 @@ export default function BasicModal(props) {
       .post("/upload", formData, {})
       .then((res) => setGallery((gallery) => [...gallery, res.data.filename]));
   };
-
+  //save description
   const onContentStateChange = (context) => {
     setDes(context.blocks[0].text);
   };
@@ -89,7 +93,7 @@ export default function BasicModal(props) {
   return (
     <div>
       <Button onClick={handleOpen} variant="contained" color="primary">
-        {props.name}
+        {name.name}
       </Button>
       <Modal
         open={open}

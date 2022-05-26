@@ -16,14 +16,22 @@ export default function CustomizedTables() {
   const dispatch = useDispatch();
   const { items } = useSelector(itemsSelector);
   const { category } = useSelector(categorySelector);
-
+  
   useEffect(() => {
     dispatch(fetchItems());
-  }, []);
+  }, [items]);
+  
   useEffect(() => {
     dispatch(fetchCategory());
   }, []);
-
+  
+  useEffect(() => {
+    handleDelete();
+  }, [items]);
+  
+  const handleDelete = (e) => {
+    service.removeProduct(e);
+  };
   const columns = [
     { field: "id", headerName: "ID", width: 10 },
     {
@@ -56,10 +64,6 @@ export default function CustomizedTables() {
       sortable: false,
       renderCell: (params) => {
         const handleEdit = (e) => {
-          
-        };
-        const handleDelete = (e) => {
-          service.removeProduct(e);
         };
         return (
           <>
@@ -90,7 +94,7 @@ export default function CustomizedTables() {
     <div className="managePage">
       <div className="topTable">
         <h3>مدیریت موجودی و قیمت‌ها</h3>
-        <ItemModal name='افزودن'/>
+        <ItemModal name='افزودن' handle={fetchItems} category={category}/>
       </div>
       <DataGrid
         rows={rows}

@@ -12,21 +12,24 @@ export default function CustomizedTables() {
   useEffect(() => {
     dispatch(fetchItems());
   }, []);
-
-  // const handleEdit = async (params) => {
-  //   const {id, field, value} = params;
-  //   console.log(params);
-  //   const array = items.map((r) => {
-  //     if (r.id === id) {
-  //       return { ...r, [field]: value };
-  //     } else {
-  //       return { ...r };
-  //     }
-  //   });
-  //   setState(array);
-  //   console.log(state);
-  //   service.updateProduct(id,array)
-  // };
+  
+  const saveEdit =(id,array)=>{
+    service.updateProduct(id,array)
+  }
+  const handleEdit = async (params) => {
+    const {id, field, value} = params;
+    console.log(params);
+    const array = items.map((r) => {
+      if (r.id === id) {
+        return { ...r, [field]: value };
+      } else {
+        return { ...r };
+      }
+    });
+    console.log(array);
+    setState(array);
+    saveEdit(id,array)
+  };
 
   const columns = [
     { field: "id", headerName: "ID", width: 10 },
@@ -62,7 +65,7 @@ export default function CustomizedTables() {
     <div className="managePage">
       <div className="topTable">
         <h3>مدیریت موجودی و قیمت‌ها</h3>
-        <Button variant="contained" color="primary" >
+        <Button variant="contained" color="primary" onClick={saveEdit}>
           ذخیره
         </Button>
       </div>
@@ -71,6 +74,7 @@ export default function CustomizedTables() {
         columns={columns}
         autoHeight
         pageSize={5}
+        onCellEditCommit={handleEdit}
         
       />
     </div>

@@ -56,6 +56,7 @@ export default function BasicModal(name) {
       setGallery([]);
       handleClose();
       formik.values.id = uuidv4();
+      
     },
   });
 
@@ -163,11 +164,9 @@ export default function BasicModal(name) {
               value={formik.values.count}
             />
             <Editor
-              // editorState={editorState}
               toolbarClassName="toolbarClassName"
               wrapperClassName="wrapperClassName"
               editorClassName="editorClassName"
-              // onEditorStateChange={onEditorStateChange}
               onContentStateChange={onContentStateChange}
             />
             <button type="submit">ذخیره</button>

@@ -21,42 +21,42 @@ export default function DashboardHead() {
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static" color="transparent">
           <Toolbar>
-            <Typography variant="h4" component="div" sx={{ flexGrow: 1 }} xs={3}>
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} xs={4}>
               <AssignmentIndIcon
-              fontSize="large"
+              fontSize="small"
               color="primary"
-              sx={{ marginBottom: "-12px", paddingX: "3px" }}
+              sx={{ marginBottom: "-6px", paddingX: "3px" }}
               />
               پنل مدیریت
             </Typography>
-            <Grid item container className="boxing" sx={{ flexGrow: 1 }} xs={4}>
+            <Grid item container className="boxing" sx={{ flexGrow: 1 }} xs={6}>
               <NavLink to={{pathname:'manage-page'}} style={({isActive})=>({backgroundColor:isActive?"#5ab7fd":'transparent'})}>
               <QrCodeIcon
-              fontSize="medium"
+              fontSize="small"
               color="primary"
-              sx={{ marginBottom: "-8px", paddingX: "3px" }}
+              sx={{ marginBottom: "-5px", paddingX: "3px" }}
               />
                 کالاها</NavLink>
               <NavLink to={{pathname:'manage-of-sp'}} style={({isActive})=>({backgroundColor:isActive?"#5ab7fd":'transparent'})}>
               <PriceChangeIcon
-              fontSize="medium"
+              fontSize="small"
               color="primary"
-              sx={{ marginBottom: "-8px", paddingX: "3px" }}
+              sx={{ marginBottom: "-5px", paddingX: "3px" }}
               />
                 موجودی‌ و قیمت‌ها</NavLink>
               <NavLink to={{pathname:'order-page'}} style={({isActive})=>({backgroundColor:isActive?"#5ab7fd":'transparent'})}>
               <IntegrationInstructionsIcon
-              fontSize="medium"
+              fontSize="small"
               color="primary"
-              sx={{ marginBottom: "-8px", paddingX: "3px" }}
+              sx={{ marginBottom: "-5px", paddingX: "3px" }}
               />
                 سفارش‌ها</NavLink>
             </Grid>
-            <Link to={{pathname:'..//'}} xs={1}><Typography variant="h5">بازگشت به سایت
+            <Link to={{pathname:'..//'}} xs={1}><Typography variant="h6">بازگشت به سایت
             <KeyboardReturnIcon
-              fontSize="large"
+              fontSize="medium"
               color="primary"
-              sx={{ marginBottom: "-15px", paddingX: "3px" }}
+              sx={{ marginBottom: "-10px", paddingX: "3px" }}
               />
             </Typography></Link>
           </Toolbar>

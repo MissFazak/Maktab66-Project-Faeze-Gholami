@@ -32,6 +32,9 @@ const updateProduct = (id,data) =>{
 const removeProduct = id =>{
     return api.delete(`/products/${id}`)
 }
+const ordersStatus = (status)=>{
+    return api.get(`/orders?ordersStatus=${status}`)
+}
 
 const service = {
     getProducts,
@@ -42,7 +45,8 @@ const service = {
     creatProduct,
     creatOrder,
     updateProduct,
-    removeProduct
+    removeProduct,
+    ordersStatus
 }
 
 export default service

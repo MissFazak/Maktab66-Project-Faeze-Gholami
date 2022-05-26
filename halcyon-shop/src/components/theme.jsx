@@ -1,5 +1,4 @@
 import { createTheme } from "@mui/material/styles";
-import koodak from '../assets/font/KoodakBold.woff'
 
 const theme = createTheme({
   typography: {

@@ -13,20 +13,20 @@ export default function CustomizedTables() {
     dispatch(fetchItems());
   }, []);
 
-  const handleEdit = async (params) => {
-    const {id, field, value} = params;
-    console.log(params);
-    const array = items.map((r) => {
-      if (r.id === id) {
-        return { ...r, [field]: value };
-      } else {
-        return { ...r };
-      }
-    });
-    setState(array);
-    console.log(state);
-    service.updateProduct(id,array)
-  };
+  // const handleEdit = async (params) => {
+  //   const {id, field, value} = params;
+  //   console.log(params);
+  //   const array = items.map((r) => {
+  //     if (r.id === id) {
+  //       return { ...r, [field]: value };
+  //     } else {
+  //       return { ...r };
+  //     }
+  //   });
+  //   setState(array);
+  //   console.log(state);
+  //   service.updateProduct(id,array)
+  // };
 
   const columns = [
     { field: "id", headerName: "ID", width: 10 },
@@ -62,7 +62,7 @@ export default function CustomizedTables() {
     <div className="managePage">
       <div className="topTable">
         <h3>مدیریت موجودی و قیمت‌ها</h3>
-        <Button variant="contained" color="primary" onClick={handleEdit}>
+        <Button variant="contained" color="primary" >
           ذخیره
         </Button>
       </div>
@@ -71,7 +71,7 @@ export default function CustomizedTables() {
         columns={columns}
         autoHeight
         pageSize={5}
-        onStateChange={handleEdit}
+        
       />
     </div>
   );

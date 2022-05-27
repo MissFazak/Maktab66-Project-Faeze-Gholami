@@ -19,18 +19,17 @@ export default function CustomizedTables() {
   
   useEffect(() => {
     dispatch(fetchItems());
-  }, [items]);
+  }, [dispatch]);
   
   useEffect(() => {
     dispatch(fetchCategory());
-  }, []);
+  }, [dispatch]);
   
-  useEffect(() => {
-    handleDelete();
-  }, [items]);
   
   const handleDelete = (e) => {
     service.removeProduct(e);
+  };
+  const handleEdit = (e) => {
   };
   const columns = [
     { field: "id", headerName: "ID", width: 10 },
@@ -55,7 +54,7 @@ export default function CustomizedTables() {
     {
       field: "category",
       headerName: "دسته‌بندی",
-      width: 110,
+      width: 100,
     },
     {
       field: "action",
@@ -63,8 +62,7 @@ export default function CustomizedTables() {
       width: 170,
       sortable: false,
       renderCell: (params) => {
-        const handleEdit = (e) => {
-        };
+        
         return (
           <>
             <div style={{paddingInline:'10px'}} onClick={() => handleEdit(params.row.id)}>
@@ -83,11 +81,9 @@ export default function CustomizedTables() {
       id: item.id,
       thumbnail: `http://localhost:3002/files/${item.thumbnail}`,
       name: item.name,
-      category: category.map((el) => {
-        if (el.id == item.category) {
-          return el.name;
-        }
-      }),
+      category: category.find((el) => {
+        return el.id == item.category
+      }).name,
     };
   });
   return (

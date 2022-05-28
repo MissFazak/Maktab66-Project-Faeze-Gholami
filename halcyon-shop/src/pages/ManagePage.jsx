@@ -1,19 +1,26 @@
 import { categorySelector } from "../redux/categorySlice";
-import { useEffect } from "react";
-import { useSelector } from "react-redux";
-import { itemsSelector } from "../redux/productSlice";
+import { useEffect,useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { itemsSelector,fetchItems } from "../redux/productSlice";
 import { DataGrid } from "@mui/x-data-grid";
 import { Button } from "@mui/material";
 import ItemModal from "../components/ItemModal";
 import service from "../redux/http";
 
 export default function CustomizedTables() {
+  const dispatch = useDispatch()
   const { items } = useSelector(itemsSelector);
   const { category } = useSelector(categorySelector);
+  const [state, setState] = useState(false)
   console.log(category);
+
+  useEffect(() => {
+    dispatch(fetchItems());
+  }, [state]);
 
   const handleDelete = (e) => {
     service.removeProduct(e);
+    setState(!state);
     // window.location.reload()
   };
   const handleEdit = (e) => {
@@ -84,7 +91,7 @@ export default function CustomizedTables() {
     <div className="managePage">
       <div className="topTable">
         <h3>مدیریت موجودی و قیمت‌ها</h3>
-        <ItemModal name="افزودن" category={category} item={items} />
+        <ItemModal name="افزودن" category={category} item={items} setState={setState} state={state} />
       </div>
       <DataGrid
         className="dataGrid"

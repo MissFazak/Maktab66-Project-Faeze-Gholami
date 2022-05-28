@@ -22,10 +22,7 @@ import PrivateRoute from "./components/PrivateRoute";
 function App() {
   const dispatch = useDispatch();
   const { items } = useSelector(itemsSelector);
-  const isAuthenticated = localStorage.getItem('token')
-  // const {state} = useSelector(stateSelector)
 
-//  console.log(state);
   useEffect(() => {
     dispatch(fetchItems());
   }, []);

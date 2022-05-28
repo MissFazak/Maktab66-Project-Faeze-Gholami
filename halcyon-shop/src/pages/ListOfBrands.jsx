@@ -1,8 +1,7 @@
 import React from "react";
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchItems, itemsSelector } from "../redux/productSlice";
-import { fetchCategory, categorySelector } from "../redux/categorySlice";
+import { itemsSelector } from "../redux/productSlice";
+import { categorySelector } from "../redux/categorySlice";
 import { Link, Outlet} from "react-router-dom";
 import List from "@mui/material/List";
 import ListItemButton from "@mui/material/ListItemButton";
@@ -12,16 +11,8 @@ import { Box } from "@mui/material";
 import { v4 as uuidv4 } from 'uuid';
 
 export default function ListOfBrands() {
-  const dispatch = useDispatch();
   const { items } = useSelector(itemsSelector);
   const { category } = useSelector(categorySelector);
-
-  useEffect(() => {
-    dispatch(fetchItems());
-  }, []);
-  useEffect(() => {
-    dispatch(fetchCategory());
-  }, []);
 
   return (
     <div className="brandsPage">

@@ -1,35 +1,23 @@
-import * as React from "react";
-import { useEffect} from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  fetchItems,
-  itemsSelector,
-} from "../redux/productSlice";
-import { fetchCategory, categorySelector } from "../redux/categorySlice";
+import { categorySelector } from "../redux/categorySlice";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { itemsSelector } from "../redux/productSlice";
 import { DataGrid } from "@mui/x-data-grid";
 import { Button } from "@mui/material";
 import ItemModal from "../components/ItemModal";
 import service from "../redux/http";
 
-
 export default function CustomizedTables() {
-  const dispatch = useDispatch();
   const { items } = useSelector(itemsSelector);
   const { category } = useSelector(categorySelector);
-  
-  useEffect(() => {
-    dispatch(fetchItems());
-  }, [dispatch]);
-  
-  useEffect(() => {
-    dispatch(fetchCategory());
-  }, [dispatch]);
-  
-  
+  console.log(category);
+
   const handleDelete = (e) => {
     service.removeProduct(e);
+    // window.location.reload()
   };
   const handleEdit = (e) => {
+    items?.find((item) => item.id == e.id);
   };
   const columns = [
     { field: "id", headerName: "ID", width: 10 },
@@ -62,37 +50,44 @@ export default function CustomizedTables() {
       width: 170,
       sortable: false,
       renderCell: (params) => {
-        
         return (
           <>
-            <div style={{paddingInline:'10px'}} onClick={() => handleEdit(params.row.id)}>
-             <ItemModal name='ویرایش'/>
+            <div
+              style={{ paddingInline: "10px" }}
+              onClick={() => handleEdit(params.row.id)}
+            >
+              <ItemModal name={"ویرایش"} />
             </div>
-            <Button variant="contained" color="primary" onClick={() => handleDelete(params.row.id)}>
-           حذف
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => handleDelete(params.row.id)}
+            >
+              حذف
             </Button>
           </>
         );
       },
     },
   ];
-  const rows = items.map((item) => {
+  const rows = items?.map((item) => {
     return {
       id: item.id,
       thumbnail: `http://localhost:3002/files/${item.thumbnail}`,
       name: item.name,
-      category: category.find((el) => {
-        return el.id == item.category
-      }).name,
+      category: category?.find((el) => {
+        return el.id == item.category;
+      }),
     };
   });
   return (
     <div className="managePage">
       <div className="topTable">
         <h3>مدیریت موجودی و قیمت‌ها</h3>
-        <ItemModal name='افزودن' handle={fetchItems} category={category}/>
+        <ItemModal name="افزودن" category={category} item={items} />
       </div>
       <DataGrid
+        className="dataGrid"
         rows={rows}
         columns={columns}
         autoHeight

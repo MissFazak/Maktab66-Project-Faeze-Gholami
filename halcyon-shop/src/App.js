@@ -14,12 +14,20 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchItems, itemsSelector } from "./redux/productSlice";
 import Mobile from "./pages/Mobile";
+import { fetchCategory } from "./redux/categorySlice";
+import { stateSelector } from "./redux/stateSlice";
 
 function App() {
   const dispatch = useDispatch();
   const { items } = useSelector(itemsSelector);
+  const {state} = useSelector(stateSelector)
+
+//  console.log(state);
   useEffect(() => {
     dispatch(fetchItems());
+  }, [state]);
+  useEffect(() => {
+    dispatch(fetchCategory());
   }, [dispatch]);
   return (
     <div className="container">
@@ -28,7 +36,7 @@ function App() {
           <Route path="/" element={<MainPage />} />
           {items.map((item, index) => (
               <Route
-                path="/mobile"
+                path={`/mobile/${item.id}`}
                 element={<Mobile />}
                 key={index}
               />

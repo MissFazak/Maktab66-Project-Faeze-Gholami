@@ -3,6 +3,7 @@ import userReducer from './userSlice'
 import itemsReducer from './productSlice'
 import orderReducer from './orderSlice'
 import categoryReducer from './categorySlice'
+import stateReducer from './stateSlice'
 
 export const store = configureStore({
   devTools:true,
@@ -11,6 +12,7 @@ export const store = configureStore({
       items:itemsReducer,
       orders:orderReducer,
       category:categoryReducer,
+      state:stateReducer,
       
       // product:productReducer
   }

@@ -33,40 +33,42 @@ const Login = () => {
   });
  
   return (
-    <div className="loginForm">
-      <form onSubmit={formik.handleSubmit}>
-        <input
-          id="username"
-          name="username"
-          type="text"
-          placeholder="Username"
-          onChange={formik.handleChange}
-          value={formik.values.username}
-        />
-
-        <input
-          id="password"
-          name="password"
-          type={icon ? "text" : "password"}
-          placeholder="Password"
-          onChange={formik.handleChange}
-          value={formik.values.password}
-        />
-        <div className="iconHolder">
-          {icon ? (
-            <VisibilityOffIcon
-              className="icons"
-              onClick={() => setIcon(false)}
-            />
-          ) : (
-            <VisibilityIcon className="icons" onClick={() => setIcon(true)} />
-          )}
-        </div>
-
-        <button type="submit">
-          ورود
-        </button>
-      </form>
+    <div className="loginBody">
+      <div className="loginForm">
+        <form onSubmit={formik.handleSubmit}>
+          <input
+            id="username"
+            name="username"
+            type="text"
+            placeholder="Username"
+            onChange={formik.handleChange}
+            value={formik.values.username}
+          />
+      
+          <input
+            id="password"
+            name="password"
+            type={icon ? "text" : "password"}
+            placeholder="Password"
+            onChange={formik.handleChange}
+            value={formik.values.password}
+          />
+          <div className="iconHolder">
+            {icon ? (
+              <VisibilityOffIcon
+                className="icons"
+                onClick={() => setIcon(false)}
+              />
+            ) : (
+              <VisibilityIcon className="icons" onClick={() => setIcon(true)} />
+            )}
+          </div>
+      
+          <button type="submit">
+            ورود
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

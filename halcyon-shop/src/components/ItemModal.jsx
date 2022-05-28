@@ -9,6 +9,7 @@ import { v4 as uuidv4 } from "uuid";
 import { useState } from "react";
 import { api } from "../redux/api";
 import service from "../redux/http";
+import * as Yup from "yup";
 
 const style = {
   position: "absolute",
@@ -30,19 +31,25 @@ export default function BasicModal({ category, name, item }) {
   const handleClose = () => setOpen(false);
   const [gallery, setGallery] = useState([]);
   const [des, setDes] = useState();
-  // console.log(item[0].name);
-
- 
 
   const formik = useFormik({
     initialValues: {
       id: uuidv4(),
+      image:'',
       name: "",
       category: "",
       price: "",
       count: "",
       description: "",
     },
+    validationSchema: Yup.object({
+      image: Yup.string().required("وارد کردن حداقل یک تصویر الزامی است!"),
+      name: Yup.string().required("وارد کردن نام کالا الزامی است!"),
+      category: Yup.string().required("وارد کردن دسته بندی کالا الزامی است!"),
+      price: Yup.number().typeError('فقط مقدار عددی مجاز است').required("وارد کردن قیمت کالا الزامی است!"),
+      count: Yup.number().typeError("فقط مقدار عددی مجاز است").required("وارد کردن تعداد کالا الزامی است!"),
+      description: Yup.string().required("وارد کردن توضیحات کالا الزامی است!"),
+    }),
     onSubmit: () => {
       alert("اطلاعات شما با موفقیت ثبت گردید");
       service.creatProduct(data);
@@ -106,7 +113,11 @@ export default function BasicModal({ category, name, item }) {
               type="file"
               accept="image/*"
               onChange={selectFileHandler}
+              onBlur={formik.handleBlur}
             />
+            {formik.touched.image && formik.errors.image ? (
+            <div className="error1">{formik.errors.image }</div>
+          ) : null}
             <button type="button" onClick={uploadHandler}>
               آپلود
             </button>
@@ -125,13 +136,19 @@ export default function BasicModal({ category, name, item }) {
               name="name"
               type="text"
               onChange={formik.handleChange}
-              value={item[0].name}
+              onBlur={formik.handleBlur}
+
+              // value={item.name}
             />
+            {formik.touched.name && formik.errors.name ? (
+              <div className="error1">{formik.errors.name}</div>
+            ) : null}
             <label htmlFor="category">دسته بندی</label>
             <select
-              value={item.category}
+              // value={item.category}
               name="category"
               onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
             >
               {category?.map((name) => (
                 <option value={name.id} key={name.id}>
@@ -139,28 +156,45 @@ export default function BasicModal({ category, name, item }) {
                 </option>
               ))}
             </select>
+            {formik.touched.category && formik.errors.category ? (
+              <div className="error1">{formik.errors.category}</div>
+            ) : null}
             <label htmlFor="price">قیمت</label>
             <input
               id="price"
               name="price"
               type="text"
               onChange={formik.handleChange}
-              value={item.price}
+              onBlur={formik.handleBlur}
+
+              // value={item.price}
             />
+            {formik.touched.price && formik.errors.price ? (
+              <div className="error1">{formik.errors.price}</div>
+            ) : null}
             <label htmlFor="count">تعداد</label>
             <input
               id="count"
               name="count"
               type="text"
               onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+
               // value={item.count}
             />
+            {formik.touched.count && formik.errors.count ? (
+              <div className="error1">{formik.errors.count}</div>
+            ) : null}
             <Editor
               toolbarClassName="toolbarClassName"
               wrapperClassName="wrapperClassName"
               editorClassName="editorClassName"
               onContentStateChange={onContentStateChange}
+              onBlur={formik.handleBlur}
             />
+            {formik.touched.description && formik.errors.description ? (
+              <div className="error1">{formik.errors.description}</div>
+            ) : null}
             <button type="submit">ذخیره</button>
           </form>
         </Box>

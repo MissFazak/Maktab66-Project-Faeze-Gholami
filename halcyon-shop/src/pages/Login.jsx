@@ -8,7 +8,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import * as Yup from "yup";
-import { rootShouldForwardProp } from "@mui/material/styles/styled";
 
 const Login = () => {
   const dispatch = useDispatch();

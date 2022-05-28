@@ -56,7 +56,7 @@ export default function CustomizedTables() {
               style={{ paddingInline: "10px" }}
               onClick={() => handleEdit(params.row.id)}
             >
-              <ItemModal name={"ویرایش"} />
+              {/* <ItemModal name={"ویرایش"} /> */}
             </div>
             <Button
               variant="contained"

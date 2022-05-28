@@ -25,7 +25,7 @@ const style = {
   overflow: "auto",
 };
 
-export default function BasicModal({ category, name, item }) {
+export default function BasicModal({ category, name, item,setState,state }) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -48,7 +48,7 @@ export default function BasicModal({ category, name, item }) {
       category: Yup.string().required("وارد کردن دسته بندی کالا الزامی است!"),
       price: Yup.number().typeError('فقط مقدار عددی مجاز است').required("وارد کردن قیمت کالا الزامی است!"),
       count: Yup.number().typeError("فقط مقدار عددی مجاز است").required("وارد کردن تعداد کالا الزامی است!"),
-      description: Yup.string().required("وارد کردن توضیحات کالا الزامی است!"),
+      
     }),
     onSubmit: () => {
       alert("اطلاعات شما با موفقیت ثبت گردید");
@@ -56,6 +56,8 @@ export default function BasicModal({ category, name, item }) {
       setGallery([]);
       handleClose();
       formik.values.id = uuidv4();
+      setState(!state)
+      
     },
   });
 
@@ -190,11 +192,9 @@ export default function BasicModal({ category, name, item }) {
               wrapperClassName="wrapperClassName"
               editorClassName="editorClassName"
               onContentStateChange={onContentStateChange}
-              onBlur={formik.handleBlur}
+              
             />
-            {formik.touched.description && formik.errors.description ? (
-              <div className="error1">{formik.errors.description}</div>
-            ) : null}
+            
             <button type="submit">ذخیره</button>
           </form>
         </Box>

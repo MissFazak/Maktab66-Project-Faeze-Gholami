@@ -4,14 +4,11 @@ import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchCategory, categorySelector } from "../redux/categorySlice";
 import { useFormik } from "formik";
 import { v4 as uuidv4 } from "uuid";
-import { useEffect, useState, useMemo } from "react";
+import { useState } from "react";
 import { api } from "../redux/api";
 import service from "../redux/http";
-import { fetchItems, itemsSelector } from "../redux/productSlice";
 
 const style = {
   position: "absolute",
@@ -27,19 +24,15 @@ const style = {
   overflow: "auto",
 };
 
-export default function BasicModal(name) {
+export default function BasicModal({ category, name, item }) {
   const [open, setOpen] = React.useState(false);
-  const { items } = useSelector(itemsSelector);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [gallery, setGallery] = useState([]);
   const [des, setDes] = useState();
-  const dispatch = useDispatch();
-  const { category } = useSelector(categorySelector);
+  // console.log(item[0].name);
 
-  useEffect(() => {
-    dispatch(fetchCategory());
-  }, []);
+ 
 
   const formik = useFormik({
     initialValues: {
@@ -56,7 +49,6 @@ export default function BasicModal(name) {
       setGallery([]);
       handleClose();
       formik.values.id = uuidv4();
-      
     },
   });
 
@@ -94,7 +86,7 @@ export default function BasicModal(name) {
   return (
     <div>
       <Button onClick={handleOpen} variant="contained" color="primary">
-        {name.name}
+        {name}
       </Button>
       <Modal
         open={open}
@@ -133,15 +125,15 @@ export default function BasicModal(name) {
               name="name"
               type="text"
               onChange={formik.handleChange}
-              value={formik.values.name}
+              value={item[0].name}
             />
             <label htmlFor="category">دسته بندی</label>
             <select
-              value={formik.values.category}
+              value={item.category}
               name="category"
               onChange={formik.handleChange}
             >
-              {category.map((name) => (
+              {category?.map((name) => (
                 <option value={name.id} key={name.id}>
                   {name.name}
                 </option>
@@ -153,7 +145,7 @@ export default function BasicModal(name) {
               name="price"
               type="text"
               onChange={formik.handleChange}
-              value={formik.values.price}
+              value={item.price}
             />
             <label htmlFor="count">تعداد</label>
             <input
@@ -161,7 +153,7 @@ export default function BasicModal(name) {
               name="count"
               type="text"
               onChange={formik.handleChange}
-              value={formik.values.count}
+              // value={item.count}
             />
             <Editor
               toolbarClassName="toolbarClassName"

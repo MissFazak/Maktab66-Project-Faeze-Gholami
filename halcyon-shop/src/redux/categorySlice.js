@@ -4,11 +4,11 @@ import service from "./http";
 const categorySlice = createSlice({
   name: "category",
   initialState: {
-    category: [],
+    category: [{id:0,name:'one'},{id:0,name:'one'}],
   },
   reducers: {
-    setCategory: (state, { payload }) => {
-      return { category: [...payload] };
+    setCategory: (state, action) => {
+      return { category: [...action.payload] };
     },
   },
 });

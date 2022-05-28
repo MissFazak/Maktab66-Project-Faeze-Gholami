@@ -4,7 +4,6 @@ import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
 import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
-import Item from "./Item";
 import MobileItem from "./MobileItem";
 
 export default function CardComponent(props) {
@@ -13,7 +12,7 @@ export default function CardComponent(props) {
   return (
     <MobileItem>
       <Card className="cardStyle">
-        <Link to={{ pathname: "..//mobile" }} state={props.item}>
+        <Link to={{ pathname: `..//mobile/${props.item.id}` }} state={props.item}>
           <CardHeader
             disableTypography
             title={props.item.name}

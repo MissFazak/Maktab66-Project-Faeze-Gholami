@@ -16,48 +16,59 @@ import { fetchItems, itemsSelector } from "./redux/productSlice";
 import Mobile from "./pages/Mobile";
 import { fetchCategory } from "./redux/categorySlice";
 import { stateSelector } from "./redux/stateSlice";
+import PublicRoute from "./components/PublicRoute";
+import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
   const dispatch = useDispatch();
   const { items } = useSelector(itemsSelector);
-  const {state} = useSelector(stateSelector)
+  const isAuthenticated = localStorage.getItem('token')
+  // const {state} = useSelector(stateSelector)
 
 //  console.log(state);
   useEffect(() => {
     dispatch(fetchItems());
-  }, [state]);
+  }, []);
   useEffect(() => {
     dispatch(fetchCategory());
   }, [dispatch]);
   return (
     <div className="container">
       <Routes>
-        <Route path="/" element={<HomePage />}>
-          <Route path="/" element={<MainPage />} />
-          {items.map((item, index) => (
-              <Route
-                path={`/mobile/${item.id}`}
-                element={<Mobile />}
-                key={index}
-              />
-            ))}
-          <Route path="/login" element={<Login />} />
-          <Route path="/cart-page" element={<CartPage />} />
-          <Route path="/list-brands" element={<ListOfBrands />}>
+       
+          <Route path="/" element={<HomePage />}>
+            <Route path="/" element={<MainPage />} />
             {items.map((item, index) => (
-              <Route
-                path="/list-brands/brands"
-                element={<SingleBrands />}
-                key={index}
-              />
-            ))}
+                <Route
+                  path={`/mobile/${item.id}`}
+                  element={<Mobile />}
+                  key={index}
+                />
+              ))}
+            <Route path="login" element={<PublicRoute/>}>
+              <Route path="/login" element={<Login />} />
+            </Route>
+            <Route path="/cart-page" element={<CartPage />} />
+            <Route path="/list-brands" element={<ListOfBrands />}>
+              {items.map((item, index) => (
+                <Route
+                  path="/list-brands/brands"
+                  element={<SingleBrands />}
+                  key={index}
+                />
+              ))}
+            </Route>
           </Route>
-        </Route>
-        <Route path="/dashboard" element={<Dashboard />}>
-          <Route path="manage-page" element={<ManagePage />} />
-          <Route path="manage-of-sp" element={<ManageOfSP />} />
-          <Route path="order-page" element={<OrderPage />} />
-        </Route>
+       
+    
+          <Route path='/' element={<PrivateRoute/>}>
+            <Route path="/dashboard" element={<Dashboard />}>
+              <Route path="manage-page" element={<ManagePage />} />
+              <Route path="manage-of-sp" element={<ManageOfSP />} />
+              <Route path="order-page" element={<OrderPage />} />
+            </Route>
+          </Route>
+       
       </Routes>
     </div>
   );

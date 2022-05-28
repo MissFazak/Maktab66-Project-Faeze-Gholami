@@ -8,11 +8,13 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import * as Yup from "yup";
+import { rootShouldForwardProp } from "@mui/material/styles/styled";
 
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [icon, setIcon] = useState(false);
+  const message = document.getElementById("errorMessage");
 
   const formik = useFormik({
     initialValues: {
@@ -35,10 +37,11 @@ const Login = () => {
           if (res.status === 200) {
             localStorage.setItem("token", res.data.token);
             navigate("..//dashboard/manage-page");
-          } else {
-            alert("hi");
+            alert("شما با موفقیت وارد شدید");
           }
-        });
+        }).catch(
+          message.innerHTML = 'نام کاربری یا کلمه عبور اشتباه است!'
+        )
     },
   });
 
@@ -46,6 +49,10 @@ const Login = () => {
     <div className="loginBody">
       <div className="loginForm">
         <form onSubmit={formik.handleSubmit}>
+          <div id='errorMessage' className="error1"></div>
+          {formik.touched.username && formik.errors.username ? (
+            <div className="error">{formik.errors.username}</div>
+          ) : null}
           <input
             id="username"
             name="username"
@@ -55,8 +62,8 @@ const Login = () => {
             onChange={formik.handleChange}
             value={formik.values.username}
           />
-          {formik.touched.username && formik.errors.username ? (
-            <div>{formik.errors.username}</div>
+          {formik.touched.password && formik.errors.password ? (
+            <div className="error">{formik.errors.password}</div>
           ) : null}
           <input
             id="password"
@@ -66,10 +73,7 @@ const Login = () => {
             onBlur={formik.handleBlur}
             onChange={formik.handleChange}
             value={formik.values.password}
-            />
-            {formik.touched.password && formik.errors.password ? (
-              <div>{formik.errors.password}</div>
-            ) : null}
+          />
           <div className="iconHolder">
             {icon ? (
               <VisibilityOffIcon

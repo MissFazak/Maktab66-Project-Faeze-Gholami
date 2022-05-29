@@ -23,10 +23,10 @@ function App() {
   const dispatch = useDispatch();
   const { items } = useSelector(itemsSelector);
   useEffect(() => {
-    fetchItems();
+    dispatch(fetchItems());
   }, [dispatch]);
   useEffect(() => {
-    fetchCategory();
+    dispatch(fetchCategory());
   }, [dispatch]);
 
   return (

@@ -83,7 +83,7 @@ export default function CustomizedTables() {
       name: item.name,
       category: category?.find((el) => {
         return el.id == item.category;
-      }),
+      })?.name,
     };
   });
   return (

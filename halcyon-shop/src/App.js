@@ -10,18 +10,24 @@ import OrderPage from "./pages/OrderPage";
 import MainPage from "./components/MainPage";
 import ListOfBrands from "./pages/ListOfBrands";
 import SingleBrands from "./pages/SingleBrands";
-import { useState } from "react";
-import { useSelector } from "react-redux";
-import { itemsSelector } from "./redux/productSlice";
+import { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchItems, itemsSelector } from "./redux/productSlice";
 import Mobile from "./pages/Mobile";
 import PublicRoute from "./components/PublicRoute";
 import PrivateRoute from "./components/PrivateRoute";
 import OrderForm from "./pages/OrderForm";
+import { fetchCategory } from "./redux/categorySlice";
 
 function App() {
-  const [cartItems, setCartItems] = useState(["ji", "hi"]);
+  const dispatch = useDispatch();
   const { items } = useSelector(itemsSelector);
-  console.log(cartItems);
+  useEffect(() => {
+    fetchItems();
+  }, [dispatch]);
+  useEffect(() => {
+    fetchCategory();
+  }, [dispatch]);
 
   return (
     <div className="container">

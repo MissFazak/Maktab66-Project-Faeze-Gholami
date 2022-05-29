@@ -21,7 +21,6 @@ export default function CustomizedTables() {
   const handleDelete = (e) => {
     service.removeProduct(e);
     setState(!state);
-    // window.location.reload()
   };
   const handleEdit = (e) => {
     items?.find((item) => item.id == e.id);

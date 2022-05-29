@@ -18,6 +18,7 @@ import { fetchCategory } from "./redux/categorySlice";
 import { stateSelector } from "./redux/stateSlice";
 import PublicRoute from "./components/PublicRoute";
 import PrivateRoute from "./components/PrivateRoute";
+import OrderForm from "./pages/OrderForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -46,6 +47,7 @@ function App() {
               <Route path="/login" element={<Login />} />
             </Route>
             <Route path="/cart-page" element={<CartPage />} />
+            <Route path="/order" element={<OrderForm/>}/>
             <Route path="/list-brands" element={<ListOfBrands />}>
               {items.map((item, index) => (
                 <Route

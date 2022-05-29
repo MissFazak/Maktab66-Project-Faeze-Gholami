@@ -37,6 +37,7 @@ const columns = [
 const rows = [{ id: 1, name: "Snow", price: "Jon", count: 35 }];
 
 export default function DataTable() {
+
   return (
     <div className="managePage">
       <DataGrid

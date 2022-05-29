@@ -20,7 +20,7 @@ export default function MediaControlCard() {
   let button;
   if (map.count > 0) {
     button = (
-      <AddToCard/>
+      <AddToCard count={map.count}/>
     );
   } else {
     button = (

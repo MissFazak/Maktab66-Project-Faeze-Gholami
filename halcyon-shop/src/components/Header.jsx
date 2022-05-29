@@ -15,8 +15,10 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
+import { Badge } from "@mui/material";
 
-export default function Header() {
+export default function Header({cartItmes}) {
+  console.log(cartItmes);
   const navigateToHome = useNavigate();
   const homePageNav = () => {
     navigateToHome("/");
@@ -63,12 +65,13 @@ export default function Header() {
             </Typography>
             <Typography variant="h6" sx={{ paddingX: "10px" }}>
               <Link to={{ pathname: `cart-page` }}>
-                سبد خرید
-                <LocalMallIcon
-                  fontSize="medium"
-                  color="primary"
-                  sx={{ marginBottom: "-6px", paddingX: "3px" }}
-                />
+        
+                <Badge color="error" badgeContent={cartItmes}>
+                  <LocalMallIcon
+                    fontSize="large"
+                    color="primary"
+                  />
+                </Badge>
               </Link>
             </Typography>
           </Box>

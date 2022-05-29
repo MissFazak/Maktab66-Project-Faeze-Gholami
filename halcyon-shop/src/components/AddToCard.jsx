@@ -3,10 +3,16 @@ import React, { useState } from "react";
 import { Box } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 
-export default function AddToCard() {
+export default function AddToCard({count}) {
+  const message = document.getElementById("alertText");
   const [counter, setCounter] = useState(0);
   const increase = () => {
-    setCounter(counter + 1);
+if(counter < count){
+  setCounter(counter + 1);
+}else{
+  message.innerHTML = 'موجودی کافی نیست';
+}
+
   };
   const decrease = () => {
     if (counter > 0) {
@@ -17,11 +23,14 @@ export default function AddToCard() {
   return (
     <>
       {counter > 0 ? (
-        <Box sx={{ display: "flex" }}>
-          <Button onClick={increase}>+</Button>
-          <Typography>{counter}</Typography>
-          <Button onClick={decrease}>{counter==1?<DeleteIcon/>:'-'}</Button>
-        </Box>
+        <>
+          <Box sx={{ display: "flex" }}>
+            <Button onClick={increase}>+</Button>
+            <Typography>{counter}</Typography>
+            <Button onClick={decrease}>{counter==1?<DeleteIcon/>:'-'}</Button>
+          </Box>
+          <Typography id='alertText'></Typography>
+        </>
       ) : (
         <Button
           variant="contained"

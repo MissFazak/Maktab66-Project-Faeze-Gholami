@@ -6,8 +6,8 @@ import { fetchCategory, categorySelector } from "../redux/categorySlice";
 import { Link } from "react-router-dom";
 import CardComponent from "./CardComponent";
 import Carousel from "react-elastic-carousel";
-import Item from "./Item";
-import MobileItem from "./MobileItem";
+import { v4 as uuidv4 } from "uuid";
+
 
 const breakPoints = [
   { width: 1, itemsToShow: 1 },
@@ -28,14 +28,14 @@ export default function HomePageCard() {
   return (
     <div>
       {Object.values(category).map((cat) => (
-        <div className="homePageCardWrapper">
+        <div className="homePageCardWrapper" key={uuidv4()}>
           <Link to={{ pathname: "list-brands" }}>
             <h1>{cat.name}</h1>
           </Link>
           <Carousel breakPoints={breakPoints}>
             {Object.values(items).map((item) => {
               if (cat.id == item.category) {
-                return <CardComponent item={item} />;
+                return <CardComponent item={item} key={uuidv4()}/>;
               }
             })}
           </Carousel>

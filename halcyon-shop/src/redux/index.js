@@ -4,6 +4,7 @@ import itemsReducer from './productSlice'
 import orderReducer from './orderSlice'
 import categoryReducer from './categorySlice'
 import stateReducer from './stateSlice'
+import cartReducer from './cartSlice'
 
 export const store = configureStore({
   devTools:true,
@@ -13,6 +14,7 @@ export const store = configureStore({
       orders:orderReducer,
       category:categoryReducer,
       state:stateReducer,
+      cart:cartReducer
       
       // product:productReducer
   }

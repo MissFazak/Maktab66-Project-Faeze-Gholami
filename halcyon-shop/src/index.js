@@ -16,7 +16,7 @@ root.render(
   <Provider store={store}>
     <ThemeProvider theme={theme}>
       <BrowserRouter>
-      <ToastContainer/>
+      <ToastContainer position="top-left"/>
         <App />
       </BrowserRouter>
     </ThemeProvider>

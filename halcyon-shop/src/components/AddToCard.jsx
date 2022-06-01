@@ -28,7 +28,7 @@ export default function AddToCard({ count, map }) {
       {counter > 0 ? (
         <>
           <Box sx={{ display: "flex" }}>
-            <Button onClick={increase}>+</Button>
+            <Button onClick={()=>increase(map)}>+</Button>
             <Typography>{counter}</Typography>
             <Button onClick={decrease}>
               {counter == 1 ? <DeleteIcon /> : "-"}

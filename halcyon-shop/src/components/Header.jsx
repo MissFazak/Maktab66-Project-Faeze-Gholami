@@ -16,9 +16,11 @@ import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { Badge } from "@mui/material";
+import { useDispatch } from "react-redux";
+import { cartQuantity } from "../redux/cartSlice";
 
 export default function Header({cartItmes}) {
-  console.log(cartItmes);
+  const dispatch = useDispatch();
   const navigateToHome = useNavigate();
   const homePageNav = () => {
     navigateToHome("/");
@@ -66,7 +68,7 @@ export default function Header({cartItmes}) {
             <Typography variant="h6" sx={{ paddingX: "10px" }}>
               <Link to={{ pathname: `cart-page` }}>
         
-                <Badge color="error" badgeContent={cartItmes}>
+                <Badge color="error" badgeContent={10}>
                   <LocalMallIcon
                     fontSize="large"
                     color="primary"

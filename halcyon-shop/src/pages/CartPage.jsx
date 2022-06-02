@@ -2,11 +2,14 @@ import * as React from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { Button, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Box } from "@mui/system";
 import { useState, useEffect } from "react";
+import { removeFromCart } from "../redux/cartSlice";
+
 
 export default function DataTable() {
+  const dispatch = useDispatch()
   const cart = useSelector((state) => state.cart);
   const price = cart.cartItems?.map((price) => price.price * price.cartQuantity)
   const total = price?.reduce((a, b) => a + b, 0);
@@ -42,21 +45,21 @@ export default function DataTable() {
       headerName: "",
       renderCell: (params) => {
         const handleDelete = (e) => {
-          // service.removeProduct(e);
-          // setState(!state);
+          dispatch(removeFromCart(e))
         };
         return (
           <Button
             variant="contained"
             color="primary"
-            onClick={() => handleDelete(params.row.id)}
+            onClick={() => handleDelete(params.row)}
           >
             حذف
           </Button>
         );
-      },
+      
     },
-  ];
+  }
+  ]
   const rows = cart.cartItems?.map((cartItem) => {
     return {
       id: cartItem.id,

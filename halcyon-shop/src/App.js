@@ -18,16 +18,23 @@ import PublicRoute from "./components/PublicRoute";
 import PrivateRoute from "./components/PrivateRoute";
 import OrderForm from "./pages/OrderForm";
 import { fetchCategory } from "./redux/categorySlice";
+import { cartSelector, getTotals } from "./redux/cartSlice";
 
 function App() {
   const dispatch = useDispatch();
   const { items } = useSelector(itemsSelector);
+  const cart = useSelector(cartSelector);
   useEffect(() => {
     dispatch(fetchItems());
   }, [dispatch]);
   useEffect(() => {
     dispatch(fetchCategory());
   }, [dispatch]);
+  useEffect(() => {
+    dispatch(getTotals())
+   }, [cart]);
+
+
 
   return (
     <div className="container">

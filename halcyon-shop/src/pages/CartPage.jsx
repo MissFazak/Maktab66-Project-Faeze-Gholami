@@ -9,11 +9,14 @@ import {
   removeFromCart,
   addToCart,
   clearCart,
+  cartSelector,
 } from "../redux/cartSlice";
 
 export default function DataTable() {
   const dispatch = useDispatch();
-  const cart = useSelector((state) => state.cart);
+  const cart = useSelector(cartSelector);
+  console.log(cart);
+
   const price = cart.cartItems?.map(
     (price) => price.price * price.cartQuantity
   );
@@ -92,7 +95,7 @@ export default function DataTable() {
         disableSelectionOnClick
       />
       <Box sx={{ marginTop: "20px", display:'flex', justifyContent:'space-between' }}>
-        مجموع سبد خرید: {total}
+        مجموع سبد خرید: {cart.cartTotalAmount}
         <Button color='error' variant="contained" onClick={handleClearCart}>خالی کردن سبد خرید</Button>
         <Link to={{ pathname: "..//order" }}>
           <Button

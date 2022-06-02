@@ -9,18 +9,17 @@ import { orderSelector } from "../redux/orderSlice";
 
 export default function Payment() {
   const dispatch = useDispatch();
-  const { orders } = useSelector(orderSelector);
   const buyed = JSON.parse(localStorage.getItem("order"));
-  const findStatus = orders.find((item) => item.id === buyed.id)?.orderStatus;
-  console.log(findStatus);
 
   const handlePaymentSuccess = () => {
-    alert("Payment Success");
     service.updateOrder(buyed.id, { orderStatus: "3" });
     localStorage.removeItem("order");
     dispatch(clearCart());
   };
-  
+  const handlePaymentFailed = () => {
+    service.updateOrder(buyed.id, { orderStatus: "4" });
+  };
+
   return (
     <Box sx={{ display: "flex", flexDirection: "column" }}>
       <Typography variant="h2" sx={{ textAlign: "center", marginY: "5%" }}>
@@ -37,7 +36,11 @@ export default function Payment() {
           </Button>
         </Link>
         <Link to={{ pathname: "..//failed" }}>
-          <Button variant="contained" color="error">
+          <Button
+            variant="contained"
+            color="error"
+            onClick={handlePaymentFailed}
+          >
             پرداخت نشد
           </Button>
         </Link>

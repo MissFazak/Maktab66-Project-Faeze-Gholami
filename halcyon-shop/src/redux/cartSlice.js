@@ -50,8 +50,14 @@ const cartSlice = createSlice({
           toast.error(
             `شما ${state.cartItems[itemIndex].name} را از سبد خرید حذف کردید`
           );
-        } else {
-          toast.error(`حداقل تعداد محصول 1 می باشد`);
+        }else{
+          const nextCartItems = state.cartItems.filter(
+            cartItem => cartItem.id !== action.payload.id
+          )
+          state.cartItems = nextCartItems;
+          localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
+          toast.error(`${action.payload.name} از سبد خرید حذف شد`);
+          
         }
       }
       localStorage.setItem("cartItems", JSON.stringify(state.cartItems));

@@ -16,7 +16,7 @@ export default function MediaControlCard() {
   let state = useLocation();
   const [map, setMap] = React.useState(state.state);
   const gallery = map.images;
-  console.log(Number(map.price).toLocaleString());
+  
   let button;
   if (map.count > 0) {
     button = (

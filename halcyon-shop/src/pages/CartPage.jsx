@@ -15,13 +15,7 @@ import {
 export default function DataTable() {
   const dispatch = useDispatch();
   const cart = useSelector(cartSelector);
-  console.log(cart);
-
-  const price = cart.cartItems?.map(
-    (price) => price.price * price.cartQuantity
-  );
-  const total = price?.reduce((a, b) => a + b, 0);
-  localStorage.setItem("total", total);
+  
 
   const handleClearCart = () => { 
     dispatch(clearCart())

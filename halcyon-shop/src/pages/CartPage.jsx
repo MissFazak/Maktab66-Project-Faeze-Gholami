@@ -5,7 +5,8 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Box } from "@mui/system";
 import { useState, useEffect } from "react";
-import { removeFromCart } from "../redux/cartSlice";
+import { decreaseCartItem, removeFromCart, addToCart } from "../redux/cartSlice";
+
 
 
 export default function DataTable() {
@@ -25,15 +26,19 @@ export default function DataTable() {
       type: "number",
       width: 190,
       renderCell: (params) => {
-        const decrease = () => {
-          params.row.count += 1;
+        const handleDecrease = (e) => {
+          dispatch(decreaseCartItem(e))
         };
+
+        const handleIncrease = (e) => {
+          dispatch(addToCart(e))
+        }
         return (
           <>
             <Box sx={{ display: "flex" }}>
-              <Button onClick={decrease}>+</Button>
+              <Button onClick={()=> handleIncrease(params.row)}>+</Button>
               <Typography>{params.row.count}</Typography>
-              <Button>-</Button>
+              <Button onClick={()=> handleDecrease(params.row)}>-</Button>
             </Box>
             <Typography id="alertText"></Typography>
           </>

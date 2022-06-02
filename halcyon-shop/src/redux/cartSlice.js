@@ -37,32 +37,28 @@ const cartSlice = createSlice({
       localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
       toast.error(`${action.payload.name} از سبد خرید حذف شد`);
     },
-    increament(state, action) {
-      return state.map((item) =>
-        item.id === action.payload
-          ? {
-              ...item,
-              quantity: (item.quantity += 1),
-            }
-          : item
+    decreaseCartItem: (state, action) => {
+      const itemIndex = state.cartItems.findIndex(
+        (item) => item.id === action.payload.id
       );
-    },
-    decrement(state, action) {
-      return state.map((item) =>
-        item.id === action.payload
-          ? {
-              ...item,
-              quantity: (item.quantity -= 1),
-            }
-          : item
-      );
+      if (itemIndex >= 0) {
+        if (state.cartItems[itemIndex].cartQuantity > 1) {
+          state.cartItems[itemIndex].cartQuantity -= 1;
+          toast.error(
+            `شما ${state.cartItems[itemIndex].name} را از سبد خرید حذف کردید`
+          );
+        } else {
+          toast.error(`حداقل تعداد محصول 1 می باشد`);
+        }
+      }
+      localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
     },
     clear(state) {
       return [];
     },
   },
 });
-export const { addToCart, removeFromCart } = cartSlice.actions;
+export const { addToCart, removeFromCart,decreaseCartItem } = cartSlice.actions;
 const cartReducer = cartSlice.reducer;
 //  const cartSelector = (state) => state.cart
 export default cartReducer;

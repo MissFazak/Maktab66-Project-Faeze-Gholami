@@ -4,17 +4,20 @@ import { Button, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Box } from "@mui/system";
-import { useState, useEffect } from "react";
-import { decreaseCartItem, removeFromCart, addToCart } from "../redux/cartSlice";
-
-
+import {
+  decreaseCartItem,
+  removeFromCart,
+  addToCart,
+} from "../redux/cartSlice";
 
 export default function DataTable() {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
-  const price = cart.cartItems?.map((price) => price.price * price.cartQuantity)
+  const price = cart.cartItems?.map(
+    (price) => price.price * price.cartQuantity
+  );
   const total = price?.reduce((a, b) => a + b, 0);
-
+  localStorage.setItem("total", total);
 
   const columns = [
     { field: "id", headerName: "ID", width: 70 },
@@ -27,18 +30,18 @@ export default function DataTable() {
       width: 190,
       renderCell: (params) => {
         const handleDecrease = (e) => {
-          dispatch(decreaseCartItem(e))
+          dispatch(decreaseCartItem(e));
         };
 
         const handleIncrease = (e) => {
-          dispatch(addToCart(e))
-        }
+          dispatch(addToCart(e));
+        };
         return (
           <>
             <Box sx={{ display: "flex" }}>
-              <Button onClick={()=> handleIncrease(params.row)}>+</Button>
+              <Button onClick={() => handleIncrease(params.row)}>+</Button>
               <Typography>{params.row.count}</Typography>
-              <Button onClick={()=> handleDecrease(params.row)}>-</Button>
+              <Button onClick={() => handleDecrease(params.row)}>-</Button>
             </Box>
             <Typography id="alertText"></Typography>
           </>
@@ -50,7 +53,7 @@ export default function DataTable() {
       headerName: "",
       renderCell: (params) => {
         const handleDelete = (e) => {
-          dispatch(removeFromCart(e))
+          dispatch(removeFromCart(e));
         };
         return (
           <Button
@@ -61,10 +64,9 @@ export default function DataTable() {
             حذف
           </Button>
         );
-      
+      },
     },
-  }
-  ]
+  ];
   const rows = cart.cartItems?.map((cartItem) => {
     return {
       id: cartItem.id,

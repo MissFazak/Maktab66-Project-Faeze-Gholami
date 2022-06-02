@@ -29,6 +29,9 @@ const cartSlice = createSlice({
       }
       localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
     },
+    badge: (state, action) => {
+      state.cartTotalQuantity = action.payload;
+    },
     removeFromCart: (state, action) => {
      const nextCartItems = state.cartItems.filter(
         cartItem => cartItem.id !== action.payload.id
@@ -53,12 +56,14 @@ const cartSlice = createSlice({
       }
       localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
     },
-    clear(state) {
-      return [];
+    clearCart(state) {
+      state.cartItems = [];
+      toast.error(`سبد خرید خالی شد`);
+      localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
     },
   },
 });
-export const { addToCart, removeFromCart,decreaseCartItem } = cartSlice.actions;
+export const { addToCart, removeFromCart,decreaseCartItem,clearCart } = cartSlice.actions;
 const cartReducer = cartSlice.reducer;
 //  const cartSelector = (state) => state.cart
 export default cartReducer;

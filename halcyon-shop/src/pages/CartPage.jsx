@@ -8,6 +8,7 @@ import {
   decreaseCartItem,
   removeFromCart,
   addToCart,
+  clearCart,
 } from "../redux/cartSlice";
 
 export default function DataTable() {
@@ -18,6 +19,10 @@ export default function DataTable() {
   );
   const total = price?.reduce((a, b) => a + b, 0);
   localStorage.setItem("total", total);
+
+  const handleClearCart = () => { 
+    dispatch(clearCart())
+  }
 
   const columns = [
     { field: "id", headerName: "ID", width: 70 },
@@ -86,8 +91,9 @@ export default function DataTable() {
         checkboxSelection
         disableSelectionOnClick
       />
-      <Box sx={{ marginTop: "20px" }}>
+      <Box sx={{ marginTop: "20px", display:'flex', justifyContent:'space-between' }}>
         مجموع سبد خرید: {total}
+        <Button color='error' variant="contained" onClick={handleClearCart}>خالی کردن سبد خرید</Button>
         <Link to={{ pathname: "..//order" }}>
           <Button
             variant="contained"

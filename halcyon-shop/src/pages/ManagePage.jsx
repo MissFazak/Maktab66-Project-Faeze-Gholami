@@ -12,8 +12,8 @@ export default function CustomizedTables() {
   const { items } = useSelector(itemsSelector);
   const { category } = useSelector(categorySelector);
   const [state, setState] = useState(false)
-  console.log(category);
-
+  const [findItem, setFindItem] = useState(null)
+console.log(findItem);
   useEffect(() => {
     dispatch(fetchItems());
   }, [state]);
@@ -21,11 +21,13 @@ export default function CustomizedTables() {
   const handleDelete = (e) => {
     service.removeProduct(e);
     setState(!state);
-    // window.location.reload()
   };
   const handleEdit = (e) => {
-    items?.find((item) => item.id == e.id);
+   
+   setFindItem(items?.find((item) => item.id == e))
   };
+  
+
   const columns = [
     { field: "id", headerName: "ID", width: 10 },
     {
@@ -63,7 +65,7 @@ export default function CustomizedTables() {
               style={{ paddingInline: "10px" }}
               onClick={() => handleEdit(params.row.id)}
             >
-              {/* <ItemModal name={"ویرایش"} /> */}
+              <ItemModal name={"ویرایش"} item={findItem} />
             </div>
             <Button
               variant="contained"
@@ -84,14 +86,14 @@ export default function CustomizedTables() {
       name: item.name,
       category: category?.find((el) => {
         return el.id == item.category;
-      }),
+      })?.name,
     };
   });
   return (
     <div className="managePage">
       <div className="topTable">
         <h3>مدیریت موجودی و قیمت‌ها</h3>
-        <ItemModal name="افزودن" category={category} item={items} setState={setState} state={state} />
+        <ItemModal name="افزودن" category={category} setState={setState} state={state} />
       </div>
       <DataGrid
         className="dataGrid"

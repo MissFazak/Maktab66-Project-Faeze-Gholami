@@ -15,9 +15,6 @@ export default function CustomizedTables() {
   let moment = require("moment-jalaali");
   const dispatch = useDispatch();
   const { orders } = useSelector(orderSelector);
-  useEffect(() => {
-    dispatch(fetchOrder());
-  }, []);
 
   const columns = [
     { field: "id", headerName: "ID", width: 10 },
@@ -69,7 +66,7 @@ export default function CustomizedTables() {
         },
       ])
     );
-  }, [orders]);
+  }, []);
   useEffect(() => {
     orders.map((item) =>
       setAll((rows) => [
@@ -84,7 +81,7 @@ export default function CustomizedTables() {
         },
       ])
     );
-  }, [orders]);
+  }, []);
 
   const handleChange = (e) => {
     if (e.target.value === "recived") {

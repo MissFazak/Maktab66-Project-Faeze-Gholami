@@ -1,0 +1,39 @@
+.orderBody {
+    padding-top: 70px;
+    background-image: url("../img/image-from-rawpixel-id-3904581-png.png");
+    height: 85vh;
+    background-size: 70%;
+    background-repeat: no-repeat;
+    background-position-x: 50%;
+  }
+
+.orderForm{
+    width: 40%;
+    margin: auto;
+    direction: ltr;
+    
+    form{
+        direction: rtl;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        input{
+            padding: 5px 0;
+            margin-bottom: 5px;
+            border: none;
+            border-bottom: solid black;
+            &:focus{
+                outline: none;
+            }
+        }
+        
+    }
+    button{
+        margin: 10px 0;
+        width: 20%;
+        font-size: 1.5rem;
+        color: black;
+        
+    }
+    
+}

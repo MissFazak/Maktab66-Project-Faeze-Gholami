@@ -10,62 +10,78 @@ import OrderPage from "./pages/OrderPage";
 import MainPage from "./components/MainPage";
 import ListOfBrands from "./pages/ListOfBrands";
 import SingleBrands from "./pages/SingleBrands";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { fetchItems, itemsSelector } from "./redux/productSlice";
 import Mobile from "./pages/Mobile";
-import { fetchCategory } from "./redux/categorySlice";
-import { stateSelector } from "./redux/stateSlice";
 import PublicRoute from "./components/PublicRoute";
 import PrivateRoute from "./components/PrivateRoute";
+import OrderForm from "./pages/OrderForm";
+import { fetchCategory } from "./redux/categorySlice";
+import { cartSelector, getTotals } from "./redux/cartSlice";
+import { fetchOrder } from "./redux/orderSlice";
+import Payment from "./layout/Payment";
+import Success from "./pages/Success";
+import Failed from "./pages/Failed";
 
 function App() {
   const dispatch = useDispatch();
   const { items } = useSelector(itemsSelector);
-
+  const cart = useSelector(cartSelector);
   useEffect(() => {
     dispatch(fetchItems());
-  }, []);
+  }, [dispatch]);
   useEffect(() => {
     dispatch(fetchCategory());
   }, [dispatch]);
+  useEffect(() => {
+    dispatch(getTotals())
+   }, [cart]);
+   useEffect(() => {
+     dispatch(fetchOrder())
+    }, []);
+
+
+
   return (
     <div className="container">
       <Routes>
-       
-          <Route path="/" element={<HomePage />}>
-            <Route path="/" element={<MainPage />} />
+        <Route path="/" element={<HomePage />}>
+          <Route path="/" element={<MainPage />} />
+          {items.map((item, index) => (
+            <Route
+              path={`/mobile/${item.id}`}
+              element={<Mobile />}
+              key={index}
+            />
+          ))}
+          <Route path="login" element={<PublicRoute />}>
+            <Route path="/login" element={<Login />} />
+          </Route>
+          <Route path="/cart-page" element={<CartPage />} />
+          <Route path="success" element={<Success/>}/>
+          <Route path="failed" element={<Failed/>}/>
+          <Route path="/order" element={<OrderForm />} />
+          <Route path="/list-brands" element={<ListOfBrands />}>
             {items.map((item, index) => (
-                <Route
-                  path={`/mobile/${item.id}`}
-                  element={<Mobile />}
-                  key={index}
-                />
-              ))}
-            <Route path="login" element={<PublicRoute/>}>
-              <Route path="/login" element={<Login />} />
-            </Route>
-            <Route path="/cart-page" element={<CartPage />} />
-            <Route path="/list-brands" element={<ListOfBrands />}>
-              {items.map((item, index) => (
-                <Route
-                  path="/list-brands/brands"
-                  element={<SingleBrands />}
-                  key={index}
-                />
-              ))}
-            </Route>
+              <Route
+                path="/list-brands/brands"
+                element={<SingleBrands />}
+                key={index}
+              />
+            ))}
           </Route>
-       
-    
-          <Route path='/' element={<PrivateRoute/>}>
-            <Route path="/dashboard" element={<Dashboard />}>
-              <Route path="manage-page" element={<ManagePage />} />
-              <Route path="manage-of-sp" element={<ManageOfSP />} />
-              <Route path="order-page" element={<OrderPage />} />
-            </Route>
+        </Route>
+
+        <Route path="/" element={<PrivateRoute />}>
+          <Route path="/dashboard" element={<Dashboard />}>
+            <Route path="manage-page" element={<ManagePage />} />
+            <Route path="manage-of-sp" element={<ManageOfSP />} />
+            <Route path="order-page" element={<OrderPage />} />
           </Route>
-       
+        </Route>
+
+        <Route path="/payment" element={<Payment/>}></Route>
       </Routes>
     </div>
   );

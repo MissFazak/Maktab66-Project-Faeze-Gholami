@@ -5,9 +5,18 @@ import CardMedia from "@mui/material/CardMedia";
 import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
 import MobileItem from "./MobileItem";
+import AddToCard from "./AddToCard";
+import { addToCart } from "../redux/cartSlice";
+import { useDispatch } from "react-redux";
+
 
 export default function CardComponent(props) {
-  let moment = require("moment-jalaali");
+  const dispatch = useDispatch()
+  
+  // console.log(props.item.count);
+  const increase = (e)=>{
+    dispatch(addToCart(e))
+  }
 
   return (
     <MobileItem>
@@ -26,12 +35,11 @@ export default function CardComponent(props) {
           />
         </Link>
         <Button
-          variant="contained"
-          color="primary"
-          sx={{ padding: "5px", margin: "10px" }}
-        >
-          افزودن به سبد خرید
-        </Button>
+        variant="contained"
+        color="primary"
+        sx={{ padding: "5px", margin: "10px" }}
+        onClick={() => increase(props.item)}
+        >افزودن به سبد کالا</Button>
       </Card>
     </MobileItem>
   );

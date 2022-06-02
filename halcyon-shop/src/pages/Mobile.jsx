@@ -8,6 +8,7 @@ import Craousel from "react-material-ui-carousel";
 import Item from "../components/Item";
 import { Button } from "@mui/material";
 import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
+import AddToCard from "../components/AddToCard";
 
 
 export default function MediaControlCard() {
@@ -15,13 +16,11 @@ export default function MediaControlCard() {
   let state = useLocation();
   const [map, setMap] = React.useState(state.state);
   const gallery = map.images;
-  console.log(Number(map.price).toLocaleString());
+  
   let button;
   if (map.count > 0) {
     button = (
-      <Button variant="contained" sx={{ marginY: "20px" }}>
-        افزودن به سبد خرید
-      </Button>
+      <AddToCard count={map.count} map={map}/>
     );
   } else {
     button = (

@@ -31,7 +31,7 @@ export default function BasicModal({ category, name, item,setState,state }) {
   const handleClose = () => setOpen(false);
   const [gallery, setGallery] = useState([]);
   const [des, setDes] = useState();
-
+// console.log(item);
   const formik = useFormik({
     initialValues: {
       id: uuidv4(),
@@ -140,21 +140,21 @@ export default function BasicModal({ category, name, item,setState,state }) {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
 
-              // value={item.name}
+              value={item?.name}
             />
             {formik.touched.name && formik.errors.name ? (
               <div className="error1">{formik.errors.name}</div>
             ) : null}
             <label htmlFor="category">دسته بندی</label>
             <select
-              // value={item.category}
+              value={item?.category}
               name="category"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
             >
               {category?.map((name) => (
                 <option value={name.id} key={name.id}>
-                  {name.name}
+                  {name?.name}
                 </option>
               ))}
             </select>
@@ -168,8 +168,7 @@ export default function BasicModal({ category, name, item,setState,state }) {
               type="text"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
-
-              // value={item.price}
+              value={item?.price}
             />
             {formik.touched.price && formik.errors.price ? (
               <div className="error1">{formik.errors.price}</div>
@@ -182,7 +181,7 @@ export default function BasicModal({ category, name, item,setState,state }) {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
 
-              // value={item.count}
+              value={item?.count}
             />
             {formik.touched.count && formik.errors.count ? (
               <div className="error1">{formik.errors.count}</div>

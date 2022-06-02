@@ -29,6 +29,10 @@ const updateProduct = (id,data) =>{
     return api.patch(`/products/${id}`,data,{headers:{token:token}})
 }
 
+const updateOrder = (id,data) =>{
+    return api.patch(`/orders/${id}`,data,{headers:{token:token}})
+}
+
 const removeProduct = id =>{
     return api.delete(`/products/${id}`)
 }
@@ -43,6 +47,7 @@ const service = {
     creatOrder,
     updateProduct,
     removeProduct,
+    updateOrder
 }
 
 export default service

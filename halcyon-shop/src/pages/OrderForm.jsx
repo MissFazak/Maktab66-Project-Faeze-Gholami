@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { cartSelector } from "../redux/cartSlice";
 import service from "../redux/http";
 import { orderSelector } from "../redux/orderSlice";
+import { Link } from "react-router-dom";
 
 const OrderForm = () => {
   // const dispatch = useDispatch()
@@ -72,6 +73,7 @@ const OrderForm = () => {
 
   const handlePayment = () => {
     service.creatOrder(data);
+    localStorage.setItem("order", JSON.stringify(data))
     console.log(data);
   };
 
@@ -127,14 +129,16 @@ const OrderForm = () => {
             />
           </LocalizationProvider>
         </form>
-        <Button
-          variant="contained"
-          color="success"
-          type="submit"
-          onClick={handlePayment}
-        >
-          پرداخت
-        </Button>
+        <Link to={{pathname:'..//payment'}}>
+          <Button
+            variant="contained"
+            color="success"
+            type="submit"
+            onClick={handlePayment}
+          >
+            پرداخت
+          </Button>
+        </Link>
       </div>
     </div>
   );

@@ -20,6 +20,9 @@ import OrderForm from "./pages/OrderForm";
 import { fetchCategory } from "./redux/categorySlice";
 import { cartSelector, getTotals } from "./redux/cartSlice";
 import { fetchOrder } from "./redux/orderSlice";
+import Payment from "./layout/Payment";
+import Success from "./pages/Success";
+import Failed from "./pages/Failed";
 
 function App() {
   const dispatch = useDispatch();
@@ -56,6 +59,8 @@ function App() {
             <Route path="/login" element={<Login />} />
           </Route>
           <Route path="/cart-page" element={<CartPage />} />
+          <Route path="success" element={<Success/>}/>
+          <Route path="failed" element={<Failed/>}/>
           <Route path="/order" element={<OrderForm />} />
           <Route path="/list-brands" element={<ListOfBrands />}>
             {items.map((item, index) => (
@@ -75,6 +80,8 @@ function App() {
             <Route path="order-page" element={<OrderPage />} />
           </Route>
         </Route>
+
+        <Route path="/payment" element={<Payment/>}></Route>
       </Routes>
     </div>
   );

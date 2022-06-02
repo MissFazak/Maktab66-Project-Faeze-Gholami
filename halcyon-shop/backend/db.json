@@ -1548,6 +1548,66 @@
           "quantity": "12"
         }
       ]
+    },
+    {
+      "customerDetail": {
+        "firstName": "",
+        "lastName": "",
+        "phoneNumber": "",
+        "address": ""
+      },
+      "id": "141d24e6-63a5-44a2-9fff-566ebca92811",
+      "orderNumber": "21221",
+      "orderDate": 1654205986373,
+      "purchaseTotal": 7200000,
+      "orderStatus": "5",
+      "delivery": null,
+      "deliveryAt": "",
+      "orderItems": [
+        {
+          "name": "Galaxy S21 FE",
+          "thumbnail": "e63d0d17ae5ea3a55697c834a6c72e61",
+          "price": "1200000",
+          "quantity": 1
+        },
+        {
+          "name": "Redmi Note 10S",
+          "thumbnail": "5f6aa8ea31981b0c559101eada5b7244",
+          "price": "6000000",
+          "quantity": 1
+        }
+      ],
+      "createdAt": 1654205992547
+    },
+    {
+      "customerDetail": {
+        "firstName": "",
+        "lastName": "",
+        "phoneNumber": "",
+        "address": ""
+      },
+      "id": "103ede84-1b2f-4da6-9c3a-428b7c10049f",
+      "orderNumber": "212211",
+      "orderDate": 1654206089274,
+      "purchaseTotal": 7200000,
+      "orderStatus": "3",
+      "delivery": null,
+      "deliveryAt": "",
+      "orderItems": [
+        {
+          "name": "Galaxy S21 FE",
+          "thumbnail": "e63d0d17ae5ea3a55697c834a6c72e61",
+          "price": "1200000",
+          "quantity": 1
+        },
+        {
+          "name": "Redmi Note 10S",
+          "thumbnail": "5f6aa8ea31981b0c559101eada5b7244",
+          "price": "6000000",
+          "quantity": 1
+        }
+      ],
+      "createdAt": 1654206090840
     }
   ],
   "orderStatus": [

@@ -19,6 +19,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import OrderForm from "./pages/OrderForm";
 import { fetchCategory } from "./redux/categorySlice";
 import { cartSelector, getTotals } from "./redux/cartSlice";
+import { fetchOrder } from "./redux/orderSlice";
 
 function App() {
   const dispatch = useDispatch();
@@ -33,6 +34,9 @@ function App() {
   useEffect(() => {
     dispatch(getTotals())
    }, [cart]);
+   useEffect(() => {
+     dispatch(fetchOrder())
+    }, []);
 
 
 

@@ -4,11 +4,22 @@ import { Button, TextField } from "@mui/material";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import AdapterJalali from "@date-io/date-fns-jalali";
+import { v4 as uuidv4 } from "uuid";
+import { useDispatch, useSelector } from "react-redux";
+import { cartSelector } from "../redux/cartSlice";
+import service from "../redux/http";
+import { orderSelector } from "../redux/orderSlice";
 
 const OrderForm = () => {
+  // const dispatch = useDispatch()
+  const cart = useSelector(cartSelector);
+  const {orders} = useSelector(orderSelector)
+  const last = orders.slice(-1)[0]
+  const orderNumber = last?.orderNumber + 1
   const [value, setValue] = React.useState(null);
   const timeStamp = Date.parse(value) / 1000;
-  console.log(timeStamp);
+  const newDate = new Date();
+  const orderTimeStamp = newDate.getTime();
 
   function disablePrevDates(startDate) {
     const startSeconds = Date.parse(startDate);
@@ -16,12 +27,8 @@ const OrderForm = () => {
       return Date.parse(date) < startSeconds;
     };
   }
-  const startDate = new Date()
+  const startDate = new Date();
   startDate.setDate(startDate.getDate() + 3);
-
-  const data = {
-    coust
-  }
 
   const formik = useFormik({
     initialValues: {
@@ -34,6 +41,40 @@ const OrderForm = () => {
       alert(JSON.stringify(values, null, 2));
     },
   });
+
+  const data = {
+    customerDetail: {
+      firstName: formik.values.firstName,
+      lastName: formik.values.lastName,
+      phoneNumber: formik.values.phoneNumber,
+      address: formik.values.address,
+    },
+    id: uuidv4(),
+    orderNumber: orderNumber,
+    orderDate: orderTimeStamp,
+    purchaseTotal: cart.cartTotalAmount,
+    orderStatus: "5",
+    delivery: timeStamp,
+    deliveryAt: "",
+    orderItems : 
+      
+    cart.cartItems.map(item=>{
+      return{
+        name:item?.name,
+        thumbnail:item?.thumbnail,
+        price:item?.price,
+        quantity:item?.cartQuantity,
+      }
+    })
+      
+    
+  };
+
+  const handlePayment = () => {
+    service.creatOrder(data);
+    console.log(data);
+  };
+
   return (
     <div className="orderBody">
       <div className="orderForm">
@@ -86,7 +127,12 @@ const OrderForm = () => {
             />
           </LocalizationProvider>
         </form>
-        <Button variant="contained" color="success" type="submit">
+        <Button
+          variant="contained"
+          color="success"
+          type="submit"
+          onClick={handlePayment}
+        >
           پرداخت
         </Button>
       </div>

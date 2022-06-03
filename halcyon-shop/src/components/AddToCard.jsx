@@ -1,4 +1,4 @@
-import { Button, Typography} from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import React from "react";
 import { Box } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -15,11 +15,7 @@ export default function AddToCard({ count, map }) {
   console.log(findQuantity);
 
   const increase = (map) => {
-    if (findQuantity < count) {
-      dispatch(addToCart(map));
-    }else{
-      toast.error("موجودی کالا به پایان رسیده است");
-    }
+    dispatch(addToCart(map));
   };
   const decrease = (e) => {
     if (findQuantity > 0) {

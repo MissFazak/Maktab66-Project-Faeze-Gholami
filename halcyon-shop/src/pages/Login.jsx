@@ -36,7 +36,6 @@ const Login = () => {
           if (res.status === 200) {
             localStorage.setItem("token", res.data.token);
             navigate("..//dashboard/manage-page");
-            alert("شما با موفقیت وارد شدید");
           }
         }).catch(
           message.innerHTML = 'نام کاربری یا کلمه عبور اشتباه است!'

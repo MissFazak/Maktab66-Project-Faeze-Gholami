@@ -1381,7 +1381,7 @@
       "orderNumber": "2122",
       "orderDate": 1643396897495,
       "purchaseTotal": "220000",
-      "orderStatus": 1,
+      "orderStatus": "6",
       "delivery": 1643396897495,
       "deliveredAt": 1646222643757,
       "orderItems": [
@@ -1407,7 +1407,7 @@
       "orderNumber": "2122",
       "orderDate": 1642196897495,
       "purchaseTotal": "220000",
-      "orderStatus": 6,
+      "orderStatus": "6",
       "delivery": 1644596897495,
       "deliveredAt": 1646222643757,
       "orderItems": [
@@ -1511,7 +1511,7 @@
       "orderNumber": "2122",
       "orderDate": 1613396807495,
       "purchaseTotal": "1900000",
-      "orderStatus": 5,
+      "orderStatus": "3",
       "delivery": 1643396897495,
       "deliveredAt": 1646222643757,
       "orderItems": [
@@ -1537,7 +1537,7 @@
       "orderNumber": "2122",
       "orderDate": 1603396807495,
       "purchaseTotal": "21000000",
-      "orderStatus": 1,
+      "orderStatus": 3,
       "delivery": 1643396897495,
       "deliveredAt": 1646222643757,
       "orderItems": [

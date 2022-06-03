@@ -14,19 +14,20 @@ const style = {
     top: '50%',
     left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 800,
+  width: 600,
   bgcolor: 'background.paper',
   border: '2px solid #000',
   boxShadow: 24,
   p: 4,
 };
 
-export default function StatusModal({props}) {
+export default function StatusModal({props, state,setState}) {
+  console.log(state);
     let moment = require("moment-jalaali");
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  console.log(props);
+  
   const columns = [
     { field: "id", headerName: "ID", width: 10 },
     { field: "name", headerName: "نام کالا", width: 150 },
@@ -40,6 +41,7 @@ export default function StatusModal({props}) {
 
   const handleStatus = () => {
     service.updateOrder(props.id, { orderStatus: "6" });
+    setState(!state)
   }
 
   return (

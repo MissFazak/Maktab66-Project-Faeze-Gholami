@@ -8,10 +8,12 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import { DataGrid } from "@mui/x-data-grid";
 import { Button } from "@mui/material";
+import StatusModal from "../components/StatusModal";
 
 export default function CustomizedTables() {
   const [rows, setRows] = useState([]);
   const [all,setAll] = useState([])
+  const [findItem, setFindItem] = useState(null)
   let moment = require("moment-jalaali");
   const dispatch = useDispatch();
   const { orders } = useSelector(orderSelector);
@@ -40,44 +42,44 @@ export default function CustomizedTables() {
       width: 170,
       sortable: false,
       renderCell: (params) => {
-        const handleStatus = () => {};
+        const handleStatus = (e) => {
+          setFindItem(orders?.find((item) => item.id == e))
+        }
         return (
-          <>
-            <Button variant="contained" color="primary" onClick={handleStatus}>
-              وضعیت سفارش
-            </Button>
-          </>
+          <div onClick={()=>handleStatus(params.row.id)}>
+            <StatusModal props={findItem} />
+          </div>
         );
       },
     },
   ];
 
   useEffect(() => {
-    orders.map((item) =>
+    orders?.map((item) =>
       setRows((rows) => [
         ...rows,
         {
-          id: item.id,
+          id: item?.id,
           name:
-            item.customerDetail.firstName + " " + item.customerDetail.lastName,
-          price: Number(item.purchaseTotal).toLocaleString(),
-          time: moment(item.orderDate).format("jYYYY/jM/jD"),
-          status: item.orderStatus,
+            item?.customerDetail.firstName + " " + item?.customerDetail.lastName,
+          price: Number(item?.purchaseTotal).toLocaleString(),
+          time: moment(item?.orderDate).format("jYYYY/jM/jD"),
+          status: item?.orderStatus,
         },
       ])
     );
   }, []);
   useEffect(() => {
-    orders.map((item) =>
+    orders?.map((item) =>
       setAll((rows) => [
         ...rows,
         {
-          id: item.id,
+          id: item?.id,
           name:
-            item.customerDetail.firstName + " " + item.customerDetail.lastName,
-          price: Number(item.purchaseTotal).toLocaleString(),
-          time: moment(item.orderDate).format("jYYYY/jM/jD"),
-          status: item.orderStatus,
+            item?.customerDetail.firstName + " " + item?.customerDetail.lastName,
+          price: Number(item?.purchaseTotal).toLocaleString(),
+          time: moment(item?.orderDate).format("jYYYY/jM/jD"),
+          status: item?.orderStatus,
         },
       ])
     );
@@ -85,9 +87,9 @@ export default function CustomizedTables() {
 
   const handleChange = (e) => {
     if (e.target.value === "recived") {
-      return setRows(all.filter((item) => item.status === 6 || item.status === 1));
+      return setRows(all.filter((item) => item?.status == 6 || item?.status == 1));
     } else if (e.target.value === "waiting") {
-      return setRows(all.filter((item) => item.status === 3 || item.status === 5));
+      return setRows(all.filter((item) => item?.status == 3 || item?.status == 5));
     }else{
     }
   };

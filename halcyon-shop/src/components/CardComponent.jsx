@@ -8,6 +8,7 @@ import MobileItem from "./MobileItem";
 import AddToCard from "./AddToCard";
 import { addToCart } from "../redux/cartSlice";
 import { useDispatch } from "react-redux";
+import service from "../redux/http";
 
 
 export default function CardComponent(props) {
@@ -16,6 +17,7 @@ export default function CardComponent(props) {
   // console.log(props.item.count);
   const increase = (e)=>{
     dispatch(addToCart(e))
+    service.updateProduct(e.id, {count:e.count--});
   }
 
   return (

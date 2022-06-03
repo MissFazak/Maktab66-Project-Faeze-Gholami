@@ -1459,7 +1459,7 @@
       "orderNumber": "2122",
       "orderDate": 1603396807495,
       "purchaseTotal": "2000000",
-      "orderStatus": 3,
+      "orderStatus": "6",
       "delivery": 1643396897495,
       "deliveredAt": 1646222643757,
       "orderItems": [
@@ -1560,7 +1560,7 @@
       "orderNumber": "21221111111",
       "orderDate": 1654211628477,
       "purchaseTotal": 90140000,
-      "orderStatus": "3",
+      "orderStatus": "6",
       "delivery": 1654716600,
       "deliveryAt": "",
       "orderItems": [
@@ -1608,7 +1608,7 @@
       "orderNumber": "21221111111",
       "orderDate": 1654211668485,
       "purchaseTotal": 26250000,
-      "orderStatus": "3",
+      "orderStatus": "6",
       "delivery": 1654630200,
       "deliveryAt": "",
       "orderItems": [

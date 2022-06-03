@@ -6,6 +6,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import { Button } from "@mui/material";
 import ItemModal from "../components/ItemModal";
 import service from "../redux/http";
+import EditModal from '../components/EditModal';
 
 export default function CustomizedTables() {
   const dispatch = useDispatch()
@@ -13,7 +14,7 @@ export default function CustomizedTables() {
   const { category } = useSelector(categorySelector);
   const [state, setState] = useState(false)
   const [findItem, setFindItem] = useState(null)
-console.log(findItem);
+
   useEffect(() => {
     dispatch(fetchItems());
   }, [state]);
@@ -65,7 +66,7 @@ console.log(findItem);
               style={{ paddingInline: "10px" }}
               onClick={() => handleEdit(params.row.id)}
             >
-              <ItemModal name={"ویرایش"} item={findItem} />
+              <EditModal item={findItem} />
             </div>
             <Button
               variant="contained"
@@ -93,7 +94,7 @@ console.log(findItem);
     <div className="managePage">
       <div className="topTable">
         <h3>مدیریت موجودی و قیمت‌ها</h3>
-        <ItemModal name="افزودن" category={category} setState={setState} state={state} />
+        <ItemModal category={category} setState={setState} state={state} />
       </div>
       <DataGrid
         className="dataGrid"

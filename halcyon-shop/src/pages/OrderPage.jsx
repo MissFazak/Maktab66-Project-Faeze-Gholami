@@ -11,12 +11,17 @@ import { Button } from "@mui/material";
 import StatusModal from "../components/StatusModal";
 
 export default function CustomizedTables() {
+  const [state, setState] = useState(false);
   const [rows, setRows] = useState([]);
-  const [all,setAll] = useState([])
-  const [findItem, setFindItem] = useState(null)
+  const [all, setAll] = useState([]);
+  const [findItem, setFindItem] = useState(null);
   let moment = require("moment-jalaali");
   const dispatch = useDispatch();
   const { orders } = useSelector(orderSelector);
+
+  useEffect(() => {
+    dispatch(fetchOrder());
+  }, [state]);
 
   const columns = [
     { field: "id", headerName: "ID", width: 10 },
@@ -43,11 +48,11 @@ export default function CustomizedTables() {
       sortable: false,
       renderCell: (params) => {
         const handleStatus = (e) => {
-          setFindItem(orders?.find((item) => item.id == e))
-        }
+          setFindItem(orders?.find((item) => item.id == e));
+        };
         return (
-          <div onClick={()=>handleStatus(params.row.id)}>
-            <StatusModal props={findItem} />
+          <div onClick={() => handleStatus(params.row.id)}>
+            <StatusModal props={findItem} state={state} setState={setState} />
           </div>
         );
       },
@@ -61,7 +66,9 @@ export default function CustomizedTables() {
         {
           id: item?.id,
           name:
-            item?.customerDetail.firstName + " " + item?.customerDetail.lastName,
+            item?.customerDetail.firstName +
+            " " +
+            item?.customerDetail.lastName,
           price: Number(item?.purchaseTotal).toLocaleString(),
           time: moment(item?.orderDate).format("jYYYY/jM/jD"),
           status: item?.orderStatus,
@@ -76,7 +83,9 @@ export default function CustomizedTables() {
         {
           id: item?.id,
           name:
-            item?.customerDetail.firstName + " " + item?.customerDetail.lastName,
+            item?.customerDetail.firstName +
+            " " +
+            item?.customerDetail.lastName,
           price: Number(item?.purchaseTotal).toLocaleString(),
           time: moment(item?.orderDate).format("jYYYY/jM/jD"),
           status: item?.orderStatus,
@@ -87,10 +96,14 @@ export default function CustomizedTables() {
 
   const handleChange = (e) => {
     if (e.target.value === "recived") {
-      return setRows(all.filter((item) => item?.status == 6 || item?.status == 1));
+      return setRows(
+        all.filter((item) => item?.status == 6 || item?.status == 1)
+      );
     } else if (e.target.value === "waiting") {
-      return setRows(all.filter((item) => item?.status == 3 || item?.status == 5));
-    }else{
+      return setRows(
+        all.filter((item) => item?.status == 3 || item?.status == 5)
+      );
+    } else {
     }
   };
   return (

@@ -1,19 +1,19 @@
 import { categorySelector } from "../redux/categorySlice";
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { itemsSelector,fetchItems } from "../redux/productSlice";
+import { itemsSelector, fetchItems } from "../redux/productSlice";
 import { DataGrid } from "@mui/x-data-grid";
 import { Button } from "@mui/material";
 import ItemModal from "../components/ItemModal";
 import service from "../redux/http";
-import EditModal from '../components/EditModal';
+import EditModal from "../components/EditModal";
 
 export default function CustomizedTables() {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const { items } = useSelector(itemsSelector);
   const { category } = useSelector(categorySelector);
-  const [state, setState] = useState(false)
-  const [findItem, setFindItem] = useState(null)
+  const [state, setState] = useState(false);
+  let findItem
 
   useEffect(() => {
     dispatch(fetchItems());
@@ -24,10 +24,9 @@ export default function CustomizedTables() {
     setState(!state);
   };
   const handleEdit = (e) => {
-   
-   setFindItem(items?.find((item) => item.id == e))
+    findItem = items?.find((item) => item.id == e)
+    console.log(e);
   };
-  
 
   const columns = [
     { field: "id", headerName: "ID", width: 10 },
@@ -66,7 +65,7 @@ export default function CustomizedTables() {
               style={{ paddingInline: "10px" }}
               onClick={() => handleEdit(params.row.id)}
             >
-              <EditModal item={findItem} />
+              <EditModal item={findItem} category={category} setState={setState} state={state} />
             </div>
             <Button
               variant="contained"

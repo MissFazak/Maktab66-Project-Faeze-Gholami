@@ -70,6 +70,22 @@ tr:nth-child(odd) {
     width: 80px;
     padding: 5px;
   }
-  display: inline;
+  padding-top: 10px;
+  display: flex;
 }
 
+.imageDeletable{
+  display: flex;
+}
+
+.deleteIcon{
+  width: 15px;
+  height: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  // top:10px;
+}

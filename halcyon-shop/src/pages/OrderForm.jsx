@@ -18,7 +18,8 @@ const OrderForm = () => {
   const last = orders.slice(-1)[0]
   const orderNumber = last?.orderNumber + 1
   const [value, setValue] = React.useState(null);
-  const timeStamp = Date.parse(value) / 1000;
+  console.log(value);
+  const timeStamp = Date.parse(value);
   const newDate = new Date();
   const orderTimeStamp = newDate.getTime();
 

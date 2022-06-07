@@ -94,6 +94,11 @@ export default function BasicModal({ category, setState, state }) {
     setDes(context.blocks[0].text);
   };
 
+const handleDeleteImage = (e)=>{
+  const findImage = gallery.find(item=>item==e);
+  setGallery(gallery.filter(item=>item!=findImage));
+}
+
   return (
     <div>
       <Button onClick={handleOpen} variant="contained" color="primary">
@@ -127,10 +132,13 @@ export default function BasicModal({ category, setState, state }) {
             </button>
             <div className="thumbnail">
               {gallery.map((photo) => (
-                <img
-                  src={`http://localhost:3002/files/${photo}`}
-                  key={uuidv4()}
-                />
+                <div className="imageDeletable">
+                  <img
+                    src={`http://localhost:3002/files/${photo}`}
+                    key={uuidv4()}
+                    />
+                    <span className="deleteIcon" onClick={()=>handleDeleteImage(photo)}>×</span>
+                </div>
               ))}
             </div>
 

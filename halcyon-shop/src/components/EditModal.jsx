@@ -6,7 +6,7 @@ import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { useFormik } from "formik";
 import { v4 as uuidv4 } from "uuid";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { api } from "../redux/api";
 import service from "../redux/http";
 import * as Yup from "yup";
@@ -25,41 +25,44 @@ const style = {
   overflow: "auto",
 };
 
-export default function BasicModal({ category, item, setState, state }) {
+export default function BasicModal({ category, item, setState,state }) {
+  
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const [gallery, setGallery] = useState([]);
-  const [name, setName] = useState(item?.name);
-  console.log(name);
 
   const formik = useFormik({
+    enableReinitialize: true,
     initialValues: {
-      id: uuidv4(),
-      image: "",
-      name: "",
-      category: "",
-      price: "",
-      count: "",
-      description: "",
+      image: item?.images,
+      name: item?.name,
+      category: item?.category,
+      price: item?.price,
+      count: item?.count,
+      description: item?.description,
     },
     onSubmit: () => {
-      alert("اطلاعات شما با موفقیت ثبت گردید");
-      service.creatProduct(data);
+      alert("اطلاعات شما با موفقیت ویرایش گردید");
+      service.updateProduct(item?.id,data)
+      // service.creatProduct(data);
       handleClose();
       setState(!state);
     },
   });
+  const [gallery, setGallery] = useState();
+  useEffect(()=>{setGallery(formik.values?.image)},[formik.values?.image])
+  console.log(gallery);
+
 
   const data = {
-    id: item?.id,
-    name: item?.name,
-    category: category?.find(({ id }) => id == item?.category)?.name,
-    price: item?.price,
-    count: item?.count,
-    description: item?.description,
-    image: item?.images,
+    name: formik.values?.name,
+    category: formik.values?.category,
+    price: formik.values?.price,
+    count: formik.values?.count,
+    description: formik.values?.description,
+    image: gallery
   };
+  console.log(data);
 
   //get images as file
   const selectFileHandler = (e) => {
@@ -68,7 +71,7 @@ export default function BasicModal({ category, item, setState, state }) {
   //save photos in gallery
   const uploadHandler = () => {
     const formData = new FormData();
-    Object.entries(formik.values).map((item) => {
+    Object.entries(formik?.values).map((item) => {
       formData.append(item[0], item[1]);
     });
     api
@@ -76,6 +79,10 @@ export default function BasicModal({ category, item, setState, state }) {
       .then((res) => setGallery((gallery) => [...gallery, res.data.filename]));
   };
   //save description
+  const handleDeleteImage = (e) => {
+    const findImage = gallery?.find((item) => item == e);
+    setGallery(gallery?.filter((item) => item != findImage));
+  };
 
   return (
     <div>
@@ -106,11 +113,19 @@ export default function BasicModal({ category, item, setState, state }) {
               آپلود
             </button>
             <div className="thumbnail">
-              {data?.image?.map((photo) => (
-                <img
-                  src={`http://localhost:3002/files/${photo}`}
-                  key={uuidv4()}
-                />
+              {gallery?.map((photo) => (
+                <div className="imageDeletable">
+                  <img
+                    src={`http://localhost:3002/files/${photo}`}
+                    key={uuidv4()}
+                  />
+                  <span
+                    className="deleteIcon"
+                    onClick={() => handleDeleteImage(photo)}
+                  >
+                    ×
+                  </span>
+                </div>
               ))}
             </div>
 
@@ -119,10 +134,9 @@ export default function BasicModal({ category, item, setState, state }) {
               id="name"
               name="name"
               type="text"
-              // onChange={formik.handleChange}
+              onChange={formik.handleChange}
+              value={formik.values.name}
               onBlur={formik.handleBlur}
-              value={name}
-              onChange={(e) => setName(e.target.value)}
             />
             <label htmlFor="category">دسته بندی</label>
             <select
@@ -130,26 +144,30 @@ export default function BasicModal({ category, item, setState, state }) {
               name="category"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
+              value={formik.values.category}
             >
-              <option>{data?.category}</option>
+              <option value="">انتخاب کنید</option>
+              {category?.map((item) => (
+                <option value={item?.id} key={item?.id}>{item?.name}</option>
+              ))}
             </select>
             <label htmlFor="price">قیمت</label>
             <input
               id="price"
               name="price"
               type="text"
-              onChange={formik.handleChange}
               onBlur={formik.handleBlur}
-              value={data?.price}
+              value={formik.values.price}
+              onChange={formik.handleChange}
             />
             <label htmlFor="count">تعداد</label>
             <input
               id="count"
               name="count"
               type="text"
-              onChange={formik.handleChange}
               onBlur={formik.handleBlur}
-              value={data?.count}
+              value={formik.values.count}
+              onChange={formik.handleChange}
             />
             {/* <Editor
               toolbarClassName="toolbarClassName"
@@ -158,14 +176,14 @@ export default function BasicModal({ category, item, setState, state }) {
               onContentStateChange={onContentStateChange}           
             /> */}
             <label htmlFor="description">توضیحات</label>
-            <input
+            <textarea
               id="description"
               name="description"
               type="text"
-              onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               style={{ marginBottom: "10px" }}
-              value={data?.description}
+              value={formik.values.description}
+              onChange={formik.handleChange}
             />
 
             <button type="submit">ذخیره</button>

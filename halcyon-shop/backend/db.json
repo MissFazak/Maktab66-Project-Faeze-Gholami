@@ -33,7 +33,12 @@
       ],
       "thumbnail": "bee694540b52fa04d0cc1a86833ae39a",
       "id": 2,
-      "createdAt": 1652093150408
+      "createdAt": 1652093150408,
+      "image": [
+        "bee694540b52fa04d0cc1a86833ae39a",
+        "2f2a4d9fe2a1aef44a671436081553a6",
+        "f30f63b866d0780c6119bea95eff3057"
+      ]
     },
     {
       "name": "Galaxy S21 FE",
@@ -1387,7 +1392,7 @@
       "orderNumber": 2122,
       "orderDate": 1643396897495,
       "purchaseTotal": "220000",
-      "orderStatus": "6",
+      "orderStatus": 6,
       "delivery": 1643396897495,
       "deliveredAt": 1646222643757,
       "orderItems": [
@@ -1413,7 +1418,7 @@
       "orderNumber": 2122,
       "orderDate": 1642196897495,
       "purchaseTotal": "220000",
-      "orderStatus": "6",
+      "orderStatus": 1,
       "delivery": 1644596897495,
       "deliveredAt": 1646222643757,
       "orderItems": [
@@ -1439,7 +1444,7 @@
       "orderNumber": 2123,
       "orderDate": 1643396897495,
       "purchaseTotal": "160000",
-      "orderStatus": 6,
+      "orderStatus": 2,
       "delivery": 1641096897495,
       "deliveredAt": 1646222643757,
       "orderItems": [
@@ -1465,7 +1470,7 @@
       "orderNumber": 2124,
       "orderDate": 1603396807495,
       "purchaseTotal": "2000000",
-      "orderStatus": "6",
+      "orderStatus": 6,
       "delivery": 1643396897495,
       "deliveredAt": 1646222643757,
       "orderItems": [
@@ -1475,7 +1480,8 @@
           "price": "12000",
           "quantity": "12"
         }
-      ]
+      ],
+      "deliveryAt": 1654611999630
     },
     {
       "customerDetail": {
@@ -1517,7 +1523,7 @@
       "orderNumber": 2126,
       "orderDate": 1613396807495,
       "purchaseTotal": "1900000",
-      "orderStatus": "6",
+      "orderStatus": 4,
       "delivery": 1643396897495,
       "deliveredAt": "",
       "orderItems": [
@@ -1544,7 +1550,7 @@
       "orderNumber": 2127,
       "orderDate": 1603396807495,
       "purchaseTotal": "21000000",
-      "orderStatus": 3,
+      "orderStatus": 6,
       "delivery": 1643396897495,
       "deliveredAt": 1646222643757,
       "orderItems": [
@@ -1554,7 +1560,8 @@
           "price": "12000",
           "quantity": "12"
         }
-      ]
+      ],
+      "deliveryAt": 1654611833257
     },
     {
       "customerDetail": {
@@ -1567,9 +1574,9 @@
       "orderNumber": 2128,
       "orderDate": 1654211628477,
       "purchaseTotal": 90140000,
-      "orderStatus": "6",
+      "orderStatus": 6,
       "delivery": 1654716600,
-      "deliveryAt": "",
+      "deliveryAt": 1654612109508,
       "orderItems": [
         {
           "name": "Galaxy S21 FE",
@@ -1615,7 +1622,7 @@
       "orderNumber": 2129,
       "orderDate": 1654211668485,
       "purchaseTotal": 26250000,
-      "orderStatus": "6",
+      "orderStatus": 6,
       "delivery": 1654630200,
       "deliveryAt": "",
       "orderItems": [
@@ -1639,7 +1646,7 @@
       "orderNumber": 2130,
       "orderDate": 1654235117541,
       "purchaseTotal": 38253300,
-      "orderStatus": "2",
+      "orderStatus": 4,
       "delivery": 1654630200,
       "deliveryAt": "",
       "orderItems": [
@@ -1669,9 +1676,9 @@
       "orderNumber": 2131,
       "orderDate": 1654415864218,
       "purchaseTotal": 0,
-      "orderStatus": "4",
+      "orderStatus": 6,
       "delivery": 1655753400000,
-      "deliveryAt": "",
+      "deliveryAt": 1654612501349,
       "orderItems": [],
       "createdAt": 1654415866627
     }

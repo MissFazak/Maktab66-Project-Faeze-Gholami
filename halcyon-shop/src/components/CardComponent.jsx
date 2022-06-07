@@ -17,7 +17,7 @@ export default function CardComponent(props) {
   // console.log(props.item.count);
   const increase = (e)=>{
     dispatch(addToCart(e))
-    service.updateProduct(e.id, {count:e.count--});
+    
   }
 
   return (

@@ -12,12 +12,12 @@ export default function Payment() {
   const buyed = JSON.parse(localStorage.getItem("order"));
 
   const handlePaymentSuccess = () => {
-    service.updateOrder(buyed.id, { orderStatus: "3" });
+    service.updateOrder(buyed.id, { orderStatus: 3 });
     localStorage.removeItem("order");
     dispatch(clearCart());
   };
   const handlePaymentFailed = () => {
-    service.updateOrder(buyed.id, { orderStatus: "4" });
+    service.updateOrder(buyed.id, { orderStatus: 4 });
   };
 
   return (

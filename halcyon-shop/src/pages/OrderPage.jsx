@@ -23,12 +23,32 @@ export default function CustomizedTables() {
     dispatch(fetchOrder());
   }, [state]);
 
+  const statusName = (status) => {
+    console.log(status);
+    switch (status) {
+      case 1:
+        return "کامل شده";
+      case 2:
+        return "لغو شده";
+      case 3:
+        return "در حال آماده سازی";
+      case 4:
+        return "پرداخت ناموفق";
+      case 5:
+        return "در انتظار پرداخت";
+      case 6:
+        return "تحویل داده شده";
+      default:
+        return "";
+    }
+  };
+
   const columns = [
     { field: "id", headerName: "ID", width: 10 },
     {
       field: "name",
       headerName: "نام کاربر",
-      width: 150,
+      width: 100,
     },
     {
       field: "price",
@@ -38,7 +58,13 @@ export default function CustomizedTables() {
     {
       field: "time",
       headerName: "زمان ثبت سفارش",
-      width: 200,
+      width: 120,
+      sortable: false,
+    },
+    {
+      field: "status",
+      headerName: "وضعیت سفارش",
+      width: 120,
       sortable: false,
     },
     {
@@ -71,7 +97,7 @@ export default function CustomizedTables() {
             item?.customerDetail.lastName,
           price: Number(item?.purchaseTotal).toLocaleString(),
           time: moment(item?.orderDate).format("jYYYY/jM/jD"),
-          status: item?.orderStatus,
+          status: statusName(item?.orderStatus),
         },
       ])
     );
@@ -88,7 +114,7 @@ export default function CustomizedTables() {
             item?.customerDetail.lastName,
           price: Number(item?.purchaseTotal).toLocaleString(),
           time: moment(item?.orderDate).format("jYYYY/jM/jD"),
-          status: item?.orderStatus,
+          status: statusName(item?.orderStatus),
         },
       ])
     );
@@ -97,11 +123,11 @@ export default function CustomizedTables() {
   const handleChange = (e) => {
     if (e.target.value === "recived") {
       return setRows(
-        all.filter((item) => item?.status == 6 || item?.status == 1)
+        all.filter((item) => item?.status === "کامل شده" || item?.status === "تحویل داده شده")
       );
     } else if (e.target.value === "waiting") {
       return setRows(
-        all.filter((item) => item?.status == 3 || item?.status == 5)
+        all.filter((item) => item?.status === "در انتظار پرداخت" || item?.status === "در حال آماده سازی")
       );
     } else {
     }

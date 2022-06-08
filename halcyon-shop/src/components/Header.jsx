@@ -18,6 +18,7 @@ import MenuItem from "@mui/material/MenuItem";
 import { Badge } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { cartSelector } from "../redux/cartSlice";
+import { fontSize } from "@mui/system";
 
 export default function Header({cartItmes}) {
   
@@ -43,7 +44,7 @@ export default function Header({cartItmes}) {
             component="img"
             sx={{
               width: "6%",
-              maxHeight: { xs: 233, md: 167 },
+              maxHeight: { xs: 350, md: 250 },
               maxWidth: { xs: 350, md: 250 },
               cursor: "pointer",
               flexFlow: 1,
@@ -54,10 +55,9 @@ export default function Header({cartItmes}) {
           />
           <Typography
             align="right"
-            variant="h4"
             noWrap
             component="div"
-            sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
+            sx={{ flexGrow: 1,fontSize:{md:'40px',sm:'30px',xs:'10px'} }}
           >
             فروشگاه موبایل هالسیون
           </Typography>

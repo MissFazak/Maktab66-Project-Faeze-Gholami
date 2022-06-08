@@ -104,7 +104,7 @@ export default function DataTable() {
           justifyContent: "space-between",
         }}
       >
-        مجموع سبد خرید: {cart.cartTotalAmount}
+        مجموع سبد خرید: {Number(cart.cartTotalAmount).toLocaleString()} تومان
         <Button color="error" variant="contained" onClick={handleClearCart}>
           خالی کردن سبد خرید
         </Button>

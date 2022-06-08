@@ -67,6 +67,7 @@ const OrderForm = () => {
         thumbnail:item?.thumbnail,
         price:item?.price,
         quantity:item?.cartQuantity,
+        count:item?.count
       }
     })
       

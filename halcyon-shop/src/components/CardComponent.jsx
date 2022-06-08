@@ -6,18 +6,30 @@ import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
 import MobileItem from "./MobileItem";
 import AddToCard from "./AddToCard";
-import { addToCart } from "../redux/cartSlice";
-import { useDispatch } from "react-redux";
+import { addToCart, cartSelector } from "../redux/cartSlice";
+import { useDispatch, useSelector } from "react-redux";
 import service from "../redux/http";
+import { toast } from "react-toastify";
+
 
 
 export default function CardComponent(props) {
   const dispatch = useDispatch()
+  const cart = useSelector(cartSelector);
+
   
-  // console.log(props.item.count);
+  
   const increase = (e)=>{
-    dispatch(addToCart(e))
-    service.updateProduct(e.id, {count:e.count--});
+    const findQuantity = cart.cartItems.find(
+      (item) => item.id === e.id
+    )?.cartQuantity;
+    
+    if(e.count>findQuantity||findQuantity===undefined){
+      dispatch(addToCart(e));
+    }else{
+      toast.error('موجودی کالا کافی نیست');
+    }
+    // dispatch(addToCart(e))
   }
 
   return (

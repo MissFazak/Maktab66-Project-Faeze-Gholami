@@ -1,3 +1,4 @@
+import { GridActionsCellItem } from "@mui/x-data-grid";
 import { createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 
@@ -27,15 +28,18 @@ const cartSlice = createSlice({
         state.cartItems.push(tempPruduct);
         toast.success(`${action.payload.name} به سبد خرید اضافه شد`);
       }
+      // if (state.cartItems[itemIndex].count>state.cartItems[itemIndex].cartQuantity) {
+      // toast.error(`مقدار موجودی کالا به اندازه مورد نظر شما کافی نمی باشد`);
+      // }
       localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
     },
     badge: (state, action) => {
       state.cartTotalQuantity = action.payload;
     },
     removeFromCart: (state, action) => {
-     const nextCartItems = state.cartItems.filter(
-        cartItem => cartItem.id !== action.payload.id
-      )
+      const nextCartItems = state.cartItems.filter(
+        (cartItem) => cartItem.id !== action.payload.id
+      );
       state.cartItems = nextCartItems;
       localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
       toast.error(`${action.payload.name} از سبد خرید حذف شد`);
@@ -50,40 +54,48 @@ const cartSlice = createSlice({
           toast.error(
             `شما ${state.cartItems[itemIndex].name} را از سبد خرید حذف کردید`
           );
-        }else{
+        } else {
           const nextCartItems = state.cartItems.filter(
-            cartItem => cartItem.id !== action.payload.id
-          )
+            (cartItem) => cartItem.id !== action.payload.id
+          );
           state.cartItems = nextCartItems;
           localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
           toast.error(`${action.payload.name} از سبد خرید حذف شد`);
-          
         }
       }
       localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
     },
     clearCart(state) {
       state.cartItems = [];
-      toast.error(`سبد خرید خالی شد`);
+      // toast.error(`سبد خرید خالی شد`);
       localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
     },
     getTotals: (state, action) => {
-      let{total,quantity }= state.cartItems.reduce((cartTotal,cartItem)=>{
-        const {price,cartQuantity} = cartItem;
-        const itemTotal = price * cartQuantity;
-        cartTotal.total += itemTotal;
-        cartTotal.quantity += cartQuantity;
-        return cartTotal;
-      },{
-        total:0,
-        quantity:0
-      })
+      let { total, quantity } = state.cartItems.reduce(
+        (cartTotal, cartItem) => {
+          const { price, cartQuantity } = cartItem;
+          const itemTotal = price * cartQuantity;
+          cartTotal.total += itemTotal;
+          cartTotal.quantity += cartQuantity;
+          return cartTotal;
+        },
+        {
+          total: 0,
+          quantity: 0,
+        }
+      );
       state.cartTotalQuantity = quantity;
       state.cartTotalAmount = total;
-    }
+    },
   },
 });
-export const { addToCart, removeFromCart,decreaseCartItem,clearCart,getTotals } = cartSlice.actions;
+export const {
+  addToCart,
+  removeFromCart,
+  decreaseCartItem,
+  clearCart,
+  getTotals,
+} = cartSlice.actions;
 const cartReducer = cartSlice.reducer;
-export const cartSelector = (state) => state.cart
+export const cartSelector = (state) => state.cart;
 export default cartReducer;

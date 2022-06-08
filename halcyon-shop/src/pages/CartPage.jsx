@@ -11,15 +11,19 @@ import {
   clearCart,
   cartSelector,
 } from "../redux/cartSlice";
+import { itemsSelector } from "../redux/productSlice";
+import { toast } from "react-toastify";
 
 export default function DataTable() {
   const dispatch = useDispatch();
   const cart = useSelector(cartSelector);
-  
+  const { items } = useSelector(itemsSelector);
 
-  const handleClearCart = () => { 
-    dispatch(clearCart())
-  }
+  
+  const handleClearCart = () => {
+    dispatch(clearCart());
+    toast.error("سبد خرید خالی شد");
+  };
 
   const columns = [
     { field: "id", headerName: "ID", width: 70 },
@@ -34,15 +38,19 @@ export default function DataTable() {
         const handleDecrease = (e) => {
           dispatch(decreaseCartItem(e));
         };
-
+        
         const handleIncrease = (e) => {
-          dispatch(addToCart(e));
+          if(e.count>e.cartQuantity)
+          {dispatch(addToCart(e));}else{
+            toast.error("موجودی کافی نیست");
+          }
+         
         };
         return (
           <>
             <Box sx={{ display: "flex" }}>
               <Button onClick={() => handleIncrease(params.row)}>+</Button>
-              <Typography>{params.row.count}</Typography>
+              <Typography>{params.row.cartQuantity}</Typography>
               <Button onClick={() => handleDecrease(params.row)}>-</Button>
             </Box>
             <Typography id="alertText"></Typography>
@@ -74,7 +82,8 @@ export default function DataTable() {
       id: cartItem.id,
       name: cartItem.name,
       price: cartItem.price,
-      count: cartItem.cartQuantity,
+      cartQuantity: cartItem.cartQuantity,
+      count: cartItem.count,
     };
   });
   return (
@@ -88,9 +97,17 @@ export default function DataTable() {
         checkboxSelection
         disableSelectionOnClick
       />
-      <Box sx={{ marginTop: "20px", display:'flex', justifyContent:'space-between' }}>
+      <Box
+        sx={{
+          marginTop: "20px",
+          display: "flex",
+          justifyContent: "space-between",
+        }}
+      >
         مجموع سبد خرید: {cart.cartTotalAmount}
-        <Button color='error' variant="contained" onClick={handleClearCart}>خالی کردن سبد خرید</Button>
+        <Button color="error" variant="contained" onClick={handleClearCart}>
+          خالی کردن سبد خرید
+        </Button>
         <Link to={{ pathname: "..//order" }}>
           <Button
             variant="contained"

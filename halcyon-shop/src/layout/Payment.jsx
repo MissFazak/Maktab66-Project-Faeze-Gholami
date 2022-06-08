@@ -1,23 +1,25 @@
 import { Button, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 import { clearCart } from "../redux/cartSlice";
 import service from "../redux/http";
-import { orderSelector } from "../redux/orderSlice";
 
 export default function Payment() {
   const dispatch = useDispatch();
   const buyed = JSON.parse(localStorage.getItem("order"));
+  console.log(buyed);
 
   const handlePaymentSuccess = () => {
-    service.updateOrder(buyed.id, { orderStatus: "3" });
+    service.updateOrder(buyed.id, { orderStatus: 3 });
     localStorage.removeItem("order");
     dispatch(clearCart());
+    toast.success("پرداخت شما با موفقیت انجام شد");
   };
   const handlePaymentFailed = () => {
-    service.updateOrder(buyed.id, { orderStatus: "4" });
+    service.updateOrder(buyed.id, { orderStatus: 4 });
   };
 
   return (

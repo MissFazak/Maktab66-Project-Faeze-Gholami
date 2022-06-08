@@ -27,7 +27,7 @@ export default function StatusModal({ props, state, setState }) {
   const handleClose = () => setOpen(false);
   const newDate = new Date();
   const orderTimeStamp = newDate.getTime();
-
+  console.log(orderTimeStamp);
   const columns = [
     { field: "id", headerName: "ID", width: 10 },
     { field: "name", headerName: "نام کالا", width: 150 },
@@ -45,7 +45,7 @@ export default function StatusModal({ props, state, setState }) {
   });
 
   const handleStatus = () => {
-    service.updateOrder(props.id, { orderStatus: "6" });
+    service.updateOrder(props.id, { orderStatus: 6 });
     service.updateOrder(props.id, { deliveryAt: orderTimeStamp });
 
     setState(!state);
@@ -78,9 +78,36 @@ export default function StatusModal({ props, state, setState }) {
             زمان سفارش : {moment(props?.orderDate).format("jYYYY/jM/jD")}
           </Typography>
           <DataGrid autoHeight rows={rows} columns={columns} />
-          <Button variant="contained" color="success" onClick={handleStatus}>
-            تحویل سفارش
-          </Button>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              marginTop: "10px",
+            }}
+          >
+            {props?.orderStatus === 3 ? (
+              <Button
+                variant="contained"
+                color="success"
+                onClick={handleStatus}
+              >
+                تحویل سفارش
+              </Button>
+            ) : (
+              <Button
+                disabled
+                variant="contained"
+                color="success"
+                onClick={handleStatus}
+              >
+                تحویل سفارش
+              </Button>
+            )}
+            <Typography>
+              تحویل داده شد در تاریخ :{" "}
+              {moment(props?.deliveryAt).format("jYYYY/jM/jD")}
+            </Typography>
+          </Box>
         </Box>
       </Modal>
     </div>

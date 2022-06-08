@@ -14,16 +14,17 @@ export default function AddToCard({ count, map }) {
   const findQuantity = cart.cartItems.find(
     (item) => item.id === map.id
   )?.cartQuantity;
+  console.log(findQuantity);
 
   const increase = (map) => {
-    dispatch(addToCart(map));
-    service.updateProduct(map.id, {count: map.count--});
+    if(map.count>findQuantity||findQuantity===undefined){
+      dispatch(addToCart(map));
+    }else{
+      toast.error('موجودی کالا کافی نیست');
+    }
   };
   const decrease = (e) => {
-    if (findQuantity > 0) {
-      dispatch(decreaseCartItem(e));
-      service.updateProduct(map.id,{count: map.count++});
-    }
+    dispatch(decreaseCartItem(e));
   };
 
   return (

@@ -33,7 +33,12 @@
       ],
       "thumbnail": "bee694540b52fa04d0cc1a86833ae39a",
       "id": 2,
-      "createdAt": 1652093150408
+      "createdAt": 1652093150408,
+      "image": [
+        "bee694540b52fa04d0cc1a86833ae39a",
+        "2f2a4d9fe2a1aef44a671436081553a6",
+        "f30f63b866d0780c6119bea95eff3057"
+      ]
     },
     {
       "name": "Galaxy S21 FE",
@@ -339,7 +344,7 @@
       "name": "Redmi Note 10S",
       "category": "3",
       "price": "6000000",
-      "count": "18",
+      "count": 19,
       "description": "گوشی موبایل شیائومی مدل Redmi Note 10S M2101K7BG دو سیم‌ کارت ظرفیت 128 گیگابایت و رم 8 گیگابایت بدون فناوری NFC وارد بازار شده است. شیائومی در مارس 2021، نسل دهم از گوشی‌های Redmi Note 10S خود را معرفی کرده است. گوشی «Redmi Note 10S» مانند نسخه‌های قبلی این سری از گوشی‌های شیائومی از صفحه‌نمایش بزرگ، باتری پرقدرت، طراحی جذاب دوربین و سخت‌افزار مناسب برای اجرای بازی برخوردار است. هم با پنل IPS LCD ساخته‌شده و فاصله لبه صفحه‌نمایش در آن بسیار کم است. این نمایشگر 6.43 اینچی حدود 409 پیکسل را در هر اینچ جا داده است. بدنه و نمایشگر این محصول با استفاده از Corning Gorilla Glass 3 محافظت می‌شود تا گوشی در برابر خط ‌وخش ایمن باشد. ویژگی دیگر Redmi Note 10S مجهز شدن به حسگر اثرانگشت بر روی لبه کناری آن است. شیائومی برای این محصول خود از یک دوربین چهارگانه استفاده کرده است. لنزعریض 64 مگاپیکسلی، لنز فوق عریض 8 مگاپیکسلی، لنز ماکرو با کیفیت 2 مگاپیکسل و سنسور عمق 2 مگاپیکسلی مجموعه دوربین Redmi Note 10S را تشکیل می‌دهد. یک دوربین سلفی 13 مگاپیکسلی هم در مرکز بالای نمایشگر این گوشی به کار گرفته شده است. ازنظر سخت‌افزاری هم این گوشی از تراشه Mediatek Helio G95 (12 nm) Chipset بهره می‌برد که در آن پردازنده‌ای هشت‌هسته‌ا‌ی و قدرتمند قرارگرفته است. حافظه رم با ظرفیت 8 گیگابایت هم در کنار این مجموعه قرار گرفته است تا بتواند علاوه‌بر کارهای معمول، از قابلیت‌های جدید گوشی‌های امروزی پشتیبانی کند. باتری 5000 میلی‌آمپرساعتی با پشتیبانی از شارژ سریع 33 وات، درگاه ارتباطی USB Type-C 2.0 و جک 3.5 میلی‌متری صدا هم از دیگر مشخصات این محصول جدید است.",
       "images": [
         "5f6aa8ea31981b0c559101eada5b7244",
@@ -1387,7 +1392,7 @@
       "orderNumber": 2122,
       "orderDate": 1643396897495,
       "purchaseTotal": "220000",
-      "orderStatus": "6",
+      "orderStatus": 6,
       "delivery": 1643396897495,
       "deliveredAt": 1646222643757,
       "orderItems": [
@@ -1413,7 +1418,7 @@
       "orderNumber": 2122,
       "orderDate": 1642196897495,
       "purchaseTotal": "220000",
-      "orderStatus": "6",
+      "orderStatus": 1,
       "delivery": 1644596897495,
       "deliveredAt": 1646222643757,
       "orderItems": [
@@ -1439,7 +1444,7 @@
       "orderNumber": 2123,
       "orderDate": 1643396897495,
       "purchaseTotal": "160000",
-      "orderStatus": 6,
+      "orderStatus": 2,
       "delivery": 1641096897495,
       "deliveredAt": 1646222643757,
       "orderItems": [
@@ -1465,7 +1470,7 @@
       "orderNumber": 2124,
       "orderDate": 1603396807495,
       "purchaseTotal": "2000000",
-      "orderStatus": "6",
+      "orderStatus": 6,
       "delivery": 1643396897495,
       "deliveredAt": 1646222643757,
       "orderItems": [
@@ -1475,7 +1480,8 @@
           "price": "12000",
           "quantity": "12"
         }
-      ]
+      ],
+      "deliveryAt": 1654611999630
     },
     {
       "customerDetail": {
@@ -1517,7 +1523,7 @@
       "orderNumber": 2126,
       "orderDate": 1613396807495,
       "purchaseTotal": "1900000",
-      "orderStatus": "6",
+      "orderStatus": 4,
       "delivery": 1643396897495,
       "deliveredAt": "",
       "orderItems": [
@@ -1544,7 +1550,7 @@
       "orderNumber": 2127,
       "orderDate": 1603396807495,
       "purchaseTotal": "21000000",
-      "orderStatus": 3,
+      "orderStatus": 6,
       "delivery": 1643396897495,
       "deliveredAt": 1646222643757,
       "orderItems": [
@@ -1554,7 +1560,8 @@
           "price": "12000",
           "quantity": "12"
         }
-      ]
+      ],
+      "deliveryAt": 1654611833257
     },
     {
       "customerDetail": {
@@ -1567,9 +1574,9 @@
       "orderNumber": 2128,
       "orderDate": 1654211628477,
       "purchaseTotal": 90140000,
-      "orderStatus": "6",
+      "orderStatus": 6,
       "delivery": 1654716600,
-      "deliveryAt": "",
+      "deliveryAt": 1654612109508,
       "orderItems": [
         {
           "name": "Galaxy S21 FE",
@@ -1615,7 +1622,7 @@
       "orderNumber": 2129,
       "orderDate": 1654211668485,
       "purchaseTotal": 26250000,
-      "orderStatus": "6",
+      "orderStatus": 6,
       "delivery": 1654630200,
       "deliveryAt": "",
       "orderItems": [
@@ -1639,7 +1646,7 @@
       "orderNumber": 2130,
       "orderDate": 1654235117541,
       "purchaseTotal": 38253300,
-      "orderStatus": "2",
+      "orderStatus": 4,
       "delivery": 1654630200,
       "deliveryAt": "",
       "orderItems": [
@@ -1669,11 +1676,126 @@
       "orderNumber": 2131,
       "orderDate": 1654415864218,
       "purchaseTotal": 0,
-      "orderStatus": "4",
+      "orderStatus": 6,
       "delivery": 1655753400000,
-      "deliveryAt": "",
+      "deliveryAt": 1654612501349,
       "orderItems": [],
       "createdAt": 1654415866627
+    },
+    {
+      "customerDetail": {
+        "firstName": "",
+        "lastName": "",
+        "phoneNumber": "",
+        "address": ""
+      },
+      "id": "704a411f-2b48-4f26-8162-af4ecccae950",
+      "orderNumber": null,
+      "orderDate": 1654689330062,
+      "purchaseTotal": 0,
+      "orderStatus": 5,
+      "delivery": null,
+      "deliveryAt": "",
+      "orderItems": [],
+      "createdAt": 1654689332402
+    },
+    {
+      "customerDetail": {
+        "firstName": "",
+        "lastName": "",
+        "phoneNumber": "",
+        "address": ""
+      },
+      "id": "32026385-779b-4c82-83da-1fdc9a32221e",
+      "orderNumber": null,
+      "orderDate": 1654689511345,
+      "purchaseTotal": 0,
+      "orderStatus": 5,
+      "delivery": null,
+      "deliveryAt": "",
+      "orderItems": [],
+      "createdAt": 1654689513668
+    },
+    {
+      "customerDetail": {
+        "firstName": "",
+        "lastName": "",
+        "phoneNumber": "",
+        "address": ""
+      },
+      "id": "aa692123-2d72-4f4e-aafd-3a0039332745",
+      "orderNumber": null,
+      "orderDate": 1654689704740,
+      "purchaseTotal": 151479000,
+      "orderStatus": 5,
+      "delivery": null,
+      "deliveryAt": "",
+      "orderItems": [
+        {
+          "name": "Galaxy S22 Ultra",
+          "thumbnail": "726f4415ca392861a5f593c66d51862e",
+          "price": "44390000",
+          "quantity": 1
+        },
+        {
+          "name": "iPhone 11",
+          "thumbnail": "fce5f0c1e67c19478105d0113ce25b57",
+          "price": "26250000",
+          "quantity": 1
+        },
+        {
+          "name": "iPhone 13 Pro",
+          "thumbnail": "93bd6a9ffcac594ecdc98a71d8a9a1eb",
+          "price": "45489000",
+          "quantity": 1
+        },
+        {
+          "name": "iPhone 13",
+          "thumbnail": "a8e9d8619c36166329081d8a0e24a2d3",
+          "price": "35350000",
+          "quantity": 1
+        }
+      ],
+      "createdAt": 1654689707854
+    },
+    {
+      "customerDetail": {
+        "firstName": "",
+        "lastName": "",
+        "phoneNumber": "",
+        "address": ""
+      },
+      "id": "3a903279-4be3-44d9-b201-c3be6d7e4594",
+      "orderNumber": null,
+      "orderDate": 1654689898535,
+      "purchaseTotal": 103640000,
+      "orderStatus": 5,
+      "delivery": null,
+      "deliveryAt": "",
+      "orderItems": [
+        {
+          "id": 1,
+          "name": "Galaxy S22 Ultra",
+          "thumbnail": "726f4415ca392861a5f593c66d51862e",
+          "price": "44390000",
+          "quantity": 1
+        },
+        {
+          "id": 13,
+          "name": "iPhone 11",
+          "thumbnail": "fce5f0c1e67c19478105d0113ce25b57",
+          "price": "26250000",
+          "quantity": 1
+        },
+        {
+          "id": 54,
+          "name": "Nord CE",
+          "thumbnail": "e1cafdc5ac666faba9b10cd777422835",
+          "price": "11000000",
+          "quantity": 3
+        }
+      ],
+      "createdAt": 1654689901196
     }
   ],
   "orderStatus": [

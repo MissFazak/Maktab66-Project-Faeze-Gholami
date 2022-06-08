@@ -42,7 +42,7 @@ export default function DataTable() {
         const handleIncrease = (e) => {
           if(e.count>e.cartQuantity)
           {dispatch(addToCart(e));}else{
-            toast.error("مقدار بیش از حد مجاز برابر است");
+            toast.error("موجودی کافی نیست");
           }
          
         };

@@ -60,7 +60,7 @@ export default function BasicModal({ category, item, setState,state }) {
     price: formik.values?.price,
     count: formik.values?.count,
     description: formik.values?.description,
-    image: gallery
+    images: gallery
   };
   console.log(data);
 

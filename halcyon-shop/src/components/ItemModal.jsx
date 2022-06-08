@@ -70,14 +70,14 @@ export default function BasicModal({ category, setState, state }) {
     price: formik.values.price,
     count: formik.values.count,
     description: des,
-    image: gallery,
+    images: gallery,
     thumbnail: gallery[0],
     createdAt: new Date().getTime(),
   };
 
   //get images as file
   const selectFileHandler = (e) => {
-    formik.setFieldValue("image", e.currentTarget.files[0]);
+    formik.setFieldValue("images", e.currentTarget.files[0]);
   };
   //save photos in gallery
   const uploadHandler = () => {

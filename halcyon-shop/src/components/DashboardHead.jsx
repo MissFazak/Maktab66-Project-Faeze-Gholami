@@ -9,8 +9,10 @@ import QrCodeIcon from "@mui/icons-material/QrCode";
 import PriceChangeIcon from "@mui/icons-material/PriceChange";
 import IntegrationInstructionsIcon from "@mui/icons-material/IntegrationInstructions";
 import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
+import HambergerMenu from './HambergerMenu';
 
-import { Link, NavLink } from "react-router-dom";
+
+import { Link, NavLink, Outlet } from "react-router-dom";
 
 export default function DashboardHead() {
   const [open, setOpen] = React.useState(true);
@@ -147,8 +149,11 @@ export default function DashboardHead() {
               سفارش‌ها
             </NavLink>
           </Grid>
+          <HambergerMenu/>
         </Toolbar>
       </AppBar>
+      <Outlet />
+
     </Box>
   );
 }

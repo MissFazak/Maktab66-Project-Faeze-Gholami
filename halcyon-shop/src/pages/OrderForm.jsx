@@ -49,8 +49,8 @@ const OrderForm = () => {
       phoneNumber: Yup.string().required("وارد کردن شماره تلفن الزامی است!"),
     }),
     onSubmit: () => {
-      service.creatOrder(data);
-      localStorage.setItem("order", JSON.stringify(data));
+      // service.creatOrder(data);
+      // localStorage.setItem("order", JSON.stringify(data));
     },
   });
 
@@ -80,10 +80,10 @@ const OrderForm = () => {
     }),
   };
 
-  // const handlePayment = () => {
-  //   service.creatOrder(data);
-  //   localStorage.setItem("order", JSON.stringify(data));
-  // };
+  const handlePayment = () => {
+    service.creatOrder(data);
+    localStorage.setItem("order", JSON.stringify(data));
+  };
 
   return (
     <div className="orderBody">
@@ -157,12 +157,12 @@ const OrderForm = () => {
           {formik.touched.date && formik.errors.date ? (
             <div className="error1">{formik.errors.date}</div>
           ) : null}
-            <Link to={{ pathname: "..//payment" }} >
+        </form>
+            <Link to={{ pathname: "..//payment" }} onClick={handlePayment}>
           <Button variant="contained" color="success" type="submit">
               پرداخت
           </Button>
               </Link>
-        </form>
       </div>
     </div>
   );

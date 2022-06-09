@@ -43,7 +43,7 @@ export default function AddToCard({ count, map }) {
         <Button
           variant="contained"
           color="primary"
-          sx={{ padding: "5px", margin: "10px" }}
+          sx={{ padding: "5px", margin: "10px 0" }}
           onClick={() => increase(map)}
         >
           افزودن به سبد خرید

@@ -11,7 +11,6 @@ import { Box } from "@mui/material";
 import { v4 as uuidv4 } from 'uuid';
 
 export default function ListOfBrands() {
-  const { items } = useSelector(itemsSelector);
   const { category } = useSelector(categorySelector);
 
   return (
@@ -38,7 +37,7 @@ export default function ListOfBrands() {
               key={uuidv4()}
             >
               <ListItemButton>
-                <Link to={{ pathname: "brands" }} state={item}>
+                <Link to={{ pathname: `brands/${item.name}` }} state={item}>
                   <ListItemText primary={item.name} />
                 </Link>
               </ListItemButton>

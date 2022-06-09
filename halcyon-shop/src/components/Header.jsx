@@ -18,8 +18,10 @@ import { Badge } from "@mui/material";
 import { useSelector } from "react-redux";
 import { cartSelector } from "../redux/cartSlice";
 import SupervisorAccountIcon from "@mui/icons-material/SupervisorAccount";
+import { categorySelector } from "../redux/categorySlice";
 
 export default function Header({ cartItmes }) {
+  const {category} = useSelector(categorySelector)
   const cart = useSelector(cartSelector);
   const navigateToHome = useNavigate();
   const homePageNav = () => {
@@ -90,7 +92,7 @@ export default function Header({ cartItmes }) {
                 sx={{ marginBottom: "-6px" }}
               />
               <Link
-                to={{}}
+                to={{pathname:'list-brands'}}
                 id="basic-button"
                 aria-controls={open ? "basic-menu" : undefined}
                 aria-haspopup="true"
@@ -108,36 +110,8 @@ export default function Header({ cartItmes }) {
                   "aria-labelledby": "basic-button",
                 }}
               >
-                <MenuItem>
-                  <Link to={{}}>سامسونگ</Link>
-                </MenuItem>
-                <MenuItem>
-                  <Link to={{}}>اپل</Link>
-                </MenuItem>
-                <MenuItem>
-                  <Link to={{}}>شیائومی</Link>
-                </MenuItem>
-                <MenuItem>
-                  <Link to={{}}>هوآوی</Link>
-                </MenuItem>
-                <MenuItem>
-                  <Link to={{}}>جی پلاس</Link>
-                </MenuItem>
-                <MenuItem>
-                  <Link to={{}}>وان پلاس</Link>
-                </MenuItem>
-                <MenuItem>
-                  <Link to={{}}>دو جی</Link>
-                </MenuItem>
-                <MenuItem>
-                  <Link to={{}}>نوکیا</Link>
-                </MenuItem>
-                <MenuItem>
-                  <Link to={{}}>ال جی</Link>
-                </MenuItem>
-                <MenuItem>
-                  <Link to={{}}>موتورولا</Link>
-                </MenuItem>
+                {category?.map(item=>
+                  <MenuItem><Link to={{pathname:`list-brands/brands/${item.name}`}} state={item}>{item?.name}</Link></MenuItem>)}
               </Menu>
             </Typography>
             <Typography variant="h6" sx={{ paddingX: "10px" }}>

@@ -30,19 +30,22 @@ export default function CardComponent(props) {
   return (
     <Card className="cardStyle">
       <Link to={{ pathname: `..//mobile/${props.item.id}` }} state={props.item}>
-        <Typography color="primary" className="title">{props.item.name}</Typography>
+        <Typography color="primary" className="title">
+          {props.item.name}
+        </Typography>
         <CardMedia
           component="img"
           height="200"
           image={`http://localhost:3002/files/${props.item.thumbnail}`}
           alt={props.item.name}
         />
-        <Typography className="price">{Number(props.item.price).toLocaleString()}</Typography>
+        <Typography className="price">
+          {Number(props.item.price).toLocaleString()}
+        </Typography>
       </Link>
       <Button
         variant="contained"
         color="primary"
-        
         onClick={() => increase(props.item)}
       >
         افزودن به سبد کالا

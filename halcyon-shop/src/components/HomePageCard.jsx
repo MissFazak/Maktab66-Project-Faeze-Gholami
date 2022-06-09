@@ -19,7 +19,9 @@ export default function HomePageCard() {
     <div>
       {category.map((cat) => (
         <div className="homePage">
-          <Link to={{ pathname: "list-brands" }} className="brand">
+          <Link to={{ pathname: `list-brands/brands/${cat.name}` }} 
+          state={cat}
+          className="brand">
             <h1>{cat.name}</h1>
           </Link>
           <div className="homePageCardWrapper" key={uuidv4()}>

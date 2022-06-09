@@ -5,6 +5,7 @@
 @use  "sideBar";
 @use 'formAdd';
 @use 'orderForm';
+@use 'cartPage';
 
 
 
@@ -13,6 +14,11 @@
   font-family: Koodak;
   src: url("../font/KoodakBold.woff");
 }
+@font-face {
+  font-family: Rubik;
+  src: url("../font/Rubik-VariableFont_wght.ttf");
+}
+
 
 body {
   margin: 0;

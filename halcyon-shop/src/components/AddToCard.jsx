@@ -35,7 +35,7 @@ export default function AddToCard({ count, map }) {
             <Button onClick={() => increase(map)}>+</Button>
             <Typography>{findQuantity}</Typography>
             <Button onClick={() => decrease(map)}>
-              {findQuantity == 1 ? <DeleteIcon /> : "-"}
+              {findQuantity == 1 ? <DeleteIcon color="error" /> : "-"}
             </Button>
           </Box>
         </>

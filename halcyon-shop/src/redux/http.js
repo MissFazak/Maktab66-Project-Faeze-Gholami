@@ -1,9 +1,15 @@
 import { api } from "./api";
 const token = localStorage.getItem('token')
 
+const array=[1,2,3,4,5,6,7,8,9,10]
+array.map(item=> item)
+
 const getProducts = () =>{
     return api.get('/products')
 }
+// const getProductsLimited = () =>{
+//     return api.get(`/products?&_limit=6`)
+// }
 const getCategory = () =>{
     return api.get('/category')
 }
@@ -47,7 +53,8 @@ const service = {
     creatOrder,
     updateProduct,
     removeProduct,
-    updateOrder
+    updateOrder,
+    // getProductsLimited
 }
 
 export default service

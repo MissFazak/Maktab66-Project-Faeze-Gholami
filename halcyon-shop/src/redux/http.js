@@ -7,9 +7,9 @@ array.map(item=> item)
 const getProducts = () =>{
     return api.get('/products')
 }
-// const getProductsLimited = () =>{
-//     return api.get(`/products?&_limit=6`)
-// }
+const getProductsLimited = (category,activePage,limit) =>{
+    return api.get(`/products?category=${category}&_page=${activePage}&_limit=${limit}`)
+}
 const getCategory = () =>{
     return api.get('/category')
 }
@@ -54,7 +54,7 @@ const service = {
     updateProduct,
     removeProduct,
     updateOrder,
-    // getProductsLimited
+    getProductsLimited
 }
 
 export default service

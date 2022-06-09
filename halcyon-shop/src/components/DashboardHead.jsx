@@ -15,6 +15,10 @@ import { Link, NavLink } from "react-router-dom";
 export default function DashboardHead() {
   const [open, setOpen] = React.useState(true);
 
+  const handleLogOut = ()=>{
+    localStorage.removeItem("token");
+  }
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" color="transparent">
@@ -78,7 +82,7 @@ export default function DashboardHead() {
               سفارش‌ها
             </NavLink>
           </Grid>
-          <Link to={{ pathname: "..//" }} xs={1}>
+          <Link to={{ pathname: "..//" }} xs={1} onClick={handleLogOut}>
             <Typography variant="h6">
               بازگشت به سایت
               <KeyboardReturnIcon

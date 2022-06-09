@@ -1190,8 +1190,12 @@
       "price": "3100000",
       "count": "1",
       "description": "گوشی‌های میان‌رده امروزی معنای دیگری پیدا کرده است. ال‌جی برای گوشی K41S چهار دوربین و حسگر اثر‌انگشت تعبیه کرده است. این همان چیزی است که شما از یک گوشی پرچمدار انتظار دارید. حافظه اصلی که برای این مدل تعبیه‌شده 32 گیگابایت است. این میزان در کنار رم 3 گیگابایتی عملکرد قابل قبولی دارد. صفحه‌نمایش این گوشی ابعاد 6.55 اینچی داشته و از فناوری IPS بهره‌مند شده است. نسبت صفحه‌نمایش به بدنه در این مدل ال‌جی 81.7 درصد بوده که این نسبت با توجه به ابعاد گوشی میزان استانداردی است. این مدل از وضوح تصویر 720 × 1600 پیکسل پشتیبانی می‌کند. برای این گوشی 4 دوربین اصلی و 1 دوربین سلفی تعبیه شده است. حسگر اصلی استفاده‌شده برای دوربین اصلی گوشی از رزولوشن 13 مگاپیکسلی استفاده‌شده است. اگر به عکس‌های فوق عریض یا همان Ultrawide علاقه دارید، با استفاده از حسگر دوم می‌توانید از این مدل عکس‌ها ثبت کنید. عکس‌های فوق عریض زاویه دید بیشتری داشته و می‌توانید جزئیات بیشتری را ثبت کنید. دوربین سلفی این مدل هم رزولوشن 8 مگاپیکسلی دارد. در این گوشی همچنان جک 3.5 میلی‌متری برای اتصال هدفون یا AUX دیده می‌شود. اگر قصد تهیه گوشی میان‌رده دارید این محصول ال‌جی یکی از گزینه‌هایتان است.",
-      "images": "c4e5c64298b479e9881aa323206920a3",
-      "thumbnail": "c4e5c64298b479e9881aa323206920a3",
+      "images": [
+        "720a75bbc61a610d9ced423eef585ec1",
+        "870f89b3ed2cd18d779182cbf7f3fe2f",
+        "748b4639f8201dc4547ed8fdcadd1390"
+      ],
+      "thumbnail": "720a75bbc61a610d9ced423eef585ec1",
       "id": 80,
       "createdAt": 1652152734793
     },
@@ -1653,108 +1657,6 @@
         }
       ],
       "createdAt": 1654235121155
-    },
-    {
-      "customerDetail": {
-        "firstName": "",
-        "lastName": "",
-        "phoneNumber": "",
-        "address": ""
-      },
-      "id": "a6488557-39c4-4de7-af06-5115ad2f3c71",
-      "orderNumber": null,
-      "orderDate": 1654751457172,
-      "purchaseTotal": 0,
-      "orderStatus": 5,
-      "delivery": null,
-      "deliveryAt": "",
-      "orderItems": [],
-      "createdAt": 1654751457958
-    },
-    {
-      "customerDetail": {
-        "firstName": "",
-        "lastName": "",
-        "phoneNumber": "",
-        "address": ""
-      },
-      "id": "0bfa6e0b-8a9d-45ab-adc7-0e253e89ecf9",
-      "orderNumber": null,
-      "orderDate": 1654751467201,
-      "purchaseTotal": 0,
-      "orderStatus": 5,
-      "delivery": null,
-      "deliveryAt": "",
-      "orderItems": [],
-      "createdAt": 1654751468710
-    },
-    {
-      "customerDetail": {
-        "firstName": "",
-        "lastName": "",
-        "phoneNumber": "",
-        "address": ""
-      },
-      "id": "248c33cd-6539-4ee8-8b9f-8fc5889f5f24",
-      "orderNumber": null,
-      "orderDate": 1654751549081,
-      "purchaseTotal": 0,
-      "orderStatus": 5,
-      "delivery": null,
-      "deliveryAt": "",
-      "orderItems": [],
-      "createdAt": 1654751550112
-    },
-    {
-      "customerDetail": {
-        "firstName": "فائزه",
-        "lastName": "غلامی",
-        "phoneNumber": 9332639501,
-        "address": "کرج 45 متری کاج املاک مهندسین مهرزاد"
-      },
-      "id": "372b1260-a22a-43af-8108-4f56f0178742",
-      "orderNumber": null,
-      "orderDate": 1654751576063,
-      "purchaseTotal": 0,
-      "orderStatus": 5,
-      "delivery": 1655148600000,
-      "deliveryAt": "",
-      "orderItems": [],
-      "createdAt": 1654751580601
-    },
-    {
-      "customerDetail": {
-        "firstName": "",
-        "lastName": "",
-        "phoneNumber": "",
-        "address": ""
-      },
-      "id": "779ef626-ca3e-4a4f-862e-f2b0c960b4f2",
-      "orderNumber": null,
-      "orderDate": 1654751664727,
-      "purchaseTotal": 0,
-      "orderStatus": 5,
-      "delivery": null,
-      "deliveryAt": "",
-      "orderItems": [],
-      "createdAt": 1654751667176
-    },
-    {
-      "customerDetail": {
-        "firstName": "",
-        "lastName": "",
-        "phoneNumber": "",
-        "address": ""
-      },
-      "id": "b0f6f47d-abaf-4b04-baf0-88c362bf00b5",
-      "orderNumber": null,
-      "orderDate": 1654751676589,
-      "purchaseTotal": 0,
-      "orderStatus": 5,
-      "delivery": 1655235000000,
-      "deliveryAt": "",
-      "orderItems": [],
-      "createdAt": 1654751679929
     }
   ],
   "orderStatus": [

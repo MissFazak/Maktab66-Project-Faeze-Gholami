@@ -40,17 +40,17 @@ const OrderForm = () => {
       lastName: "",
       address: "",
       phoneNumber: "",
-      date: timeStamp,
+      date: "",
     },
     validationSchema: Yup.object({
       firstName: Yup.string().required("وارد کردن نام الزامی است!"),
       lastName: Yup.string().required("وارد کردن نام خانوادگی الزامی است!"),
       address: Yup.string().required("وارد کردن آدرس الزامی است!"),
       phoneNumber: Yup.string().required("وارد کردن شماره تلفن الزامی است!"),
-      date: Yup.string().required("وارد کردن تاریخ الزامی است!"),
     }),
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+    onSubmit: () => {
+      service.creatOrder(data);
+      localStorage.setItem("order", JSON.stringify(data));
     },
   });
 
@@ -66,7 +66,7 @@ const OrderForm = () => {
     orderDate: orderTimeStamp,
     purchaseTotal: cart.cartTotalAmount,
     orderStatus: 5,
-    delivery: formik.values.date,
+    delivery: timeStamp,
     deliveryAt: "",
     orderItems: cart.cartItems.map((item) => {
       return {
@@ -80,18 +80,17 @@ const OrderForm = () => {
     }),
   };
 
-  const handlePayment = () => {
-    service.creatOrder(data);
-    localStorage.setItem("order", JSON.stringify(data));
-    console.log(data);
-  };
+  // const handlePayment = () => {
+  //   service.creatOrder(data);
+  //   localStorage.setItem("order", JSON.stringify(data));
+  // };
 
   return (
     <div className="orderBody">
       <div className="orderForm">
         <form onSubmit={formik.handleSubmit}>
           <input
-          className="inputs"
+            className="inputs"
             placeholder="نام"
             id="firstName"
             name="firstName"
@@ -104,8 +103,7 @@ const OrderForm = () => {
           ) : null}
 
           <input
-          className="inputs"
-
+            className="inputs"
             placeholder="نام خانوادگی"
             id="lastName"
             name="lastName"
@@ -117,8 +115,7 @@ const OrderForm = () => {
             <div className="error1">{formik.errors.lastName}</div>
           ) : null}
           <input
-          className="inputs"
-
+            className="inputs"
             placeholder="آدرس"
             id="address"
             name="address"
@@ -131,7 +128,7 @@ const OrderForm = () => {
           ) : null}
 
           <input
-          className="inputs"
+            className="inputs"
             placeholder="تلفن همراه"
             id="phoneNumber"
             name="phoneNumber"
@@ -144,7 +141,7 @@ const OrderForm = () => {
           ) : null}
           <LocalizationProvider dateAdapter={AdapterJalali}>
             <DatePicker
-            className="date"
+              className="date"
               id="date"
               name="date"
               value={value}
@@ -153,23 +150,19 @@ const OrderForm = () => {
                 setValue(newValue);
               }}
               renderInput={(params) => (
-                <TextField {...params} sx={{padding:0}} />
+                <TextField {...params} sx={{ padding: 0 }} />
               )}
             />
           </LocalizationProvider>
           {formik.touched.date && formik.errors.date ? (
             <div className="error1">{formik.errors.date}</div>
           ) : null}
-          <Button
-            variant="contained"
-            color="success"
-            type="submit"
-            onClick={handlePayment}
-          >
-            پرداخت
+            <Link to={{ pathname: "..//payment" }} >
+          <Button variant="contained" color="success" type="submit">
+              پرداخت
           </Button>
+              </Link>
         </form>
-        <Link to={{ pathname: "..//payment" }}></Link>
       </div>
     </div>
   );

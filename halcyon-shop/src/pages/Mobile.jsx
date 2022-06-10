@@ -87,8 +87,9 @@ export default function MediaControlCard() {
             color="text.secondary"
             component="div"
             sx={{ height: "200px", overflow: "auto" }}
+            dangerouslySetInnerHTML={{__html: map?.description}}
           >
-            {map.description}
+            {/* {map.description} */}
           </Typography>
         </CardContent>
       </Box>

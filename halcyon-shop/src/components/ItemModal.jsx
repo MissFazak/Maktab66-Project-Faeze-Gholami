@@ -11,13 +11,15 @@ import { api } from "../redux/api";
 import service from "../redux/http";
 import * as Yup from "yup";
 import { toast } from "react-toastify";
+import { convertToRaw, EditorState } from "draft-js";
+import draftToHtml from "draftjs-to-html";
 
 const style = {
   position: "absolute",
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: '60%',
+  width: "60%",
   bgcolor: "background.paper",
   border: "2px solid #000",
   boxShadow: 24,
@@ -32,7 +34,11 @@ export default function BasicModal({ category, setState, state }) {
   const handleClose = () => setOpen(false);
   const [gallery, setGallery] = useState([]);
   const [des, setDes] = useState();
-  // console.log(item);
+  const [editorState, setEditorState] = useState(EditorState.createEmpty());
+  
+  React.useEffect(()=>{
+
+  },[])
   const formik = useFormik({
     initialValues: {
       id: uuidv4(),
@@ -55,9 +61,9 @@ export default function BasicModal({ category, setState, state }) {
         .required("وارد کردن تعداد کالا الزامی است!"),
     }),
     onSubmit: () => {
-      
       service.creatProduct(data);
       setGallery([]);
+      setEditorState(EditorState.createEmpty());
       handleClose();
       formik.values.id = uuidv4();
       setState(!state);
@@ -76,7 +82,7 @@ export default function BasicModal({ category, setState, state }) {
     thumbnail: gallery[0],
     createdAt: new Date().getTime(),
   };
-console.log(gallery);
+
   //get images as file
   const selectFileHandler = (e) => {
     formik.setFieldValue("image", e.currentTarget.files[0]);
@@ -91,15 +97,19 @@ console.log(gallery);
       .post("/upload", formData, {})
       .then((res) => setGallery((gallery) => [...gallery, res.data.filename]));
   };
-  //save description
-  const onContentStateChange = (context) => {
-    setDes(context.blocks[0].text);
+
+  const onEditorStateChange = (editorState) => {
+    setEditorState(editorState);
+  setDes(draftToHtml(convertToRaw(editorState.getCurrentContent())));
+
   };
 
-const handleDeleteImage = (e)=>{
-  const findImage = gallery.find(item=>item==e);
-  setGallery(gallery.filter(item=>item!=findImage));
-}
+  console.log(des);
+
+  const handleDeleteImage = (e) => {
+    const findImage = gallery.find((item) => item == e);
+    setGallery(gallery.filter((item) => item != findImage));
+  };
 
   return (
     <div>
@@ -138,8 +148,13 @@ const handleDeleteImage = (e)=>{
                   <img
                     src={`http://localhost:3002/files/${photo}`}
                     key={uuidv4()}
-                    />
-                    <span className="deleteIcon" onClick={()=>handleDeleteImage(photo)}>×</span>
+                  />
+                  <span
+                    className="deleteIcon"
+                    onClick={() => handleDeleteImage(photo)}
+                  >
+                    ×
+                  </span>
                 </div>
               ))}
             </div>
@@ -193,10 +208,11 @@ const handleDeleteImage = (e)=>{
               <div className="error1">{formik.errors.count}</div>
             ) : null}
             <Editor
+              editorState={editorState}
               toolbarClassName="toolbarClassName"
               wrapperClassName="wrapperClassName"
               editorClassName="editorClassName"
-              onContentStateChange={onContentStateChange}
+              onEditorStateChange={onEditorStateChange}
             />
 
             <button type="submit">ذخیره</button>

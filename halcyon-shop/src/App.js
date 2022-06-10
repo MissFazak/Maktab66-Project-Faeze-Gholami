@@ -23,12 +23,20 @@ import { fetchOrder } from "./redux/orderSlice";
 import Payment from "./layout/Payment";
 import Success from "./pages/Success";
 import Failed from "./pages/Failed";
+import { SpinnerDotted } from "spinners-react";
 
 function App() {
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const { items } = useSelector(itemsSelector);
   const { category } = useSelector(categorySelector);
   const cart = useSelector(cartSelector);
+  // useEffect(() => {
+  //   setLoading(true);
+  //   setTimeout(() => {
+  //     setLoading(false);
+  //   }, 3000);
+  // }, []);
   useEffect(() => {
     dispatch(fetchItems());
   }, [dispatch]);
@@ -44,46 +52,48 @@ function App() {
 
   return (
     <div className="container">
-      <Routes>
-        <Route path="/" element={<HomePage />}>
-          <Route path="/" element={<MainPage />} />
-          {items.map((item, index) => (
-            <Route
-              path={`/mobile/${item.id}`}
-              element={<Mobile />}
-              key={index}
-            />
-          ))}
-          <Route path="login" element={<PublicRoute />}>
-            <Route path="/login" element={<Login />} />
-          </Route>
-          <Route path="/cart-page" element={<CartPage />} />
-          <Route path="success" element={<Success />} />
-          <Route path="failed" element={<Failed />} />
-          <Route path="/order" element={<OrderForm />} />
-          <Route path="/list-brands" element={<ListOfBrands />}>
-            {category?.map((item, index) => (
-              // console.log(item.name)
 
+        <Routes>
+          <Route path="/" element={<HomePage />}>
+            <Route path="/" element={<MainPage />} />
+            {items.map((item, index) => (
               <Route
-                path={`/list-brands/brands/${item?.name}`}
-                element={<SingleBrands />}
+                path={`/mobile/${item.id}`}
+                element={<Mobile />}
                 key={index}
               />
             ))}
-          </Route>
-        </Route>
+            <Route path="login" element={<PublicRoute />}>
+              <Route path="/login" element={<Login />} />
+            </Route>
+            <Route path="/cart-page" element={<CartPage />} />
+            <Route path="success" element={<Success />} />
+            <Route path="failed" element={<Failed />} />
+            <Route path="/order" element={<OrderForm />} />
+            <Route path="/list-brands" element={<ListOfBrands />}>
+              {category?.map((item, index) => (
+                // console.log(item.name)
 
-        <Route path="/" element={<PrivateRoute />}>
-          <Route path="/dashboard" element={<Dashboard />}>
-            <Route path="manage-page" element={<ManagePage />} />
-            <Route path="manage-of-sp" element={<ManageOfSP />} />
-            <Route path="order-page" element={<OrderPage />} />
+                <Route
+                  path={`/list-brands/brands/${item?.name}`}
+                  element={<SingleBrands />}
+                  key={index}
+                />
+              ))}
+            </Route>
           </Route>
-        </Route>
 
-        <Route path="/payment" element={<Payment />}></Route>
-      </Routes>
+          <Route path="/" element={<PrivateRoute />}>
+            <Route path="/dashboard" element={<Dashboard />}>
+              <Route path="manage-page" element={<ManagePage />} />
+              <Route path="manage-of-sp" element={<ManageOfSP />} />
+              <Route path="order-page" element={<OrderPage />} />
+            </Route>
+          </Route>
+
+          <Route path="/payment" element={<Payment />}></Route>
+        </Routes>
+      
     </div>
   );
 }

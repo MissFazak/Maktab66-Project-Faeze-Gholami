@@ -93,7 +93,7 @@ export default function DataTable() {
     };
   });
   return (
-    <div className="managePage">
+    <div className="cartPage">
       <DataGrid
         rows={rows}
         columns={columns}
@@ -107,7 +107,7 @@ export default function DataTable() {
         sx={{
           marginTop: "20px",
           display: "flex",
-          flexDirection: { md: "row", xs: "column" },
+          flexDirection: { sm: "row", xs: "column" },
           alignItems: "center",
           justifyContent: "space-between",
         }}

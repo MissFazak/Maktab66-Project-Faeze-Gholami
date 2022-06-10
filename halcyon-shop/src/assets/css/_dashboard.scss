@@ -12,7 +12,7 @@
 }
 
 .managePage {
-  width: 60%;
+  width: 80%;
   margin: auto;
   font-size: 1.5em;
 }
@@ -88,4 +88,17 @@ tr:nth-child(odd) {
   color: white;
   cursor: pointer;
   // top:10px;
+}
+
+
+@media only screen and (max-width: 900px) {
+  .managePage{
+    width:100%
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .managePage{
+    width:90%
+  }
 }

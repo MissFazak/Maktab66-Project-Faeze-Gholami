@@ -1,13 +1,14 @@
 import React from "react";
-import DashboardHead from "../components/DashboardHead";
+import HambergerMenu from "../components/HambergerMenu";
 
-import {Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 
 export default function Dashboard() {
   return (
     <div>
-      <DashboardHead />
-      <Outlet/>
+      <HambergerMenu>
+        <Outlet />
+      </HambergerMenu>
     </div>
   );
 }

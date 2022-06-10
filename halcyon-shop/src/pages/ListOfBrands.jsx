@@ -11,7 +11,6 @@ import { Box } from "@mui/material";
 import { v4 as uuidv4 } from 'uuid';
 
 export default function ListOfBrands() {
-  const { items } = useSelector(itemsSelector);
   const { category } = useSelector(categorySelector);
 
   return (
@@ -19,9 +18,7 @@ export default function ListOfBrands() {
       <div className="sidebar">
         <Box
           sx={{
-            width: "100%",
-            maxWidth: 360,
-            bgcolor: "background.paper",
+            bgcolor: "#F4F4F4",
             position: "relative",
             overflow: "auto",
             maxHeight: "100vh",
@@ -33,31 +30,17 @@ export default function ListOfBrands() {
               sx={{
                 direction: "ltr",
                 width: "100%",
-                maxWidth: 360,
-                bgcolor: "background.paper",
+                bgcolor: "#F4F4F4",
               }}
               component="nav"
               aria-labelledby="nested-list-subheader"
               key={uuidv4()}
             >
               <ListItemButton>
-                <Link to={{ pathname: "brands" }} state={item}>
+                <Link to={{ pathname: `brands/${item.name}` }} state={item}>
                   <ListItemText primary={item.name} />
                 </Link>
               </ListItemButton>
-              <Collapse>
-                {items.map((el) => {
-                  if (item.id == el.category) {
-                    return (
-                      <List component="div" disablePadding key={uuidv4()}>
-                        <ListItemButton sx={{ pl: 4 }}>
-                          <ListItemText primary={el.name} />
-                        </ListItemButton>
-                      </List>
-                    );
-                  }
-                })}
-              </Collapse>
             </List>
           ))}
         </Box>

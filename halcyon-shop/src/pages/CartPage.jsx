@@ -19,10 +19,16 @@ export default function DataTable() {
   const cart = useSelector(cartSelector);
   const { items } = useSelector(itemsSelector);
 
-  
   const handleClearCart = () => {
     dispatch(clearCart());
     toast.error("سبد خرید خالی شد");
+  };
+
+  const handleFinalization = (e) => {
+    if (cart.cartTotalAmount === 0) {
+      e.preventDefault();
+      toast.error("سبد خرید خالی است");
+    }
   };
 
   const columns = [
@@ -38,13 +44,13 @@ export default function DataTable() {
         const handleDecrease = (e) => {
           dispatch(decreaseCartItem(e));
         };
-        
+
         const handleIncrease = (e) => {
-          if(e.count>e.cartQuantity)
-          {dispatch(addToCart(e));}else{
+          if (e.count > e.cartQuantity) {
+            dispatch(addToCart(e));
+          } else {
             toast.error("موجودی کافی نیست");
           }
-         
         };
         return (
           <>
@@ -68,7 +74,7 @@ export default function DataTable() {
         return (
           <Button
             variant="contained"
-            color="primary"
+            color="error"
             onClick={() => handleDelete(params.row)}
           >
             حذف
@@ -81,13 +87,13 @@ export default function DataTable() {
     return {
       id: cartItem.id,
       name: cartItem.name,
-      price: cartItem.price,
+      price: Number(cartItem.price).toLocaleString(),
       cartQuantity: cartItem.cartQuantity,
       count: cartItem.count,
     };
   });
   return (
-    <div className="managePage">
+    <div className="cartPage">
       <DataGrid
         rows={rows}
         columns={columns}
@@ -101,22 +107,27 @@ export default function DataTable() {
         sx={{
           marginTop: "20px",
           display: "flex",
+          flexDirection: { sm: "row", xs: "column" },
+          alignItems: "center",
           justifyContent: "space-between",
         }}
       >
-        مجموع سبد خرید: {cart.cartTotalAmount}
-        <Button color="error" variant="contained" onClick={handleClearCart}>
+        <Typography>
+          مجموع سبد خرید: {Number(cart.cartTotalAmount).toLocaleString()} تومان
+        </Typography>
+        <Button
+          className="cartPageButton"
+          color="error"
+          variant="contained"
+          onClick={handleClearCart}
+        >
           خالی کردن سبد خرید
         </Button>
-        <Link to={{ pathname: "..//order" }}>
-          <Button
-            variant="contained"
-            color="success"
-            sx={{ float: "left", color: "black" }}
-          >
+        <Button variant="contained" color="success" sx={{ color: "black" }} className="cartPageButton">
+          <Link to={{ pathname: "..//order" }} >
             نهایی کردن سبد خرید
-          </Button>
-        </Link>
+          </Link>
+        </Button>
       </Box>
     </div>
   );

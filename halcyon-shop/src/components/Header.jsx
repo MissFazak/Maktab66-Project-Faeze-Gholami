@@ -12,16 +12,17 @@ import HelpCenterIcon from "@mui/icons-material/HelpCenter";
 import ContactPhoneIcon from "@mui/icons-material/ContactPhone";
 import InfoIcon from "@mui/icons-material/Info";
 import MenuIcon from "@mui/icons-material/Menu";
-import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { Badge } from "@mui/material";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { cartSelector } from "../redux/cartSlice";
+import SupervisorAccountIcon from "@mui/icons-material/SupervisorAccount";
+import { categorySelector } from "../redux/categorySlice";
 
-export default function Header({cartItmes}) {
-  
-  const cart = useSelector(cartSelector)
+export default function Header({ cartItmes }) {
+  const {category} = useSelector(categorySelector)
+  const cart = useSelector(cartSelector);
   const navigateToHome = useNavigate();
   const homePageNav = () => {
     navigateToHome("/");
@@ -37,14 +38,12 @@ export default function Header({cartItmes}) {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" color="transparent" sx={{boxShadow:'none'}}>
+      <AppBar position="static" color="transparent" sx={{ boxShadow: "none" }}>
         <Toolbar className="toolbar">
           <Box
             component="img"
             sx={{
               width: "6%",
-              maxHeight: { xs: 233, md: 167 },
-              maxWidth: { xs: 350, md: 250 },
               cursor: "pointer",
               flexFlow: 1,
             }}
@@ -54,26 +53,25 @@ export default function Header({cartItmes}) {
           />
           <Typography
             align="right"
-            variant="h4"
             noWrap
             component="div"
-            sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
+            sx={{
+              flexGrow: 1,
+              fontSize: { md: "40px", sm: "30px", xs: "15px" },
+            }}
           >
             فروشگاه موبایل هالسیون
           </Typography>
 
           <Box sx={{ display: "flex", flexDirection: "row" }}>
-            <Typography variant="h6">
-              <Link to={{ pathname: `login` }}>مدیریت </Link>
-            </Typography>
+            <Link to={{ pathname: `login` }}>
+              <SupervisorAccountIcon fontSize="large" color="primary" />{" "}
+            </Link>
+
             <Typography variant="h6" sx={{ paddingX: "10px" }}>
               <Link to={{ pathname: `cart-page` }}>
-        
                 <Badge color="error" badgeContent={cart.cartTotalQuantity}>
-                  <LocalMallIcon
-                    fontSize="large"
-                    color="primary"
-                  />
+                  <LocalMallIcon fontSize="large" color="primary" />
                 </Badge>
               </Link>
             </Typography>
@@ -94,7 +92,7 @@ export default function Header({cartItmes}) {
                 sx={{ marginBottom: "-6px" }}
               />
               <Link
-              to={{}}
+                to={{pathname:'list-brands'}}
                 id="basic-button"
                 aria-controls={open ? "basic-menu" : undefined}
                 aria-haspopup="true"
@@ -112,19 +110,8 @@ export default function Header({cartItmes}) {
                   "aria-labelledby": "basic-button",
                 }}
               >
-                <MenuItem><Link to={{}}>سامسونگ</Link></MenuItem>
-                <MenuItem><Link to={{}}>اپل</Link></MenuItem>
-                <MenuItem><Link to={{}}>شیائومی</Link></MenuItem>
-                <MenuItem><Link to={{}}>هوآوی</Link></MenuItem>
-                <MenuItem><Link to={{}}>جی پلاس</Link></MenuItem>
-                <MenuItem><Link to={{}}>وان پلاس</Link></MenuItem>
-                <MenuItem><Link to={{}}>دو جی</Link></MenuItem>
-                <MenuItem><Link to={{}}>نوکیا</Link></MenuItem>
-                <MenuItem><Link to={{}}>ال جی</Link></MenuItem>
-                <MenuItem><Link to={{}}>موتورولا</Link></MenuItem>
-
-
-                
+                {category?.map(item=>
+                  <MenuItem><Link to={{pathname:`list-brands/brands/${item.name}`}} state={item}>{item?.name}</Link></MenuItem>)}
               </Menu>
             </Typography>
             <Typography variant="h6" sx={{ paddingX: "10px" }}>

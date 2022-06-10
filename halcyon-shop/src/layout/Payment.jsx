@@ -10,10 +10,10 @@ import service from "../redux/http";
 export default function Payment() {
   const dispatch = useDispatch();
   const buyed = JSON.parse(localStorage.getItem("order"));
-  console.log(buyed);
 
   const handlePaymentSuccess = () => {
     service.updateOrder(buyed.id, { orderStatus: 3 });
+    buyed.orderItems?.map(item=>service.updateProduct(item?.id,{count:+item?.count-item?.quantity}));
     localStorage.removeItem("order");
     dispatch(clearCart());
     toast.success("پرداخت شما با موفقیت انجام شد");

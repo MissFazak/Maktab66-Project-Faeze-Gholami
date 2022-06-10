@@ -10,13 +10,14 @@ import { useState } from "react";
 import { api } from "../redux/api";
 import service from "../redux/http";
 import * as Yup from "yup";
+import { toast } from "react-toastify";
 
 const style = {
   position: "absolute",
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 400,
+  width: '60%',
   bgcolor: "background.paper",
   border: "2px solid #000",
   boxShadow: 24,
@@ -54,12 +55,13 @@ export default function BasicModal({ category, setState, state }) {
         .required("وارد کردن تعداد کالا الزامی است!"),
     }),
     onSubmit: () => {
-      alert("اطلاعات شما با موفقیت ثبت گردید");
+      
       service.creatProduct(data);
       setGallery([]);
       handleClose();
       formik.values.id = uuidv4();
       setState(!state);
+      toast.success("اطلاعات شما با موفقیت ثبت گردید");
     },
   });
 
@@ -70,11 +72,11 @@ export default function BasicModal({ category, setState, state }) {
     price: formik.values.price,
     count: formik.values.count,
     description: des,
-    image: gallery,
+    images: gallery,
     thumbnail: gallery[0],
     createdAt: new Date().getTime(),
   };
-
+console.log(gallery);
   //get images as file
   const selectFileHandler = (e) => {
     formik.setFieldValue("image", e.currentTarget.files[0]);

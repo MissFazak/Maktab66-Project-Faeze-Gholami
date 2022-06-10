@@ -4,19 +4,7 @@ import service from "./http";
 const productSlice = createSlice({
   name: "items",
   initialState: {
-    items: [
-      {
-        name: "",
-        category: "",
-        price: "",
-        count: "",
-        description: "",
-        images: [],
-        thumbnail: "",
-        id: 0,
-        createdAt: 0,
-      },
-    ],
+    items: [],
   },
   reducers: {
     setItems: (state, action) => {

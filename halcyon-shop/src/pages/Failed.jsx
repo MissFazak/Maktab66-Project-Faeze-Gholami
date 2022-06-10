@@ -11,7 +11,7 @@ export default function Failed() {
 
   const handleCancel = () => {
     dispatch(clearCart())
-    service.updateOrder(buyed.id, { orderStatus: "2" });
+    service.updateOrder(buyed.id, { orderStatus: 2 });
     localStorage.removeItem("order");
   }
 

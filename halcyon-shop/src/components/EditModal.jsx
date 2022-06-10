@@ -10,13 +10,14 @@ import { useState, useEffect } from "react";
 import { api } from "../redux/api";
 import service from "../redux/http";
 import * as Yup from "yup";
+import { toast } from "react-toastify";
 
 const style = {
   position: "absolute",
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 400,
+  width: "60%",
   bgcolor: "background.paper",
   border: "2px solid #000",
   boxShadow: 24,
@@ -25,8 +26,7 @@ const style = {
   overflow: "auto",
 };
 
-export default function BasicModal({ category, item, setState,state }) {
-  
+export default function BasicModal({ category, item, setState, state }) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -42,17 +42,18 @@ export default function BasicModal({ category, item, setState,state }) {
       description: item?.description,
     },
     onSubmit: () => {
-      alert("اطلاعات شما با موفقیت ویرایش گردید");
-      service.updateProduct(item?.id,data)
-      // service.creatProduct(data);
+
+      service.updateProduct(item?.id, data);
       handleClose();
       setState(!state);
+      toast.success("اطلاعات شما با موفقیت ویرایش گردید");
     },
   });
   const [gallery, setGallery] = useState();
-  useEffect(()=>{setGallery(formik.values?.image)},[formik.values?.image])
+  useEffect(() => {
+    setGallery(formik.values?.image);
+  }, [formik.values?.image]);
   console.log(gallery);
-
 
   const data = {
     name: formik.values?.name,
@@ -60,9 +61,8 @@ export default function BasicModal({ category, item, setState,state }) {
     price: formik.values?.price,
     count: formik.values?.count,
     description: formik.values?.description,
-    image: gallery
+    images: gallery,
   };
-  console.log(data);
 
   //get images as file
   const selectFileHandler = (e) => {
@@ -114,7 +114,7 @@ export default function BasicModal({ category, item, setState,state }) {
             </button>
             <div className="thumbnail">
               {gallery?.map((photo) => (
-                <div className="imageDeletable">
+                <div key={uuidv4()} className="imageDeletable">
                   <img
                     src={`http://localhost:3002/files/${photo}`}
                     key={uuidv4()}
@@ -148,7 +148,9 @@ export default function BasicModal({ category, item, setState,state }) {
             >
               <option value="">انتخاب کنید</option>
               {category?.map((item) => (
-                <option value={item?.id} key={item?.id}>{item?.name}</option>
+                <option value={item?.id} key={item?.id}>
+                  {item?.name}
+                </option>
               ))}
             </select>
             <label htmlFor="price">قیمت</label>

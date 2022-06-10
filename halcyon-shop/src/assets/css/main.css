@@ -3,6 +3,8 @@
 @use "cardHomePage";
 @use "footer";
 @use "sideBar";
+@use 'formAdd';
+@use 'orderForm';
 @font-face {
   font-family: Koodak;
   src: url("../font/KoodakBold.woff");
@@ -12,6 +14,7 @@ body {
   margin: 0;
   font-family: koodak;
   direction: rtl;
+  background-color: #F4F4F4;
 }
 
 .container {

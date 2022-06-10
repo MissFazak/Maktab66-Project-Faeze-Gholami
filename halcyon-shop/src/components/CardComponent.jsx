@@ -43,13 +43,20 @@ export default function CardComponent(props) {
           {Number(props?.item?.price).toLocaleString()}
         </Typography>
       </Link>
-      <Button
+      {props?.item?.count == 0 ? <Button
+        variant="contained"
+        color="primary"
+        disabled
+        onClick={() => increase(props?.item)}
+      >
+        افزودن به سبد کالا
+      </Button>: <Button
         variant="contained"
         color="primary"
         onClick={() => increase(props?.item)}
       >
         افزودن به سبد کالا
-      </Button>
+      </Button>}
     </Card>
   );
 }
